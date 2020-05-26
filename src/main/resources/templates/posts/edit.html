@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<title>Edit Post</title>
+<head th:replace="partials/partials :: head"></head>
+
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+
+<div class="container">
+
+    <h2>Edit Post</h2>
+
+<!--    <form method="post" th:action="@{'/posts/edit/' + ${post.getId()}}" class="form-group">-->
+<!--        <label for="title">Title: </label>-->
+<!--        <input type="text" name="title" id="title" class="field" th:value="${post.title}"/>-->
+<!--        <br><br>-->
+<!--        <label for="body">Body:</label><br>-->
+<!--        <textarea name="body" id="body" class="field" rows="4" cols="50" th:text="${post.body}"></textarea><br>-->
+<!--        <button type="submit">Edit</button>-->
+<!--    </form>-->
+
+
+</div>
+
+<standard_scripts th:replace="partials/partials :: footer">
+</standard_scripts>
+</body>
+</html>
