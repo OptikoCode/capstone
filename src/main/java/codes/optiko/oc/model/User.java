@@ -3,28 +3,33 @@ package codes.optiko.oc.model;
 import javax.persistence.*;
 import java.util.List;
 
-//@Entity
+@Entity
 @Table(name="users")
 public class User {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id; //big int
 
-    //username (can't be null, has to be unique)
-//    @Column(nullable = false, unique = true)
-    private String username;
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
 
     //email
-//    @Column(nullable = false, unique = true) //can use same email more than once but can't be no email
+    @Column(nullable = false, unique = true) //can use same email more than once but can't be no email
     private String email;
 
+    @Column(nullable = false, unique = true)
+    private String username;
+
     //password - not required because of hashing, and actually safer this way
-//    @Column
+    @Column
     private String password;
 
 
     //each user can have multiple posts
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts;
 
     public User() {
@@ -53,6 +58,16 @@ public class User {
         this.id = id;
         this.username = username;
     }
+
+    public User(String firstName, String lastName, String email, String username, String password, List<Post> posts) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.posts = posts;
+    }
+
     public User(long id){
         this.id = id;
     }
@@ -95,5 +110,21 @@ public class User {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
