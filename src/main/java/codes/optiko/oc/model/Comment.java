@@ -1,13 +1,20 @@
 package codes.optiko.oc.model;
 import javax.persistence.*;
 
-//@Entity
+@Entity
+@Table(name = "comments")
 public class Comment {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String body;
+    @Column(nullable = false)
+    private String comment;
 
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    
     private User user;
 
 //    empty constructor
@@ -24,11 +31,11 @@ public class Comment {
     }
 
     public String getBody() {
-        return body;
+        return comment;
     }
 
     public void setBody(String body) {
-        this.body = body;
+        this.comment = comment;
     }
 
     public User getUser() {
