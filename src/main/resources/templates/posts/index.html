@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<title>Posts</title>
+<head th:replace="partials/partials :: head"></head>
+
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+<div class="container">
+    <!--    same as view in jsp-->
+    <h2 class="template-h2">Posts</h2>
+
+<!--    <div class="post-div mb-3" th:each="post : ${posts}">-->
+<!--        -->
+<!--        <h2 th:text="${post.title}" class="post-title"></h2>-->
+<!--        <p th:text="${post.body}"></p>-->
+<!--        <a th:href="@{|/posts/delete/${post.getId()}|}" class="delete-link"><p style="padding-left: 2rem;" class="delete-button">DELETE</p></a>-->
+<!--        <a th:href="@{|/posts/edit/${post.getId()}|}" class="edit-link"><p style="padding-left: 2rem;" class="edit-button">EDIT</p></a>-->
+<!--        -->
+<!--    </div>-->
+</div>
+
+<standard_scripts th:replace="partials/partials :: footer">
+</standard_scripts>
+</body>
+</html>

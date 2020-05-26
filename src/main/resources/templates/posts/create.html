@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<title>Create Post</title>
+<head th:replace="partials/partials :: head"></head>
+
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+
+<div class="container" sec:authorize="isAuthenticated()">
+
+    <h2>Create Post</h2>
+
+<!--    <form th:action="@{/posts/create}" th:method="post" th:object="${post}" class="form-group">-->
+<!--        <label for="title">Title: </label>-->
+<!--        <input th:field="*{title}" type="text" name="title" id="title" class="field form-text"/>-->
+<!--        <br><br>-->
+<!--        <label for="body">Body:</label><br>-->
+<!--        <textarea th:field="*{body}" name="body" id="body" class="field form-text" rows="4" cols="50"></textarea><br>-->
+<!--        <button>Save</button>-->
+<!--    </form>-->
+
+</div>
+
+<standard_scripts th:replace="partials/partials :: footer">
+</standard_scripts>
+</body>
+</html>
