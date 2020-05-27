@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+<!--    <head th:replace="partials/partials :: head"></head>-->
+</head>
+<body>
+<!--<nav th:replace="partials/partials :: navbar"></nav>-->
+
+<div class="container">
+<form method="post" th:action="@{'/user/edit/' + ${user.id}}" th:object="${user}" class="form-group">
+<!--    User can edit their user name-->
+    <label for="username">Edit Username</label>
+    <input type="text" id="username" th:field="*{username}" th:value="${user.username}">Username</input>
+<!--    User can change their email-->
+    <label for="email">Edit Email</label>
+    <input type="email" id="email" th:field="*{email}" th:value="${user.email}">Email</input>
+<!--    User can change their password-->
+    <label for="password">Change Password</label>
+    <input type="password" id="password" th:field="*{password}" th:value="${user.password}">Password</input>
+
+    <button type="submit">Submit Changes</button>
+</form>
+</div>
+
+<!--<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>-->
+</body>
+</html>
