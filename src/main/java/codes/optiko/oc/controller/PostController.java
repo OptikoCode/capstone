@@ -64,6 +64,7 @@ public class PostController {
     public String viewPost(@PathVariable long id, Model model) {
         model.addAttribute("post", postRepo.getPostById(id));
         //can also do .getOne(id), which is JPA, instead of .getPostById(id);
+        model.addAttribute("responses", responseRepo.findByPostId(id));
         return "/posts/show";
     }
     //***********************************

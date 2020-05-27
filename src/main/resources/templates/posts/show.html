@@ -6,7 +6,7 @@
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 <title>Post</title>
 
-<head th:replace="partials/partials :: head"></head>
+<head th:replace="partials/partials :: head ('Show Post')"></head>
 
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
@@ -19,6 +19,11 @@
     <p style="padding-left: 2rem;" th:text="${post.updateDate}"></p>
     <p style="padding-left: 2rem;" th:text="${post.getUser().getEmail()}"></p>
 
+    <h3>Responses:</h3>
+
+    <div class="post-div mb-3" th:each="response : ${responses}">
+        <video th:src="${response.video}" width="500" controls></video>
+    </div>
 </div>
 
 <standard_scripts th:replace="partials/partials :: footer">
