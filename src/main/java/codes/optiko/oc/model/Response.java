@@ -24,11 +24,9 @@ public class Response {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    //do we need response id in video?
-//  foreign key to video: one response to one video
-    @OneToOne
-    @JoinColumn(name = "video_id")
-    private Video video;
+    //video url
+    @JoinColumn(name = "video_url")
+    private String video;
 
 //  foreign key to comment: one response can have many comments
     @ManyToOne
@@ -64,14 +62,14 @@ public class Response {
         this.post = post;
     }
 
-    public Response(long id, User user, Post post, Video video){
+    public Response(long id, User user, Post post, String video){
         this.id = id;
         this.user = user;
         this.post = post;
         this.video = video;
     }
 
-    public Response(long id, User user, Post post, Video video, Comment comment){
+    public Response(long id, User user, Post post, String video, Comment comment){
         this.id = id;
         this.user = user;
         this.post = post;
@@ -79,7 +77,7 @@ public class Response {
         this.comment = comment;
     }
 
-    public Response(long id, User user, Post post, Video video, Comment comment, Timestamp createDate){
+    public Response(long id, User user, Post post, String video, Comment comment, Timestamp createDate){
         this.id = id;
         this.user = user;
         this.post = post;
@@ -88,7 +86,7 @@ public class Response {
         this.createDate = createDate;
     }
 
-    public Response(long id, User user, Post post, Video video, Comment comment, Timestamp createDate, Timestamp updateDate){
+    public Response(long id, User user, Post post, String video, Comment comment, Timestamp createDate, Timestamp updateDate){
         this.id = id;
         this.user = user;
         this.post = post;
@@ -124,11 +122,11 @@ public class Response {
         this.post = post;
     }
 
-    public Video getVideo() {
+    public String getVideo() {
         return video;
     }
 
-    public void setVideo(Video video) {
+    public void setVideo(String video) {
         this.video = video;
     }
 
