@@ -22,12 +22,12 @@ public class Comment {
     private User user;
 
 //    time stamps are sql-oriented
-    @CreationTimestamp
     @Column
+    @CreationTimestamp
     private Timestamp createDate;
 
-    @UpdateTimestamp
     @Column
+    @UpdateTimestamp
     private Timestamp updateDate;
 
 

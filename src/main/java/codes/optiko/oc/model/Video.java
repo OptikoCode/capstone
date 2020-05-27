@@ -18,12 +18,12 @@ public class Video {
     @Column(nullable = false)
     private String video;
 
-    @CreationTimestamp
     @Column
+    @CreationTimestamp
     private Timestamp createDate;
 
-    @UpdateTimestamp
     @Column
+    @UpdateTimestamp
     private Timestamp updateDate;
 
 //************** JOIN TABLE ********************

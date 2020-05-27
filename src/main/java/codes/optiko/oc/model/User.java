@@ -30,12 +30,12 @@ public class User {
     @Column
     private String password;
 
-    @CreationTimestamp
     @Column
+    @CreationTimestamp
     private Timestamp createDate;
 
-    @UpdateTimestamp
     @Column
+    @UpdateTimestamp
     private Timestamp updateDate;
 
     @Column

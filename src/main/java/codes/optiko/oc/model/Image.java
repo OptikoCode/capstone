@@ -21,12 +21,12 @@ public class Image {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    @CreationTimestamp
     @Column
+    @CreationTimestamp
     private Timestamp createDate;
 
-    @UpdateTimestamp
     @Column
+    @UpdateTimestamp
     private Timestamp updateDate;
 
 //************** CONSTRUCTORS ********************

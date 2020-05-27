@@ -24,6 +24,7 @@ public class Response {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    //do we need response id in video?
 //  foreign key to video: one response to one video
     @OneToOne
     @JoinColumn(name = "video_id")
@@ -34,12 +35,12 @@ public class Response {
     @JoinColumn(name = "comment_id")
     private Comment comment;
 
-    @CreationTimestamp
     @Column
+    @CreationTimestamp
     private Timestamp createDate;
 
-    @UpdateTimestamp
     @Column
+    @UpdateTimestamp
     private Timestamp updateDate;
 
 //************** CONSTRUCTORS ********************
