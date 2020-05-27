@@ -1,14 +1,14 @@
 package codes.optiko.oc.model;
 import javax.persistence.*;
 
-//@Entity
+@Entity
 public class Response {
-
+    @Id
     private long id;
 
     private String body;
 
-    private User user;
+//    private User user;
 
 //    empty constructor
     public Response(){
@@ -31,11 +31,11 @@ public class Response {
         this.body = body;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }
