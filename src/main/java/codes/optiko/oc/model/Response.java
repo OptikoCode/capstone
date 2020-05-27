@@ -29,7 +29,7 @@ public class Response {
     private Video video;
 
 //  foreign key to comment: one response can have many comments
-    @OneToMany //need to fix?
+    @ManyToOne //need to fix?
     @JoinColumn(name = "comment_id")
     private Comment comment;
 
