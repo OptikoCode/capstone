@@ -2,6 +2,7 @@ package codes.optiko.oc.model;
 import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -25,9 +26,13 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @CreationTimestamp
     @Column
-    private Timestamp date;
+    @CreationTimestamp
+    private Timestamp createDate;
+
+    @Column
+    @UpdateTimestamp
+    private Timestamp updateDate;
 
 //************** JOIN TABLE ********************
 
@@ -66,12 +71,21 @@ public class Post {
         this.user = user;
     }
 
-    public Post(long id, String title, String description, User user, Timestamp date) {
+    public Post(long id, String title, String description, User user, Timestamp createDate) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.user = user;
-        this.date = date;
+        this.createDate = createDate;
+    }
+
+    public Post(long id, String title, String description, User user, Timestamp createDate, Timestamp updateDate) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.user = user;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 
 //************** GETTERS and SETTERS ********************
@@ -108,12 +122,20 @@ public class Post {
         this.user = user;
     }
 
-    public Timestamp getDate() {
-        return date;
+    public Timestamp getCreateDate() {
+        return createDate;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
+    public void setCreateDate(Timestamp date) {
+        this.createDate = createDate;
+    }
+
+    public Timestamp getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Timestamp updateDate) {
+        this.updateDate = updateDate;
     }
 
     public List<Category> getCategories() {

@@ -1,6 +1,7 @@
 package codes.optiko.oc.model;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -29,17 +30,21 @@ public class User {
     @Column
     private String password;
 
-    @CreationTimestamp
     @Column
-    private Timestamp date;
+    @CreationTimestamp
+    private Timestamp createDate;
+
+    @Column
+    @UpdateTimestamp
+    private Timestamp updateDate;
 
     @Column
     private Boolean isAdmin;
 
     //each user can have multiple posts
     //is below needed?
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<Post> posts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Post> posts;
 
 ////************** CONSTRUCTORS ********************
 
@@ -85,25 +90,50 @@ public class User {
         this.password = password;
     }
 
-    public User(long id, String firstName, String lastName, String email, String username, String password, Timestamp date){
+    public User(long id, String firstName, String lastName, String email, String username, String password, Timestamp createDate){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.date = date;
+        this.createDate = createDate;
     }
 
-    public User(long id, String firstName, String lastName, String email, String username, String password, Timestamp date, Boolean isAdmin){
+    public User(long id, String firstName, String lastName, String email, String username, String password, Timestamp createDate, Timestamp updateDate){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.date = date;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
+
+    public User(long id, String firstName, String lastName, String email, String username, String password, Timestamp createDate, Timestamp updateDate, Boolean isAdmin){
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
         this.isAdmin = isAdmin;
+    }
+
+    public User(long id, String firstName, String lastName, String email, String username, String password, Timestamp createDate, Timestamp updateDate, Boolean isAdmin, List<Post> posts){
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+        this.isAdmin = isAdmin;
+        this.posts = posts;
     }
 
  //*************** COPY CONSTRUCTOR ***************
@@ -115,8 +145,10 @@ public class User {
         email = copy.email;
         username = copy.email;
         password = copy.password;
-        date = copy.date;
+        createDate = copy.createDate;
+        updateDate = copy.updateDate;
         isAdmin = copy.isAdmin;
+        posts = copy.posts;
     }
 
 //************** GETTERS and SETTERS ********************
@@ -169,12 +201,20 @@ public class User {
         this.password = password;
     }
 
-    public Timestamp getDate() {
-        return date;
+    public Timestamp getCreateDate() {
+        return createDate;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
+    public void setCreateDate(Timestamp date) {
+        this.createDate = createDate;
+    }
+
+    public Timestamp getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Timestamp updateDate) {
+        this.updateDate = updateDate;
     }
 
     public Boolean getAdmin() {
@@ -183,5 +223,13 @@ public class User {
 
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }
