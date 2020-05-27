@@ -1,5 +1,6 @@
 package codes.optiko.oc.model;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -20,10 +21,14 @@ public class Comment {
     @ManyToOne
     private User user;
 
-//    import is sql-oriented
+//    time stamps are sql-oriented
     @CreationTimestamp
     @Column
-    private Timestamp date;
+    private Timestamp createDate;
+
+    @UpdateTimestamp
+    @Column
+    private Timestamp updateDate;
 
 
 //************** CONSTRUCTORS ********************
@@ -47,11 +52,19 @@ public class Comment {
         this.user = user;
     }
 
-    public Comment(long id, String comment, User user, Timestamp date){
+    public Comment(long id, String comment, User user, Timestamp createDate){
         this.id = id;
         this.comment = comment;
         this.user = user;
-        this.date = date;
+        this.createDate = createDate;
+    }
+
+    public Comment(long id, String comment, User user, Timestamp createDate, Timestamp updateDate){
+        this.id = id;
+        this.comment = comment;
+        this.user = user;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 
 //************** GETTERS and SETTERS ********************
@@ -90,10 +103,18 @@ public class Comment {
     }
 
     public Timestamp getDate() {
-        return date;
+        return createDate;
     }
 
     public void setDate(Timestamp date) {
-        this.date = date;
+        this.createDate = createDate;
+    }
+
+    public Timestamp getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Timestamp updateDate) {
+        this.updateDate = updateDate;
     }
 }

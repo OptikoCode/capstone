@@ -1,6 +1,7 @@
 package codes.optiko.oc.model;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -13,15 +14,21 @@ public class Video {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    // string of URL of video
     @Column(nullable = false)
     private String video;
 
     @CreationTimestamp
     @Column
-    private Timestamp date;
+    private Timestamp createDate;
+
+    @UpdateTimestamp
+    @Column
+    private Timestamp updateDate;
 
 //************** JOIN TABLE ********************
 
+    //many to many?
 @ManyToMany(cascade = CascadeType.ALL)
 @JoinTable(
         name = "videos_responses",
@@ -29,7 +36,6 @@ public class Video {
         inverseJoinColumns = {@JoinColumn(name = "response_id")}
 )
 private List<Response> responses;
-//is list appropriate type?
 
 //************** CONSTRUCTORS ********************
 
@@ -45,10 +51,17 @@ private List<Response> responses;
         this.video = video;
     }
 
-    public Video(long id, String video, Timestamp date){
+    public Video(long id, String video, Timestamp createDate){
         this.id = id;
         this.video = video;
-        this.date = date;
+        this.createDate = createDate;
+    }
+
+    public Video(long id, String video, Timestamp createDate, Timestamp updateDate){
+        this.id = id;
+        this.video = video;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 
 //************** GETTERS and SETTERS ********************
@@ -69,12 +82,20 @@ private List<Response> responses;
         this.video = video;
     }
 
-    public Timestamp getDate() {
-        return date;
+    public Timestamp getCreateDate() {
+        return createDate;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
+    public void setCreateDate(Timestamp date) {
+        this.createDate = createDate;
+    }
+
+    public Timestamp getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Timestamp updateDate) {
+        this.updateDate = updateDate;
     }
 
     public List<Response> getResponses() {

@@ -1,6 +1,7 @@
 package codes.optiko.oc.model;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -13,7 +14,7 @@ public class Image {
     private long id;
 
     @Column
-    String image;
+    private String image;
 
 //  foreign key to post: one image to one post
     @OneToOne
@@ -22,7 +23,11 @@ public class Image {
 
     @CreationTimestamp
     @Column
-    private Timestamp date;
+    private Timestamp createDate;
+
+    @UpdateTimestamp
+    @Column
+    private Timestamp updateDate;
 
 //************** CONSTRUCTORS ********************
 
@@ -44,11 +49,19 @@ public class Image {
         this.post = post;
     }
 
-    public Image(long id, String image, Post post, Timestamp date){
+    public Image(long id, String image, Post post, Timestamp createDate){
         this.id = id;
         this.image = image;
         this.post = post;
-        this.date = date;
+        this.createDate = createDate;
+    }
+
+    public Image(long id, String image, Post post,Timestamp createDate, Timestamp updateDate){
+        this.id = id;
+        this.image = image;
+        this.post = post;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 
 //************** GETTERS and SETTERS ********************
@@ -77,11 +90,19 @@ public class Image {
         this.post = post;
     }
 
-    public Timestamp getDate() {
-        return date;
+    public Timestamp getCreateDate() {
+        return createDate;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
+    public void setCreateDate(Timestamp createDate) {
+        this.createDate = createDate;
+    }
+
+    public Timestamp getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Timestamp updateDate) {
+        this.updateDate = updateDate;
     }
 }

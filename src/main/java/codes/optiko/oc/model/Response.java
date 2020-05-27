@@ -1,6 +1,7 @@
 package codes.optiko.oc.model;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -29,13 +30,17 @@ public class Response {
     private Video video;
 
 //  foreign key to comment: one response can have many comments
-    @ManyToOne //need to fix?
+    @ManyToOne
     @JoinColumn(name = "comment_id")
     private Comment comment;
 
     @CreationTimestamp
     @Column
-    private Timestamp date;
+    private Timestamp createDate;
+
+    @UpdateTimestamp
+    @Column
+    private Timestamp updateDate;
 
 //************** CONSTRUCTORS ********************
 
@@ -73,13 +78,23 @@ public class Response {
         this.comment = comment;
     }
 
-    public Response(long id, User user, Post post, Video video, Comment comment, Timestamp date){
+    public Response(long id, User user, Post post, Video video, Comment comment, Timestamp createDate){
         this.id = id;
         this.user = user;
         this.post = post;
         this.video = video;
         this.comment = comment;
-        this.date = date;
+        this.createDate = createDate;
+    }
+
+    public Response(long id, User user, Post post, Video video, Comment comment, Timestamp createDate, Timestamp updateDate){
+        this.id = id;
+        this.user = user;
+        this.post = post;
+        this.video = video;
+        this.comment = comment;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 
 //************** GETTERS and SETTERS ********************
@@ -124,11 +139,19 @@ public class Response {
         this.comment = comment;
     }
 
-    public Timestamp getDate() {
-        return date;
+    public Timestamp getCreateDate() {
+        return createDate;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
+    public void setCreateDate(Timestamp date) {
+        this.createDate = createDate;
+    }
+
+    public Timestamp getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Timestamp updateDate) {
+        this.updateDate = updateDate;
     }
 }
