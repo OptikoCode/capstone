@@ -16,5 +16,5 @@ public class CommentController {
     //***********************************
 
     //********* SHOW ALL POSTS ***********
-    @GetMapping("/comments")
+//    @GetMapping("/comments")
 }
