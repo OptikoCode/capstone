@@ -1,5 +1,8 @@
 package codes.optiko.oc.model;
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "comments")
@@ -8,18 +11,50 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+
+    @Column(nullable = false, columnDefinition = "text")
     private String comment;
 
 
+//  foreign key: many comments to one user
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    
     private User user;
+
+//    import is sql-oriented
+    @CreationTimestamp
+    @Column
+    private Timestamp date;
+
+
+//************** CONSTRUCTORS ********************
 
 //    empty constructor
     public Comment(){
     }
+
+    public Comment(long id){
+        this.id = id;
+    }
+
+    public Comment(long id, String comment){
+        this.id = id;
+        this.comment = comment;
+    }
+
+    public Comment(long id, String comment, User user){
+        this.id = id;
+        this.comment = comment;
+        this.user = user;
+    }
+
+    public Comment(long id, String comment, User user, Timestamp date){
+        this.id = id;
+        this.comment = comment;
+        this.user = user;
+        this.date = date;
+    }
+
+//************** GETTERS and SETTERS ********************
 
 //    getters and setters
     public long getId() {
@@ -44,5 +79,21 @@ public class Comment {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 }

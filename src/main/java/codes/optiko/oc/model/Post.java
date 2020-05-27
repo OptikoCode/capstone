@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -17,40 +18,63 @@ public class Post {
     private String title;
 
     @Column(nullable = false, columnDefinition = "text")
-    private String body;
+    private String description;
 
+//  foreign key to user: many posts for one user
     @ManyToOne
     @JoinColumn(name = "user_id")
-
-//    @CreationTimestamp
-//    private Timestamp createDate;
-
     private User user;
 
-    //empty constructor
+    @CreationTimestamp
+    @Column
+    private Timestamp date;
+
+//************** JOIN TABLE ********************
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "posts_categories",
+            joinColumns = {@JoinColumn(name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+    )
+    private List<Category> categories;
+
+//************** CONSTRUCTORS ********************
+
     public Post(){
     }
 
-    public Post(String title, String body) {
-        this.title = title;
-        this.body = body;
+    public Post(long id){
+        this.id = id;
     }
 
-    public Post(String title, String body, User user) {
+    public Post(long id, String title){
+        this.id = id;
         this.title = title;
-        this.body = body;
+    }
+
+    public Post(long id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
+
+    public Post(long id, String title, String description, User user) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
         this.user = user;
     }
 
-    public Post(long id, String title, String body) {
+    public Post(long id, String title, String description, User user, Timestamp date) {
         this.id = id;
         this.title = title;
-        this.body = body;
+        this.description = description;
+        this.user = user;
+        this.date = date;
     }
 
-
-
-    //getters and setters
+//************** GETTERS and SETTERS ********************
 
     public long getId() {
         return id;
@@ -68,12 +92,12 @@ public class Post {
         this.title = title;
     }
 
-    public String getBody() {
-        return body;
+    public String getDescription() {
+        return description;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public User getUser() {
@@ -84,6 +108,20 @@ public class Post {
         this.user = user;
     }
 
+    public Timestamp getDate() {
+        return date;
+    }
 
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
 }
 
