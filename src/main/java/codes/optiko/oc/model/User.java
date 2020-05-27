@@ -38,8 +38,8 @@ public class User {
 
     //each user can have multiple posts
     //is below needed?
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<Post> posts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Post> posts;
 
 ////************** CONSTRUCTORS ********************
 
