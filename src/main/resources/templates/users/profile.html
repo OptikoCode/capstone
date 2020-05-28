@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+</head>
+<body>
+
+<div class="container">
+    <h2>Recent Blog Post</h2>
+    <br>
+    <ul>
+        <div th:each="posts : ${post}">
+            <li><a th:href="@{'/user/'+${post.id}}"><h3 style="font-weight: bold" th:text="${post.title}" th:href="@{|/posts/${post.id}|}"></h3></a>
+                <p style="padding-left: 2rem;" th:text="${post.getDescription()}"></p></tr>
+                <br></li>
+        </div>
+    </ul>
+</div>
+
+</body>
+</html>

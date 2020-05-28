@@ -5,10 +5,9 @@ import codes.optiko.oc.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
 
 @Controller
 public class UserController {
@@ -19,20 +18,26 @@ public class UserController {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
     }
-
+//**************** Registration Functionality ***********************
     @GetMapping("/register")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());
         return "users/register";
     }
-
+//*** After a user signs up they will be redirected to the login page ***
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         users.save(user);
-        return "redirect:/login";
+        return "users/login";
     }
+//************  This is the user login functionality*********
+//    @GetMapping("/login")
+//    public String userLogin(){
+//        return "users/login";
+//    }
+
 
 //****************** Edit Post functionality *************
     @GetMapping("/user/edit/{id}")
@@ -42,23 +47,24 @@ public class UserController {
         model.addAttribute("user", user);
         return "users/edit";
     }
-//************** This should update the uer in the database but needs some work...********************
-    @PostMapping("/user/edit")
-    public String editUser(@ModelAttribute User user){
+//************** This will update the user info in the database ********************
+    @PostMapping("/user/edit/{id}")
+    public String editUser(@PathVariable long id, @ModelAttribute User user){
+        user.setUpdateDate(new Timestamp(System.currentTimeMillis()));
         users.save(user);
-        return "redirect:/users" + user.getId();
+        return "redirect:/user/edit/" + user.getId();
     }
 
-    @GetMapping("/posts/editcreate")
-    public String editCreatePost(Model model) {
-        User user = users.getOne(1L);
-        model.addAttribute("user", user);
-        return "/users/edit";
-    }
 //************** This is the Delete Functionality [I Have not tested it yet] *******************
-    @PostMapping("/user/delete")
-    public String deletePost(@PathVariable long userId) {
-        users.deleteById(userId);
-        return "user/delete_successful";
+    @GetMapping("/user/delete/{id}")
+    public String deleteUser(@PathVariable long id) {
+        users.deleteById(id);
+        return "redirect:/posts";
     }
+
+//    @RequestMapping(value = "/users/edit/{id}", method = RequestMethod.DELETE)
+//    public void deleteUser(@PathVariable long id) {
+//        users.deleteById(id);
+//    }
+
 }
