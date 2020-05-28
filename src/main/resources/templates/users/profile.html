@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Profile Page</title>
@@ -10,9 +10,10 @@
     <h2>Your Recent Posts</h2>
     <br>
     <ul>
-        <div th:each="post : ${posts}">
-            <li><a th:href="@{'/user/'+${post.id}}"><h3 style="font-weight: bold" th:text="${post.title}" th:href="@{|/posts/${post.id}|}"></h3></a>
-                <p style="padding-left: 2rem;" th:text="${post.getDescription()}"></p></tr>
+<!--        th:action="@{'/user/profile/' + ${users.id}}" -->
+        <div th:each="posts : ${post}" th:method="post">
+            <li><a th:href="@{'/user/'+${posts.id}}"><h3 style="font-weight: bold" th:text="${posts.title}" th:href="@{|/posts/${posts.id}|}"></h3></a>
+                <p style="padding-left: 2rem;" th:text="${posts.getDescription()}"></p></tr>
                 <br></li>
         </div>
     </ul>

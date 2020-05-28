@@ -1,6 +1,7 @@
 package codes.optiko.oc.controller;
 
 import codes.optiko.oc.model.User;
+import codes.optiko.oc.repositories.PostRepository;
 import codes.optiko.oc.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,10 +14,12 @@ import java.sql.Timestamp;
 public class UserController {
     private UserRepository users;
     private PasswordEncoder passwordEncoder;
+    private PostRepository posts;
 
-    public UserController(UserRepository users, PasswordEncoder passwordEncoder){
+    public UserController(UserRepository users, PasswordEncoder passwordEncoder, PostRepository posts){
         this.users = users;
         this.passwordEncoder = passwordEncoder;
+        this.posts = posts;
     }
 //**************** Registration Functionality ***********************
     @GetMapping("/register")
@@ -31,6 +34,12 @@ public class UserController {
         user.setPassword(hash);
         users.save(user);
         return "users/login";
+    }
+
+    @GetMapping("/profile")
+    public String showProfileIndexPage(Model model) {
+        model.addAttribute("post", posts.findAll());
+        return "users/profile";
     }
 
 //****************** Edit Post functionality *************
