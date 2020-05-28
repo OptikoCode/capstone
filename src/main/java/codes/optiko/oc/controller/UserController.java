@@ -32,12 +32,6 @@ public class UserController {
         users.save(user);
         return "users/login";
     }
-//************  This is the user login functionality*********
-//    @GetMapping("/login")
-//    public String userLogin(){
-//        return "users/login";
-//    }
-
 
 //****************** Edit Post functionality *************
     @GetMapping("/user/edit/{id}")
@@ -55,16 +49,12 @@ public class UserController {
         return "redirect:/user/edit/" + user.getId();
     }
 
-//************** This is the Delete Functionality [I Have not tested it yet] *******************
+//************** This is the Delete Functionality *******************
     @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable long id) {
         users.deleteById(id);
         return "redirect:/posts";
     }
 
-//    @RequestMapping(value = "/users/edit/{id}", method = RequestMethod.DELETE)
-//    public void deleteUser(@PathVariable long id) {
-//        users.deleteById(id);
-//    }
 
 }

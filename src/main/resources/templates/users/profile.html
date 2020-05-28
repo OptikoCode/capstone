@@ -7,10 +7,10 @@
 <body>
 
 <div class="container">
-    <h2>Recent Blog Post</h2>
+    <h2>Your Recent Posts</h2>
     <br>
     <ul>
-        <div th:each="posts : ${post}">
+        <div th:each="post : ${posts}">
             <li><a th:href="@{'/user/'+${post.id}}"><h3 style="font-weight: bold" th:text="${post.title}" th:href="@{|/posts/${post.id}|}"></h3></a>
                 <p style="padding-left: 2rem;" th:text="${post.getDescription()}"></p></tr>
                 <br></li>
