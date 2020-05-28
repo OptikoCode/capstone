@@ -21,6 +21,10 @@ public class Comment {
     @ManyToOne
     private User user;
 
+//    foreign key: many comments to one response
+    @ManyToOne
+    private Response response;
+
 //    time stamps are sql-oriented
     @Column
     @CreationTimestamp
@@ -63,6 +67,15 @@ public class Comment {
         this.id = id;
         this.comment = comment;
         this.user = user;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
+
+    public Comment(long id, String comment, User user, Response response, Timestamp createDate, Timestamp updateDate){
+        this.id = id;
+        this.comment = comment;
+        this.user = user;
+        this.response = response;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
@@ -116,5 +129,21 @@ public class Comment {
 
     public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Response getResponse() {
+        return response;
+    }
+
+    public void setResponse(Response response) {
+        this.response = response;
+    }
+
+    public Timestamp getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Timestamp createDate) {
+        this.createDate = createDate;
     }
 }
