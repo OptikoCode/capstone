@@ -11,13 +11,16 @@
     <br>
     <ul>
 <!--        th:action="@{'/user/profile/' + ${users.id}}" -->
-        <div th:each="posts : ${post}" th:method="post">
+        <div th:each="posts : ${post}">
             <li><a th:href="@{'/user/'+${posts.id}}"><h3 style="font-weight: bold" th:text="${posts.title}" th:href="@{|/posts/${posts.id}|}"></h3></a>
                 <p style="padding-left: 2rem;" th:text="${posts.getDescription()}"></p></tr>
                 <br></li>
         </div>
     </ul>
 </div>
+
+<a href="/logout">Logout</a>
+
 
 </body>
 </html>

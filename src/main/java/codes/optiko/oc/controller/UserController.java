@@ -3,11 +3,16 @@ package codes.optiko.oc.controller;
 import codes.optiko.oc.model.User;
 import codes.optiko.oc.repositories.PostRepository;
 import codes.optiko.oc.repositories.UserRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 
 @Controller
@@ -34,6 +39,18 @@ public class UserController {
         user.setPassword(hash);
         users.save(user);
         return "users/login";
+    }
+
+//    @GetMapping("/logout")
+//    public String logoutUser(){
+//        return "redirect:/login?logout";
+//    }
+
+    @PostMapping("/login")
+    public String showProfile(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        user.getId();
+        return "redirect:/profile";
     }
 
     @GetMapping("/profile")
@@ -65,5 +82,22 @@ public class UserController {
         return "redirect:/posts";
     }
 
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/login?logout";
+    }
+
+    @GetMapping("/image")
+    public String uploadFunctionality(){
+        return"posts/image";
+    }
+//    @GetMapping("/user/delete/{id}")
+//    public String logout(@PathVariable long id) {
+//        users.logout()
+//    }
 
 }
