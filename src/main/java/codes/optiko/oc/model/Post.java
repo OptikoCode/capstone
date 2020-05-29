@@ -26,6 +26,10 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
+//    foreign key to image: many images to one post
+    @JoinColumn(name = "image_file")
+    private String image;
+
     @Column
     @CreationTimestamp
     private Timestamp createDate;
@@ -71,19 +75,29 @@ public class Post {
         this.user = user;
     }
 
-    public Post(long id, String title, String description, User user, Timestamp createDate) {
+    public Post(long id, String title, String description, User user, String image) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.user = user;
+        this.image = image;
+    }
+
+    public Post(long id, String title, String description, User user, String image, Timestamp createDate) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.user = user;
+        this.image = image;
         this.createDate = createDate;
     }
 
-    public Post(long id, String title, String description, User user, Timestamp createDate, Timestamp updateDate) {
+    public Post(long id, String title, String description, User user, String image, Timestamp createDate, Timestamp updateDate) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.user = user;
+        this.image = image;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
@@ -120,6 +134,14 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Timestamp getCreateDate() {

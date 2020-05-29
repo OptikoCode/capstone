@@ -14,7 +14,7 @@ public class Category {
 
 //  foreign key: many categories can be affiliated to one post
     @ManyToOne
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "post_id") //is this needed since there's a join table between posts & categories?
     private Post post;
 
 //************** CONSTRUCTORS ********************
