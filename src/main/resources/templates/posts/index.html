@@ -4,21 +4,17 @@
 
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 <title>Posts</title>
-<head th:replace="partials/partials :: head ('View All Posts')"></head>
+<head th:replace="partials/partials :: head ('View All Questions')"></head>
 
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <div class="container">
     <!--    same as view in jsp-->
-    <h2 class="template-h2">Posts</h2>
+    <h2 class="template-h2">All Questions</h2>
 
     <div class="post-div mb-3" th:each="post : ${posts}">
-
-        <h2 th:text="${post.title}" class="post-title"></h2>
-        <p th:text="${post.description}"></p>
-        <a th:href="@{|/posts/delete/${post.getId()}|}" class="delete-link"><p style="padding-left: 2rem;" class="delete-button">DELETE</p></a>
-        <a th:href="@{|/posts/edit/${post.getId()}|}" class="edit-link"><p style="padding-left: 2rem;" class="edit-button">EDIT</p></a>
-
+        <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
+        <p>Asked by: <span th:text="${post.user.username}"></span></p>
     </div>
 </div>
 

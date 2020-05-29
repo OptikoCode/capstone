@@ -5,7 +5,7 @@
 
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 <title>Create Post</title>
-<head th:replace="partials/partials :: head"></head>
+<head th:replace="partials/partials :: head ('Ask a Question')"></head>
 
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
@@ -14,14 +14,17 @@
 
     <h2>Create Post</h2>
 
-<!--    <form th:action="@{/posts/create}" th:method="post" th:object="${post}" class="form-group">-->
-<!--        <label for="title">Title: </label>-->
-<!--        <input th:field="*{title}" type="text" name="title" id="title" class="field form-text"/>-->
-<!--        <br><br>-->
-<!--        <label for="body">Body:</label><br>-->
-<!--        <textarea th:field="*{body}" name="body" id="body" class="field form-text" rows="4" cols="50"></textarea><br>-->
-<!--        <button>Save</button>-->
-<!--    </form>-->
+    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+        <div class="form-group">
+            <label for="title">Title: </label>
+            <input type="text" th:field="*{title}" id="title" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="description">Body:</label>
+            <textarea th:field="*{description}" id="description" class="summernote form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Question</button>
+    </form>
 
 </div>
 
