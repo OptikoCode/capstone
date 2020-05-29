@@ -1,0 +1,12 @@
+blockquote {
+    padding: 10px 20px;
+    border-left: 5px solid #f86466
+}
+
+pre {
+    padding: 10px;
+    background-color: #eff0f1;
+    border: 1px solid #c8ccd0;
+    border-radius: 5px;
+    font-family: courier;
+}
