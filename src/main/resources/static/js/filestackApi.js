@@ -1,5 +1,3 @@
-"use strict";
-
 const client = filestack.init(apiKey);
 const options = {
     onUploadDone: updateForm,
@@ -12,6 +10,7 @@ const options = {
 };
 const picker = client.picker(options);
 
+// client.picker(options).onUploadDone();
 // Get references to the DOM elements
 
 const form = document.getElementById('pick-form');
@@ -46,5 +45,5 @@ function updateForm(result) {
     nameBox.appendChild(name);
     urlBox.appendChild(document.createTextNode('Uploaded to: '));
     urlBox.appendChild(url);
-    console.log(JSON.stringify(result));
+    console.log(result);
 }

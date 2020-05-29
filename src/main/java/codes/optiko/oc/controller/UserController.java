@@ -1,29 +1,39 @@
 package codes.optiko.oc.controller;
 
 import codes.optiko.oc.model.User;
+import codes.optiko.oc.repositories.PostRepository;
 import codes.optiko.oc.repositories.UserRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 
 @Controller
 public class UserController {
     private UserRepository users;
     private PasswordEncoder passwordEncoder;
+    private PostRepository posts;
 
-    public UserController(UserRepository users, PasswordEncoder passwordEncoder){
+    public UserController(UserRepository users, PasswordEncoder passwordEncoder, PostRepository posts){
         this.users = users;
         this.passwordEncoder = passwordEncoder;
+        this.posts = posts;
     }
+
 //**************** Registration Functionality ***********************
     @GetMapping("/register")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());
         return "users/register";
     }
+
 //*** After a user signs up they will be redirected to the login page ***
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user){
@@ -33,7 +43,38 @@ public class UserController {
         return "users/login";
     }
 
-//****************** Edit Post functionality *************
+//********* Sends user to the Login page ********************
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "users/login";
+    }
+
+//************* Will redirect user from the login page to their profile ****************
+    @PostMapping("/login")
+    public String showProfile(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        user.getId();
+        return "redirect:/profile";
+    }
+
+//***************** Will display the users profile page *********************
+    @GetMapping("/profile")
+    public String showProfileIndexPage(Model model) {
+        model.addAttribute("post", posts.findAll());
+        return "users/profile";
+    }
+
+//************** This handles the logout functionality for the user ****************
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/login?logout";
+    }
+
+//****************** Edit Profile functionality *************
     @GetMapping("/user/edit/{id}")
     public String showEditUserForm(@PathVariable String id, Model model){
         long parseId = Long.parseLong(id);
@@ -56,5 +97,14 @@ public class UserController {
         return "redirect:/posts";
     }
 
+//******** USING TO TEST FILESTACK API**************
+    @GetMapping("/image")
+    public String uploadFunctionality(){
+        return"posts/image";
+    }
+//    @GetMapping("/user/delete/{id}")
+//    public String logout(@PathVariable long id) {
+//        users.logout()
+//    }
 
 }
