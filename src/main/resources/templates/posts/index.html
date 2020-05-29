@@ -4,12 +4,16 @@
 
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 <title>Posts</title>
+
+<head th:replace="partials/partials :: head"></head>
+
 <head th:replace="partials/partials :: head ('View All Questions')"></head>
+
 
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <div class="container">
-    <!--    same as view in jsp-->
+
     <h2 class="template-h2">All Questions</h2>
 
     <div class="post-div mb-3" th:each="post : ${posts}">

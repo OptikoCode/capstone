@@ -1,43 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head (title)">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<!--<head th:fragment="head">-->
+
+<!--    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">-->
+
+<!--&lt;!&ndash;    <title th:text="${title}"></title>&ndash;&gt;-->
+<!--    <title>test</title>-->
+
+<!--    &lt;!&ndash;    stylesheet information&ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+
+<!--</head>-->
+
+<head>
 
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-
-    <title th:text="${title}"></title>
-
     <!--    stylesheet information-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <div th:fragment="head">
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <!--        <link th:href="@{/bootstrap.css}" rel="stylesheet">-->
+        <!--        <link th:href="@{/style.css}" rel="stylesheet">-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js">
+    </div>
 
 </head>
+
+
 <body>
 
-<nav th:fragment="navbar" class="navbar navbar-default">
-    <!-- awesome navbar goes here -->
-    <ul class="nav navbar-nav">
-        <!--        move nav item class into lis-->
-        <li class="nav-item"><a href="/home">Home</a> </li>
-        <li class="nav-item"><a href="/posts">Posts</a></li>
-        <li class="nav-item"><a href="/posts/create">Create Post</a></li>
-<!--        login -->
-            <form th:action="@{/login}" th:method="post">
-                <button class="nav-link" style="margin-top: 2px">Login</button>
-            </form>
-        </li>
-        <li class="nav-item">
-<!--            logout-->
-            <form th:action="@{/logout}" th:method="post">
-                <button class="nav-link" style="margin-top: 2px">Logout</button>
-            </form>
-        </li>
-<!--        register-->
-        <li class="nav-item">
-            <a href="/register">
-                <!--                class=btn in bootstrap-->
-                <button class="nav-link register-button">Register</button>
-            </a>
-        </li>
-    </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navbar">
+    <a class="navbar-brand" href="/posts">OptikoCodes</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="/posts">Home</a></li>
+            <li class="nav-item" sec:authorize="!isAuthenticated()"><a th:href="@{/login}" th:text="Login" class="nav-link"></a></li>
+            <li class="nav-item" sec:authorize="!isAuthenticated()"><a class="nav-link" href="/register">Sign Up</a></li>
+            <li class="nav-item" sec:authorize="isAuthenticated()"><a th:href="@{/logout}" th:text="Logout" class="nav-link"></a></li>
+            <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" href="/posts/create">Ask a Question</a></li>
+        </ul>
+    </div>
 </nav>
 
 <standard_scripts th:fragment="footer">
