@@ -26,12 +26,14 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
         this.posts = posts;
     }
+
 //**************** Registration Functionality ***********************
     @GetMapping("/register")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());
         return "users/register";
     }
+
 //*** After a user signs up they will be redirected to the login page ***
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user){
@@ -41,11 +43,13 @@ public class UserController {
         return "users/login";
     }
 
-//    @GetMapping("/logout")
-//    public String logoutUser(){
-//        return "redirect:/login?logout";
-//    }
+//********* Sends user to the Login page ********************
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "users/login";
+    }
 
+//************* Will redirect user from the login page to their profile ****************
     @PostMapping("/login")
     public String showProfile(){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -53,13 +57,24 @@ public class UserController {
         return "redirect:/profile";
     }
 
+//***************** Will display the users profile page *********************
     @GetMapping("/profile")
     public String showProfileIndexPage(Model model) {
         model.addAttribute("post", posts.findAll());
         return "users/profile";
     }
 
-//****************** Edit Post functionality *************
+//************** This handles the logout functionality for the user ****************
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/login?logout";
+    }
+
+//****************** Edit Profile functionality *************
     @GetMapping("/user/edit/{id}")
     public String showEditUserForm(@PathVariable String id, Model model){
         long parseId = Long.parseLong(id);
@@ -82,15 +97,7 @@ public class UserController {
         return "redirect:/posts";
     }
 
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "redirect:/login?logout";
-    }
-
+//******** USING TO TEST FILESTACK API**************
     @GetMapping("/image")
     public String uploadFunctionality(){
         return"posts/image";
