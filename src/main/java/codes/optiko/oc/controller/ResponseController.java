@@ -38,7 +38,7 @@ public class ResponseController {
 
     @GetMapping("/posts/{id}/create-response")
     public String createResponse(@PathVariable long id, Model model) {
-        model.addAttribute("responses", responseRepo.getOne(id));
+        model.addAttribute("responses", new Response());
 
         return "/posts/create-response";
     }
