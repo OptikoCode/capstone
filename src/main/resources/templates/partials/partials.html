@@ -1,28 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<!--<head th:fragment="head">-->
-
-<!--    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">-->
-
-<!--&lt;!&ndash;    <title th:text="${title}"></title>&ndash;&gt;-->
-<!--    <title>test</title>-->
-
-<!--    &lt;!&ndash;    stylesheet information&ndash;&gt;-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
-
-<!--</head>-->
-
-<head>
+<head th:fragment="head (title)">
 
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+    <title th:text="${title}"></title>
+
     <!--    stylesheet information-->
-    <div th:fragment="head">
-        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-        <!--        <link th:href="@{/bootstrap.css}" rel="stylesheet">-->
-        <!--        <link th:href="@{/style.css}" rel="stylesheet">-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js">
-    </div>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"
 
 </head>
 
