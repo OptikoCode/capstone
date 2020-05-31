@@ -1,3 +1,14 @@
+/*mediq queries*/
+@media (max-width: 999px){
+    .nav-item, a.nav-link {
+        text-align: center;
+        margin: auto;
+    }
+}
+/***************/
+
+
+/*blockquote and pre tags*/
 blockquote {
     padding: 10px 20px;
     border-left: 5px solid #f86466
@@ -10,3 +21,130 @@ pre {
     border-radius: 5px;
     font-family: courier;
 }
+/***************/
+
+
+/*navbar content*/
+div#navbarSupportedContent.collapse.navbar-collapse {
+    background-color: #d4c850;
+    border-radius: 100vmax;
+}
+
+a.navbar-brand {
+    font-family: 'GFS Neohellenic', sans-serif;
+    padding: 0 5px;
+}
+a.navbar-brand:hover {
+    border-radius: 100vmax;
+    transition: ease-in-out 275ms;
+    font-size: 1.11em;
+    padding: 5px;
+}
+/***************/
+
+
+/*span letters in titles*/
+.theta {
+    color: #d4c850;
+    font-weight: bold;
+}
+.theta:hover {
+    color: #000;
+}
+
+.lambda, .phi {
+    color: #d4c850;
+}
+/***************/
+
+
+/*for login font*/
+.login {
+    font-family: 'GFS Neohellenic', sans-serif;
+}
+/***************/
+
+
+/*template(s) heading*/
+h2.template-h2 {
+    /*background-color: red;*/
+    font-family: 'GFS Neohellenic', sans-serif;
+    width: 100%;
+    text-align: center;
+}
+/***************/
+
+
+/*for input tags*/
+.g-input {
+    font-family: 'Raleway', sans-serif;
+    border-radius: 100vmax;
+    border-color: #d4c850;
+}
+.g-input:hover {
+    transition: ease 255ms;
+    background-color: #d4c850;
+    color: #fff;
+}
+/***************/
+
+
+/*oc animated image*/
+.circle {
+    /*position: relative;*/
+    height: 150px;
+    width: 150px;
+    margin: 10px auto;
+    border: 17px solid blue;
+    border-radius: 50%;
+    align-items: center;
+    animation: border-colors 5s ease-in-out infinite;
+    /*box-shadow: 0 7px 11px rgba(0,0,0,0.30), 0 5px 5px rgba(0,0,0,0.22);*/
+}
+@keyframes border-colors {
+    0%{
+        border-color: #f7d000;
+    }
+    50%{
+        border-color: #d4c850;
+    }
+    100%{
+        border-color: #f7d000;
+    }
+}
+
+.scircle {
+    /*position: absolute;*/
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    margin-top: 7%;
+    /*top: 25%;*/
+    border-right: 10px solid transparent;
+    border-top: 10px solid #65fce1;
+    border-left: 10px solid #65fce1;
+    border-bottom: 10px solid #65fce1;
+    border-radius: 50%;
+    transform: rotate(-45deg);
+    animation: rotation 2s ease-in-out infinite;
+    /*box-shadow: 0 7px 11px rgba(0,0,0,0.30), 0 5px 5px rgba(0,0,0,0.22);*/
+}
+@keyframes rotation {
+    0% {
+        transform: rotate(-45deg);
+        border-color: #65fce1;
+        border-right: 10px solid transparent;
+    }
+
+    57%{
+        border-color: #03fcdb;
+        border-right: 10px solid transparent;
+        opacity: 0.1;
+    }
+    100%{
+        transform: rotate(315deg);
+        border-color: #65fce1;
+        border-right: 10px solid transparent;
+    }
+}
+/***************/

@@ -7,7 +7,15 @@
 <nav th:replace="partials/partials :: navbar"></nav>
 <div class="container">
 
-    <h2 class="template-h2">All Questions</h2>
+
+    <div class="circle">
+        <div class="scircle">
+
+        </div>
+    </div>
+
+
+    <h2 class="template-h2"><span class="lambda">Λ</span>ll Questions</h2>
 
     <div class="post-div mb-3" th:each="post : ${posts}">
         <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
