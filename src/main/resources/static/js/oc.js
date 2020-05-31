@@ -32,4 +32,8 @@ $(document).ready(function() {
         }
     });
 
+    // Show video response form
+    $('.add-video-response').click(function() {
+        $('.video-response-form').slideDown('fast');
+    });
 });

@@ -88,6 +88,21 @@ h2.template-h2 {
 }
 /***************/
 
+/* responsive videos */
+.video-responsive {
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    position: relative;
+}
+.video-responsive iframe {
+    width:100%; height:100%;
+    position:absolute;
+    top:0; left:0;
+}
+
+/* hide video response form */
+.video-response-form { display: none; }
 
 /*oc animated image*/
 .circle {
