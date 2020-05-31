@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Create a new Account!</title>
-</head>
+<head th:replace="partials/partials :: head ('Create a new account!')"></head>
 <body>
-<form th:action="@{/register}" method="POST" th:object="${user}">
+<nav th:replace="partials/partials :: navbar"></nav>
+<form class="form-group col-md-6" th:action="@{/register}" method="POST" th:object="${user}">
     <label for="firstName">First Name</label>
     <input id="firstName" type="text" th:field="*{firstName}" />
 
@@ -21,7 +19,9 @@
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
 
-    <input value="Sign me up!" type="submit" />
+    <input class="g-input" value="Sign me up!" type="submit" />
 </form>
+<standard_scripts th:replace="partials/partials :: footer">
+</standard_scripts>
 </body>
 </html>
