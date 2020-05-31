@@ -13,10 +13,25 @@
     <p style="padding-left: 2rem;" th:text="${post.updateDate}"></p>
     <p style="padding-left: 2rem;" th:text="${post.getUser().getEmail()}"></p>
 
-    <h3>Responses:</h3>
+    <div th:unless="${#lists.isEmpty(responses)}">
+        <h3>Responses:</h3>
 
-    <div class="post-div mb-3" th:each="response : ${responses}">
-        <video th:src="${response.video}" width="500" controls></video>
+        <div class="post-div mb-3" th:each="res : ${responses}">
+            <div class="video-responsive" th:utext="${res.video}"></div>
+        </div>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <button class="add-video-response btn btn-primary">Add a Video Response</button>
+        <form th:action="@{|/posts/${post.id}/create-response|}" th:method="post" th:object="${response}" class="video-response-form">
+            <div class="form-group">
+                <label for="video">Video Embed URL:<br><span class="small">(YouTube, Vimeo, DailyMotion, etc...)</span></label>
+                <input type="text" th:field="*{video}" id="video" class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Video Response</button>
+        </form>
+    </div>
+    <div sec:authorize="!isAuthenticated()">
+        <p class="font-weight-bold">Please <a href="/login">log in</a> or <a href="/register">register</a> to add a video response.</p>
     </div>
 </div>
 
