@@ -51,9 +51,14 @@ a.navbar-brand:hover {
 .theta:hover {
     color: #000;
 }
-
 .lambda, .phi {
     color: #d4c850;
+}
+.codes {
+    color: #65fce1;
+}
+.codes:hover {
+    color: #000;
 }
 /***************/
 
