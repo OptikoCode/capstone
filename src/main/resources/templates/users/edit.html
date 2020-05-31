@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Profile</title>
-<!--    <head th:replace="partials/partials :: head"></head>-->
+    <head th:replace="partials/partials :: head ('Edit your profile')"></head>
 </head>
 <body>
-<!--<nav th:replace="partials/partials :: navbar"></nav>-->
+<nav th:replace="partials/partials :: navbar"></nav>
 
 <div class="container">
 <form th:method="post" th:action="@{'/user/edit/' + ${user.id}}" th:object="${user}" class="form-group">

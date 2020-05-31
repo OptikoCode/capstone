@@ -3,6 +3,8 @@ package codes.optiko.oc.controller;
 import codes.optiko.oc.model.User;
 import codes.optiko.oc.repositories.PostRepository;
 import codes.optiko.oc.repositories.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,9 +12,14 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 
 @Controller
@@ -102,6 +109,33 @@ public class UserController {
     public String uploadFunctionality(){
         return"posts/image";
     }
+
+//    @RequestMapping(value = "/image", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ResponseEntity<?> uploadFile(
+//            @RequestParam("uploadfile") MultipartFile uploadfile) {
+//
+//        try {
+//            // Get the filename and build the local file path (be sure that the
+//            // application have write permissions on such directory)
+//            String filename = uploadfile.getOriginalFilename();
+//            String directory = "/var/netgloo_blog/uploads";
+//            String filepath = Paths.get(directory, filename).toString();
+//
+//            // Save the file locally
+//            BufferedOutputStream stream =
+//                    new BufferedOutputStream(new FileOutputStream(new File(filepath)));
+//            stream.write(uploadfile.getBytes());
+//            stream.close();
+//        }
+//        catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+
 //    @GetMapping("/user/delete/{id}")
 //    public String logout(@PathVariable long id) {
 //        users.logout()
