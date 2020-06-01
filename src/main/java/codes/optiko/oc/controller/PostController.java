@@ -67,7 +67,7 @@ public class PostController {
         //can also do .getOne(id), which is JPA, instead of .getPostById(id);
         model.addAttribute("responses", responseRepo.findByPostId(id));
         model.addAttribute("response", new Response());
-        return "/posts/show";
+        return "posts/show";
     }
     //***********************************
 
