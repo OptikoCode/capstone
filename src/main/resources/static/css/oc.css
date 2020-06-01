@@ -8,6 +8,15 @@
 /***************/
 
 
+/* settings for removing blue outline when input/button clicked */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+/***************/
+
 /*blockquote and pre tags*/
 blockquote {
     padding: 10px 20px;
@@ -56,7 +65,7 @@ a.navbar-brand:hover {
     width: 100%;
 }
 .nav-link {
-    font-family: "Optima";
+    font-family: 'Staatliches', cursive;
     text-decoration: none;
 }
 /***************/
@@ -70,8 +79,23 @@ a.navbar-brand:hover {
 .theta:hover {
     color: #fff;
 }
-.lambda, .phi {
+.lambda {
     color: #d4c850;
+}
+.phi {
+    color: #d4c850;
+    animation: phi 4s infinite;
+}
+@keyframes phi {
+    0% {
+        color: #d4c850;
+    }
+    75% {
+        color: #65fce1;
+    }
+    100%{
+        color: #d4c850;
+    }
 }
 .codes {
     color: #65fce1;
@@ -87,10 +111,16 @@ a.navbar-brand:hover {
 }
 /***************/
 
+/* FORM CONTENT */
+form.form-group.col-md-6.slide-right {
+    margin: auto;
+    top: 20px;
+}
 
 /*for login font*/
 .login {
-    font-family: 'GFS Neohellenic', sans-serif;
+    font-family: 'Staatliches', cursive;
+    letter-spacing: 5px;
 }
 /***************/
 
@@ -100,20 +130,46 @@ h2.template-h2 {
     font-family: 'GFS Neohellenic', sans-serif;
     width: 100%;
     text-align: center;
+    margin-top: 20px;
+}
+.slide-right {
+    font-family: 'Staatliches', cursive;
 }
 /***************/
 
 
-/*for input tags*/
-.g-input {
-    font-family: 'Raleway', sans-serif;
-    border-radius: 100vmax;
+/* input & buttons */
+input {
     border-color: #d4c850;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
-.g-input:hover {
+input:hover {
+    color: #fff;
+}
+#login-input {
+    border: none;
+}
+#register-input {
+    border: none;
+    text-align: center;
+}
+
+button {
+    font-family: 'Raleway', sans-serif;
+    background-color: #fff;
+    border-radius: 100vmax;
+    border: 3px solid #d4c850;
+    margin-top: 15px;
+}
+button:hover {
     transition: ease 255ms;
     background-color: #d4c850;
     color: #fff;
+    border-color: #343a40;
 }
 /***************/
 

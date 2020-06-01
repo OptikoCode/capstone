@@ -13,12 +13,13 @@
         You have been logged out.
     </div>
 
-    <form class="form-group col-md-6" th:action="@{/login}" th:object="${user}" method="post">
+    <form class="form-group col-md-6 slide-right" th:action="@{/login}" th:object="${user}" method="post">
         <label for="username">Username</label>
-        <input id="username" name="username" type="text" />
+        <input id="username" class="form-control" name="username" type="text" />
         <label for="password">Password</label>
-        <input id="password" name="password" type="password" />
-        <input class="g-input" type="submit" value="Log In" />
+        <input id="password" class="form-control" name="password" type="password" />
+        <button><input id="login-input" type="submit" value="Log In" /></button>
+
     </form>
 </div>
 <standard_scripts th:replace="partials/partials :: footer">

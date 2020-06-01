@@ -3,23 +3,25 @@
 <head th:replace="partials/partials :: head ('Create a new account!')"></head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
-<form class="form-group col-md-6" th:action="@{/register}" method="POST" th:object="${user}">
+
+<form class="form-group col-md-6 slide-right" th:action="@{/register}" method="POST" th:object="${user}">
+
     <label for="firstName">First Name</label>
-    <input id="firstName" type="text" th:field="*{firstName}" />
+    <input id="firstName" class="form-control" type="text" th:field="*{firstName}" />
 
     <label for="lastName">Last Name</label>
-    <input id="lastName" type="text" th:field="*{lastName}" />
+    <input id="lastName" class="form-control" type="text" th:field="*{lastName}" />
 
     <label for="username">Username</label>
-    <input id="username" th:field="*{username}" />
+    <input id="username" class="form-control" th:field="*{username}" />
 
     <label for="email">Email</label>
-    <input id="email" th:field="*{email}" />
+    <input id="email" class="form-control" th:field="*{email}" />
 
     <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
+    <input id="password" class="form-control" type="password" th:field="*{password}" />
 
-    <input class="g-input" value="Sign me up!" type="submit" />
+    <button><input id="register-input" value="Sign me up!" type="submit" /></button>
 </form>
 <standard_scripts th:replace="partials/partials :: footer">
 </standard_scripts>

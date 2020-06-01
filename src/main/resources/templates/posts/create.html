@@ -9,7 +9,7 @@
 
 <div class="container" sec:authorize="isAuthenticated()">
 
-    <h2>Create Post</h2>
+    <h2 class="slide-right">Create Post</h2>
 
     <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
         <div class="form-group">

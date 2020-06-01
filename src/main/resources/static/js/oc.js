@@ -47,12 +47,27 @@ $(document).ready(function() {
     t1.from(".scircle", 3, {
         delay: 0.1,
         opacity: 0,
-        y: 40,
+        y: 30,
         ease: Expo.easeInOut
     }).from(".circle", 3, {
         delay: 0.1,
         opacity: 0,
-        y: 40,
+        y: 30,
         ease: Expo.easeInOut
     }, "-=4");
+
+    let t2 = new TimelineMax();
+
+    t2.from(".slide-right", 3, {
+        delay: 0.1,
+        opacity: 0,
+        x: -40,
+        ease: Expo.easeOut
+    }).from(".slide-right", 3, {
+        delay: 0.1,
+        opacity: 0,
+        x: -40,
+        ease: Expo.easeOut
+    }, "-=5");
+
 });

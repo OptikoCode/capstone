@@ -15,9 +15,9 @@
     </div>
 
 
-    <h2 class="template-h2"><span class="lambda">Λ</span>ll Questions</h2>
+    <h2 class="template-h2 slide-right"><span class="lambda">Λ</span>ll Questions</h2>
 
-    <div class="post-div mb-3" th:each="post : ${posts}">
+    <div class="post-div mb-3 slide-right" th:each="post : ${posts}">
         <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
         <p>Asked by: <span th:text="${post.user.username}"></span></p>
     </div>
