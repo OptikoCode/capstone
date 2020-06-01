@@ -24,7 +24,7 @@
         <button class="add-video-response btn btn-primary">Add a Video Response</button>
         <form th:action="@{|/posts/${post.id}/create-response|}" th:method="post" th:object="${response}" class="video-response-form">
             <div class="form-group">
-                <label for="video">Video Embed URL:<br><span class="small">(YouTube, Vimeo, DailyMotion, etc...)</span></label>
+                <label for="video">Video Embed URL:<br>g<span class="small">(YouTube, Vimeo, DailyMotion, etc...)</span></label>
                 <input type="text" th:field="*{video}" id="video" class="form-control"/>
             </div>
             <button type="submit" class="btn btn-primary">Submit Video Response</button>
