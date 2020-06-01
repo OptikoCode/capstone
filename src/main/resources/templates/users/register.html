@@ -7,19 +7,19 @@
 <form class="form-group col-md-6 slide-right" th:action="@{/register}" method="POST" th:object="${user}">
 
     <label for="firstName">First Name</label>
-    <input id="firstName" class="form-control" type="text" th:field="*{firstName}" />
+    <input id="firstName" class="form-control" type="text" th:field="*{firstName}" required/>
 
     <label for="lastName">Last Name</label>
-    <input id="lastName" class="form-control" type="text" th:field="*{lastName}" />
+    <input id="lastName" class="form-control" type="text" th:field="*{lastName}" required/>
 
     <label for="username">Username</label>
-    <input id="username" class="form-control" th:field="*{username}" />
+    <input id="username" class="form-control" th:field="*{username}" required/>
 
     <label for="email">Email</label>
-    <input id="email" class="form-control" th:field="*{email}" />
+    <input id="email" class="form-control" th:field="*{email}" required/>
 
     <label for="password">Password</label>
-    <input id="password" class="form-control" type="password" th:field="*{password}" />
+    <input id="password" class="form-control" type="password" th:field="*{password}" requireda/>
 
     <button><input id="register-input" value="Sign me up!" type="submit" /></button>
 </form>

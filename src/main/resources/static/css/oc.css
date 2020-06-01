@@ -46,7 +46,7 @@ a.navbar-brand {
 a.navbar-brand:hover {
     border-radius: 100vmax;
     transition: ease-in-out 275ms;
-    font-size: 1.11em;
+    font-size: 1.15em;
     padding: 5px;
 }
 .home-link {
@@ -127,13 +127,15 @@ form.form-group.col-md-6.slide-right {
 
 /*template(s) heading*/
 h2.template-h2 {
-    font-family: 'GFS Neohellenic', sans-serif;
+    font-family: 'Staatliches', cursive;
+    color: #343a40;
     width: 100%;
     text-align: center;
     margin-top: 20px;
 }
 .slide-right {
     font-family: 'Staatliches', cursive;
+    color: #343a40;
 }
 /***************/
 
