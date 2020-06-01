@@ -36,4 +36,23 @@ $(document).ready(function() {
     $('.add-video-response').click(function() {
         $('.video-response-form').slideDown('fast');
     });
+
+
+
+
+    //GSAP
+
+    let t1 = new TimelineMax();
+
+    t1.from(".scircle", 3, {
+        delay: 0.1,
+        opacity: 0,
+        y: 40,
+        ease: Expo.easeInOut
+    }).from(".circle", 3, {
+        delay: 0.1,
+        opacity: 0,
+        y: 40,
+        ease: Expo.easeInOut
+    }, "-=4");
 });

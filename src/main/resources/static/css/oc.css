@@ -40,6 +40,25 @@ a.navbar-brand:hover {
     font-size: 1.11em;
     padding: 5px;
 }
+.home-link {
+    position: relative;
+    display: block;
+}
+.nav-item span.home-link:before {
+    width: 0;
+    color: #65fce1;
+    overflow: hidden;
+    position: absolute;
+    content: attr(data-text);
+    transition: all 1s cubic-bezier(0.84, 0, 0.08, 0.99);
+}
+.nav-item span.home-link:hover:before {
+    width: 100%;
+}
+.nav-link {
+    font-family: "Optima";
+    text-decoration: none;
+}
 /***************/
 
 
@@ -49,7 +68,7 @@ a.navbar-brand:hover {
     font-weight: bold;
 }
 .theta:hover {
-    color: #000;
+    color: #fff;
 }
 .lambda, .phi {
     color: #d4c850;
@@ -58,7 +77,13 @@ a.navbar-brand:hover {
     color: #65fce1;
 }
 .codes:hover {
-    color: #000;
+    color: #fff;
+}
+.white-font {
+    color: #fff;
+}
+.white-font:hover {
+    color: #fff;
 }
 /***************/
 
@@ -72,7 +97,6 @@ a.navbar-brand:hover {
 
 /*template(s) heading*/
 h2.template-h2 {
-    /*background-color: red;*/
     font-family: 'GFS Neohellenic', sans-serif;
     width: 100%;
     text-align: center;
