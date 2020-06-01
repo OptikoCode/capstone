@@ -36,12 +36,12 @@ public class ResponseController {
 //        return "/posts/show";
 //    }
 
-    @GetMapping("/posts/{id}/create-response")
-    public String createResponse(@PathVariable long id, Model model) {
-        model.addAttribute("responses", new Response());
-
-        return "/posts/create-response";
-    }
+//    @GetMapping("/posts/{id}/create-response")
+//    public String createResponse(@PathVariable long id, Model model) {
+//        model.addAttribute("responses", new Response());
+//
+//        return "/posts/create-response";
+//    }
 
     @PostMapping("/posts/{id}/create-response")
     public String createResponse(@PathVariable long id, @ModelAttribute Response response) {
