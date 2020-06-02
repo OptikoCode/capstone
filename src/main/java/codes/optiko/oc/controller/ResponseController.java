@@ -61,7 +61,7 @@ public class ResponseController {
     public String editResponse(@PathVariable long post_id, @PathVariable long response_id, Model model) {
         model.addAttribute("responses", responseRepo.getOne(response_id));
 
-        return "/posts/edit-response";
+        return "posts/edit-response";
     }
 
     @PostMapping("/posts/{post_id}/edit-response/{response_id}")
@@ -69,13 +69,13 @@ public class ResponseController {
         response.setUpdateDate(new Timestamp(System.currentTimeMillis()));
         responseRepo.save(response);
 
-        return "redirect:/posts/" + post_id;
+        return "redirect:/posts" + post_id;
     }
 
     @PostMapping("/posts/{post_id}/delete-response/{response_id}")
     public String deleteResponse(@PathVariable long post_id, @PathVariable long response_id) {
         responseRepo.deleteById(response_id);
 
-        return "redirect:/posts/" + post_id;
+        return "redirect:/posts" + post_id;
     }
 }

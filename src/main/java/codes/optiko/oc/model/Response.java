@@ -1,5 +1,4 @@
 package codes.optiko.oc.model;
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -9,7 +8,6 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "responses")
 public class Response {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -25,13 +23,8 @@ public class Response {
     private Post post;
 
     //video url
-    @JoinColumn(name = "video_url")
+    @Column
     private String video;
-
-//  foreign key to comment: one response can have many comments
-    @ManyToOne
-    @JoinColumn(name = "comment_id")
-    private Comment comment;
 
     @Column
     @CreationTimestamp
@@ -69,29 +62,19 @@ public class Response {
         this.video = video;
     }
 
-    public Response(long id, User user, Post post, String video, Comment comment){
+    public Response(long id, User user, Post post, String video, Timestamp createDate){
         this.id = id;
         this.user = user;
         this.post = post;
         this.video = video;
-        this.comment = comment;
-    }
-
-    public Response(long id, User user, Post post, String video, Comment comment, Timestamp createDate){
-        this.id = id;
-        this.user = user;
-        this.post = post;
-        this.video = video;
-        this.comment = comment;
         this.createDate = createDate;
     }
 
-    public Response(long id, User user, Post post, String video, Comment comment, Timestamp createDate, Timestamp updateDate){
+    public Response(long id, User user, Post post, String video, Timestamp createDate, Timestamp updateDate){
         this.id = id;
         this.user = user;
         this.post = post;
         this.video = video;
-        this.comment = comment;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
@@ -128,14 +111,6 @@ public class Response {
 
     public void setVideo(String video) {
         this.video = video;
-    }
-
-    public Comment getComment() {
-        return comment;
-    }
-
-    public void setComment(Comment comment) {
-        this.comment = comment;
     }
 
     public Timestamp getCreateDate() {

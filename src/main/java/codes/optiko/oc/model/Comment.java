@@ -12,17 +12,17 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     @Column(nullable = false, columnDefinition = "text")
     private String comment;
 
-
 //  foreign key: many comments to one user
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
 //    foreign key: many comments to one response
     @ManyToOne
+    @JoinColumn(name = "response_id")
     private Response response;
 
 //    time stamps are sql-oriented
@@ -56,19 +56,19 @@ public class Comment {
         this.user = user;
     }
 
-    public Comment(long id, String comment, User user, Timestamp createDate){
+    public Comment(long id, String comment, User user, Response response){
         this.id = id;
         this.comment = comment;
         this.user = user;
-        this.createDate = createDate;
+        this.response = response;
     }
 
-    public Comment(long id, String comment, User user, Timestamp createDate, Timestamp updateDate){
+    public Comment(long id, String comment, User user, Response response, Timestamp createDate){
         this.id = id;
         this.comment = comment;
         this.user = user;
+        this.response = response;
         this.createDate = createDate;
-        this.updateDate = updateDate;
     }
 
     public Comment(long id, String comment, User user, Response response, Timestamp createDate, Timestamp updateDate){

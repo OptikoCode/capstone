@@ -1,5 +1,6 @@
 package codes.optiko.oc.controller;
 
+import codes.optiko.oc.model.Comment;
 import codes.optiko.oc.model.Post;
 import codes.optiko.oc.model.Response;
 import codes.optiko.oc.model.User;
@@ -67,6 +68,8 @@ public class PostController {
         //can also do .getOne(id), which is JPA, instead of .getPostById(id);
         model.addAttribute("responses", responseRepo.findByPostId(id));
         model.addAttribute("response", new Response());
+        model.addAttribute("comments", commentRepo.findByResponseId(id));
+        model.addAttribute("comment", new Comment());
         return "posts/show";
     }
     //***********************************
