@@ -12,15 +12,15 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, columnDefinition = "text")
-    private String comment;
+    @Column(nullable = false, name="comment", columnDefinition = "text")
+    private String body;
 
-//  foreign key: many comments to one user
+//  foreign key: many bodys to one user
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-//    foreign key: many comments to one response
+//    foreign key: many bodys to one response
     @ManyToOne
     @JoinColumn(name = "response_id")
     private Response response;
@@ -45,35 +45,35 @@ public class Comment {
         this.id = id;
     }
 
-    public Comment(long id, String comment){
+    public Comment(long id, String body){
         this.id = id;
-        this.comment = comment;
+        this.body = body;
     }
 
-    public Comment(long id, String comment, User user){
+    public Comment(long id, String body, User user){
         this.id = id;
-        this.comment = comment;
+        this.body = body;
         this.user = user;
     }
 
-    public Comment(long id, String comment, User user, Response response){
+    public Comment(long id, String body, User user, Response response){
         this.id = id;
-        this.comment = comment;
+        this.body = body;
         this.user = user;
         this.response = response;
     }
 
-    public Comment(long id, String comment, User user, Response response, Timestamp createDate){
+    public Comment(long id, String body, User user, Response response, Timestamp createDate){
         this.id = id;
-        this.comment = comment;
+        this.body = body;
         this.user = user;
         this.response = response;
         this.createDate = createDate;
     }
 
-    public Comment(long id, String comment, User user, Response response, Timestamp createDate, Timestamp updateDate){
+    public Comment(long id, String body, User user, Response response, Timestamp createDate, Timestamp updateDate){
         this.id = id;
-        this.comment = comment;
+        this.body = body;
         this.user = user;
         this.response = response;
         this.createDate = createDate;
@@ -92,11 +92,11 @@ public class Comment {
     }
 
     public String getBody() {
-        return comment;
+        return body;
     }
 
     public void setBody(String body) {
-        this.comment = comment;
+        this.body = body;
     }
 
     public User getUser() {
@@ -105,14 +105,6 @@ public class Comment {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 
     public Timestamp getDate() {
