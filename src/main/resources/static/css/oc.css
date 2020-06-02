@@ -248,7 +248,7 @@ button:hover {
 }
 /***************/
 
-/* TRIANGLE CONTAINER AND TRIANGLES */
+/* TRIANGLE CONTAINER AND TRIANGLES ON LOGIN PAGE*/
 .triangle-container {
     min-width: 100%;
     display: flex;
@@ -262,4 +262,157 @@ button:hover {
     width: 150px;
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     background-color: #d4c850;
+}
+#tri-1 {
+    animation: triangle-color 7s infinite ease-in-out;
+}
+#tri-2 {
+    animation: triangle-color 7s infinite ease-in-out;
+    animation-delay: .05s;
+}
+#tri-3 {
+    animation: triangle-color 7s infinite ease-in-out;
+    animation-delay: .10s;
+}
+#tri-4 {
+    animation: triangle-color 7s infinite ease-in-out;
+    animation-delay: .15s;
+}
+#tri-5 {
+    animation: triangle-color 7s infinite ease-in-out;
+    animation-delay: .20s;
+}
+#tri-6 {
+    animation: triangle-color 7s infinite ease-in-out;
+    animation-delay: .25s;
+}
+#tri-7 {
+    animation: triangle-color 7s infinite ease-in-out;
+    animation-delay: .30s;
+}
+#tri-8 {
+    animation: triangle-color 7s infinite ease-in-out;
+    animation-delay: .35s;
+}
+#tri-9 {
+    animation: triangle-color 7s infinite ease-in-out;
+    animation-delay: .40s;
+}
+#tri-10 {
+    animation: triangle-color 7s infinite ease-in-out;
+    animation-delay: .45s;
+}
+#tri-11 {
+    animation: triangle-color 7s infinite ease-in-out;
+    animation-delay: .50s;
+}
+#tri-12 {
+    animation: triangle-color 7s infinite ease-in-out;
+    animation-delay: .55s;
+}
+#tri-13 {
+    animation: triangle-color 7s infinite ease-in-out;
+    animation-delay: .60s;
+}
+@keyframes triangle-color {
+    0% {
+        background-color: #d4c850;
+    }
+    25%{
+        background-color: #65fce1;
+    }
+    55%{
+        background-color: #d4c850;
+    }
+    75%{
+        background-color: #65fce1;
+    }
+    100%{
+        background-color: #d4c850;
+    }
+}
+/***************/
+
+/* DIAMOND CONTAINER AND DIAMONDS ON REGISTER PAGE*/
+.diamond-container {
+    min-width: 100%;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+}
+.diamond {
+    height: 150px;
+    width: 150px;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background-color: #d4c850;
+}
+#dia-1 {
+    animation: diamond-color 7s infinite ease-in-out;
+}
+#dia-2 {
+    animation: diamond-color 7s infinite ease-in-out;
+    animation-delay: .05s;
+}
+#dia-3 {
+    animation: diamond-color 7s infinite ease-in-out;
+    animation-delay: .10s;
+}
+#dia-4 {
+    animation: diamond-color 7s infinite ease-in-out;
+    animation-delay: .15s;
+}
+#dia-5 {
+    animation: diamond-color 7s infinite ease-in-out;
+    animation-delay: .20s;
+}
+#dia-6 {
+    animation: diamond-color 7s infinite ease-in-out;
+    animation-delay: .25s;
+}
+#dia-7 {
+    animation: diamond-color 7s infinite ease-in-out;
+    animation-delay: .30s;
+}
+#dia-8 {
+    animation: diamond-color 7s infinite ease-in-out;
+    animation-delay: .35s;
+}
+#dia-9 {
+    animation: diamond-color 7s infinite ease-in-out;
+    animation-delay: .40s;
+}
+#dia-10 {
+    animation: diamond-color 7s infinite ease-in-out;
+    animation-delay: .45s;
+}
+#dia-11 {
+    animation: diamond-color 7s infinite ease-in-out;
+    animation-delay: .50s;
+}
+#dia-12 {
+    animation: diamond-color 7s infinite ease-in-out;
+    animation-delay: .55s;
+}
+#dia-13 {
+    animation: diamond-color 7s infinite ease-in-out;
+    animation-delay: .60s;
+}
+@keyframes diamond-color {
+    0% {
+        background-color: #d4c850;
+    }
+    25%{
+        background-color: #65fce1;
+    }
+    55%{
+        background-color: #d4c850;
+    }
+    75%{
+        background-color: #65fce1;
+    }
+    100%{
+        background-color: #d4c850;
+    }
 }

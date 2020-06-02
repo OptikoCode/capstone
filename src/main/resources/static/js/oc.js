@@ -74,4 +74,9 @@ $(document).ready(function() {
     gsap.timeline()
         .from(".triangle", {y: 160, stagger:0.1, duration:0.8, ease:"back"})
         .from(".triangle img", {y: 130, stagger:0.1, duration:0.8, ease:"back"})
+
+    //diamond container and diamond divs inside
+    gsap.timeline()
+        .from(".diamond", {y: 160, stagger:0.1, duration:0.8, ease:"back"})
+        .from(".diamond img", {y: 130, stagger:0.1, duration:0.8, ease:"back"})
 });
