@@ -10,9 +10,7 @@ const options = {
 };
 const picker = client.picker(options);
 
-// client.picker(options).onUploadDone();
 // Get references to the DOM elements
-
 const form = document.getElementById('pick-form');
 const fileInput = document.getElementById('fileupload');
 const btn = document.getElementById('picker');
@@ -20,19 +18,17 @@ const nameBox = document.getElementById('nameBox');
 const urlBox = document.getElementById('urlBox');
 
 // Add our event listeners
-
 btn.addEventListener('click', function (e) {
     e.preventDefault();
     picker.open();
 });
-
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     alert('Submitting: ' + fileInput.value);
 });
 
-// Helper to overwrite the field input value
 
+// Helper to overwrite the field input value
 function updateForm(result) {
     const fileData = result.filesUploaded[0];
     fileInput.value = fileData.url;
