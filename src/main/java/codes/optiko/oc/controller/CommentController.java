@@ -37,15 +37,15 @@ public class CommentController {
 
 
     //********* CREATE COMMENT ***********
-    @GetMapping("posts/{post_id}/responses/{response_id}/create-comment")
-    public String createComment(@PathVariable long post_id, @PathVariable long response_id, Model model){
+//    @GetMapping("posts/{post_id}/responses/{response_id}/create-comment")
+//    public String createComment(@PathVariable long post_id, @PathVariable long response_id, Model model){
+//
+//        model.addAttribute("comments", new Comment());
+//        return "posts/responses/create-comment";
+//    }
 
-        model.addAttribute("comments", new Comment());
-        return "posts/responses/create-comment";
-    }
-
-    @PostMapping("posts/{post_id}/responses/{response_id}/create-comment")
-    public String createComment(@PathVariable long post_id, @PathVariable long response_id, @ModelAttribute Comment comment){
+    @PostMapping("/posts/{post_id}/response/{response_id}/create-comment")
+    public String createResponse(@PathVariable long post_id, @PathVariable long response_id, @ModelAttribute Comment comment) {
         Response response = responseRepo.getOne(response_id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -55,35 +55,35 @@ public class CommentController {
 
         commentRepo.save(comment);
 
-        return "/posts/" + post_id;
+        return "redirect:/posts/" + post_id;
     }
     //***********************************
 
 
     //********* EDIT COMMENT ************
-    @GetMapping("posts/{post_id}/edit-comment/{comment_id}/")
+    @GetMapping("/posts/{post_id}/edit-comment/{comment_id}/")
     public String editComment(@PathVariable long post_id, @PathVariable long comment_id, Model model){
         model.addAttribute("comments", commentRepo.getOne(comment_id));
 
         return "posts/edit-comment";
     }
 
-    @PostMapping("posts/{post_id}/edit-comment/{comment_id}/")
+    @PostMapping("/posts/{post_id}/edit-comment/{comment_id}/")
     public String editComment(@PathVariable long post_id, @PathVariable long comment_id, @ModelAttribute Comment comment){
         comment.setUpdateDate(new Timestamp(System.currentTimeMillis()));
         commentRepo.save(comment);
 
-        return "posts/" + post_id;
+        return "redirect:posts/" + post_id;
     }
     //************************************
 
 
     //********* DELETE COMMENT ***********
-    @PostMapping("posts/{post_id}/delete-comment/{comment_id}/")
+    @PostMapping("/ posts/{post_id}/delete-comment/{comment_id}/")
     public String deleteComment(@PathVariable long post_id, @PathVariable long comment_id){
         commentRepo.deleteById(comment_id);
 
-        return "posts/" + post_id;
+        return "redirect:posts/" + post_id;
     }
     //************************************
 }
