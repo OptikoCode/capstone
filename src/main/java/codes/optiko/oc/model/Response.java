@@ -23,7 +23,7 @@ public class Response {
     private Post post;
 
     //video url
-    @Column
+    @Column(columnDefinition = "text")
     private String video;
 
     @Column

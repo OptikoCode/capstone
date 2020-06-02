@@ -16,14 +16,18 @@
     <div th:unless="${#lists.isEmpty(responses)}">
         <h3>Responses:</h3>
         <!-- Display video responses -->
-        <div class="post-div mb-3" th:each="res : ${responses}">
+        <div class="post-div mb-3 col-md-8" th:each="res : ${responses}">
             <p th:text="'Posted by: ' + ${post.user.username}"></p>
             <div class="video-responsive" th:utext="${res.video}"></div>
 
             <!-- Display comments for video responses -->
             <div th:unless="${#lists.isEmpty(comments)}">
-                <div class="post-div mb-3" th:each="com : ${comments}">
+                <div class="post-div mb-3 col-md-5" th:each="com : ${comments}">
                     <p th:text="${com.body}"></p>
+                    <p th:text="${'Posted by: ' + com.user.username}"></p>
+                    <div th:unless="${#authentication.name != com.user.email}">
+                        <button class="btn btn-warning">Edit</button>
+                    </div>
                 </div>
             </div>
 
