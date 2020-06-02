@@ -37,7 +37,10 @@ $(document).ready(function() {
         $('.video-response-form').slideDown('fast');
     });
 
-
+    // Show comment form
+    $('.add-comment').click(function() {
+        $('.comment-form').slideDown('fast');
+    });
 
 
     //GSAP

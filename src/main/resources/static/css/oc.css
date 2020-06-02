@@ -188,8 +188,8 @@ button:hover {
     top:0; left:0;
 }
 
-/* hide video response form */
-.video-response-form { display: none; }
+/* hide video response and comment forms */
+.video-response-form, .comment-form { display: none; }
 
 /*oc animated image*/
 .circle {

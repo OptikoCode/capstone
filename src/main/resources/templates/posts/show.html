@@ -11,20 +11,45 @@
     <h2 th:text="${post.title}"></h2>
     <p style="padding-left: 2rem;" th:utext="${post.description}"></p>
     <p style="padding-left: 2rem;" th:text="${post.updateDate}"></p>
-    <p style="padding-left: 2rem;" th:text="${post.getUser().getEmail()}"></p>
+    <p style="padding-left: 2rem;" th:text="${post.user.username}"></p>
 
     <div th:unless="${#lists.isEmpty(responses)}">
         <h3>Responses:</h3>
-
+        <!-- Display video responses -->
         <div class="post-div mb-3" th:each="res : ${responses}">
+            <p th:text="'Posted by: ' + ${post.user.username}"></p>
             <div class="video-responsive" th:utext="${res.video}"></div>
+
+            <!-- Display comments for video responses -->
+            <div th:unless="${#lists.isEmpty(comments)}">
+                <div class="post-div mb-3" th:each="com : ${comments}">
+                    <p th:text="${com.comment}"></p>
+                </div>
+            </div>
+
+            <!-- Add a comment -->
+            <div sec:authorize="isAuthenticated()">
+                <button class="add-comment btn btn-primary">Add a Comment</button>
+                <form th:action="@{|/posts/${post.id}/response/${res.id}/create-comment|}" th:method="post" th:object="${comment}" class="comment-form">
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea class="form-control" id="comment" th:field="*{comment}"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                </form>
+            </div>
+            <div sec:authorize="!isAuthenticated()">
+                <p class="font-weight-bold">Please <a href="/login">log in</a> or <a href="/register">register</a> to add a comment.</p>
+            </div>
         </div>
     </div>
+
+    <!-- Add a video response -->
     <div sec:authorize="isAuthenticated()">
         <button class="add-video-response btn btn-primary">Add a Video Response</button>
         <form th:action="@{|/posts/${post.id}/create-response|}" th:method="post" th:object="${response}" class="video-response-form">
             <div class="form-group">
-                <label for="video">Video Embed URL:<br>g<span class="small">(YouTube, Vimeo, DailyMotion, etc...)</span></label>
+                <label for="video">Video Embed URL:<br><span class="small">(YouTube, Vimeo, DailyMotion, etc...)</span></label>
                 <input type="text" th:field="*{video}" id="video" class="form-control"/>
             </div>
             <button type="submit" class="btn btn-primary">Submit Video Response</button>
