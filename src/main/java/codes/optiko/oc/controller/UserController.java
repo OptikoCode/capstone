@@ -127,15 +127,16 @@ public class UserController {
 
   //Call the Post class to get access to he getImage() method
     @GetMapping("/image")
-    public String uploadFunctionality(Post post){//Post post, Model model
-        // This should call the get image method and I should be able to access it through thymeleaf????
-//        post.getImage();
+    public String uploadFunctionality(Model model){
+        model.addAttribute("posts", new Post());
         return"posts/image";
     }
 
     @PostMapping("/image")
     public String uploadFinished(@ModelAttribute Post post){
-        post.getImage();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUser(user);
+        posts.save(post);
         return "redirect:/profile";
     }
 }

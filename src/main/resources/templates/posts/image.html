@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <head th:replace="partials/partials :: head ('Edit your profile')"></head>
+    <style>
+        h1{
+            font-family: 'GFS Neohellenic', sans-serif
+        }
+    </style>
 </head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
-<div class="box">
+<div class="d-flex justify-content-center">
+    <h1>Please select a image or video to be uploaded</h1>
+</div>
+<div class="d-flex justify-content-center">
     <form id="pick-form">
         <div class="field">
             <div class="control">
@@ -17,19 +25,21 @@
             <div class="control" id="nameBox"></div>
             <div class="control" id="urlBox"></div>
         </div>
+        <br>
         <div class="field">
+            <form th:method="post" th:action="@{/image}" th:object="${posts}">
             <div class="control">
-                <input class="button" type="submit" value="Submit">
+                <button type="submit" class="button mx-auto fas fa-file-image fa-3x" id="pickWatermark" onclick="pickMark()">Submit</button>
+                <input type="hidden" name="profileImageUrl" id="profileImageUrl" value="">
             </div>
         </div>
     </form>
 </div>
 
-<!--<button type="button" class="button mx-auto fas fa-file-image fa-3x" id="pickWatermark" onclick="pickMark()"></button>-->
-<!--<input type="hidden" name="profileImageUrl" id="profileImageUrl" th:field="*{profileImageUrl}">-->
+
 </body>
-
-
+<standard_scripts th:replace="partials/partials :: footer">
+</standard_scripts>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script src="js/keys.js"></script>
 <script src="js/filestackApi.js"></script>
