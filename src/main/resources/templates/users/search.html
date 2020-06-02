@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+
+<form th:action="@{/search}" th:object="search">
+<div>
+    <label for="search_bar">Search by post title</label>
+    <input id="search_bar" type="text" th:field="search.findByTitle()">
+</div>
+</form>
+
+<div th:each="posts : ${post}">
+    <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
+    <p>Asked by: <span th:text="${post.user.username}"></span></p>
+</div>
+
+</body>
+</html>

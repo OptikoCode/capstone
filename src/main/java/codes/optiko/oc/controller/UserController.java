@@ -1,7 +1,9 @@
 package codes.optiko.oc.controller;
 
+import codes.optiko.oc.model.Post;
 import codes.optiko.oc.model.User;
 import codes.optiko.oc.repositories.PostRepository;
+import codes.optiko.oc.repositories.SearchRepo;
 import codes.optiko.oc.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +23,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
+import java.util.Map;
 
 @Controller
 public class UserController {
     private UserRepository users;
     private PasswordEncoder passwordEncoder;
     private PostRepository posts;
+    private SearchRepo searchRepo;
 
     public UserController(UserRepository users, PasswordEncoder passwordEncoder, PostRepository posts){
         this.users = users;
@@ -104,11 +108,50 @@ public class UserController {
         return "redirect:/posts";
     }
 
+//*********** This will allow the user to search the posts on the website???? **************
+    @GetMapping("/search")
+    public String searchForPost(Map<String, Object> map){
+        Post post = new Post();
+        map.put("post", post);
+        map.put("findByTitle", posts.findAll());
+        return("users/search");
+    }
+
+//    @PostMapping("/search")
+//    public String findPost(@ModelAttribute Post post){
+//        post.getTitle();
+//    }
+
+
 //******** USING TO TEST FILESTACK API**************
+
+  //Call the Post class to get access to he getImage() method
     @GetMapping("/image")
-    public String uploadFunctionality(){
+    public String uploadFunctionality(Post post){//Post post, Model model
+        // This should call the get image method and I should be able to access it through thymeleaf????
+//        post.getImage();
         return"posts/image";
     }
+
+    @PostMapping("/image")
+    public String uploadFinished(@ModelAttribute Post post){
+        post.getImage();
+        return "redirect:/profile";
+    }
+}
+
+
+
+
+
+
+
+
+
+//    @GetMapping("/image")
+//    public String uploadFunctionality(){
+//        return"posts/image";
+//    }
 
 //    @RequestMapping(value = "/image", method = RequestMethod.POST)
 //    @ResponseBody
@@ -141,4 +184,4 @@ public class UserController {
 //        users.logout()
 //    }
 
-}
+
