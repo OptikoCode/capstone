@@ -17,7 +17,7 @@ button:focus {
 }
 /*****************/
 
-/*blockquote and pre tags*/
+/*blockquote, headings and pre tags*/
 blockquote {
     padding: 10px 20px;
     border-left: 5px solid #f86466
@@ -29,6 +29,9 @@ pre {
     border: 1px solid #c8ccd0;
     border-radius: 5px;
     font-family: courier;
+}
+h2, h3, p {
+    font-family: 'Staatliches', cursive;
 }
 /****************/
 
@@ -148,9 +151,12 @@ input {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+    color: #343a40;
+    font-family: 'Staatliches', cursive;
 }
 input:hover {
-    color: #fff;
+    color: #65fce1;
+    transition: ease 295ms;
 }
 #login-input {
     border: none;
@@ -161,17 +167,18 @@ input:hover {
 }
 
 button {
-    font-family: 'Raleway', sans-serif;
-    background-color: #fff;
+    font-family: 'Staatliches', cursive;
+    background-color: #d4c850;
     border-radius: 100vmax;
-    border: 3px solid #d4c850;
+    border: 3px solid #343a40;
     margin-top: 15px;
+    color: #343a40;
 }
 button:hover {
-    transition: ease 255ms;
+    transition: ease-out 295ms;
     background-color: #d4c850;
-    color: #fff;
-    border-color: #343a40;
+    color: #65fce1;
+    cursor: pointer;
 }
 /***************/
 
@@ -187,6 +194,14 @@ button:hover {
     position:absolute;
     top:0; left:0;
 }
+video {
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    border: 5px solid #d4c850;
+}
+a#downloadLink {
+    font-family: 'Staatliches', cursive;
+}
+
 
 /* hide video response and comment forms */
 .video-response-form, .comment-form { display: none; }
