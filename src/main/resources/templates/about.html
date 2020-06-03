@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/partials :: head ('About Us')"></head>
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+
+<div class="card text-center">
+    <div class="card-header">
+        About Us
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">OptikoCodes</h5>
+        <p class="card-text">OptikoCodes is a website dedicated to help people search for answers to their programming questions.
+            <br>With a modern and interactive design, users can easily navigate our website to browse the posts made by other users.
+            <br>Our main feature on our website is that we allow users to upload videos as a response to questions others ask to
+            <br>help aid those who are more of the visual learning type. We believe that by allowing this feature, users will be better
+            <br>able to understand the answers to their questions, without the hassle of trying to debug someone else's comment.
+        </p>
+    </div>
+</div>
+
+<div class="card-group">
+    <div class="card">
+        <img class="card-img-top" src="img/james.jpeg" alt="Card image cap" style="height: 200px; width: 200px">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top img-thumbnail" src="img/sini.jpeg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="img/carlos.jpeg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+</div>
+
+</body>
+<standard_scripts th:replace="partials/partials :: footer">
+</standard_scripts>
+</html>

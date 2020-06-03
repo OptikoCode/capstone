@@ -44,6 +44,8 @@ function updateForm(result) {
     urlBox.appendChild(document.createTextNode('Uploaded to: '));
     urlBox.appendChild(url);
     console.log(result);
+    var one = document.getElementById("urlBox").children[0].href;
+    console.log(one)
 }
 
 function pickMark() {
