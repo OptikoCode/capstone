@@ -76,12 +76,12 @@ $(document).ready(function() {
     leftHomeDiv.from("#left", 2, {
         delay: 0.1,
         opacity: 0,
-        x: -50,
+        x: -103,
         ease: Expo.ease
     }).from("#left", 2, {
         delay: 0.1,
         opacity: 0,
-        x: -50,
+        x: -103,
         ease: Expo.ease
     }, "-=5");
 
@@ -89,12 +89,12 @@ $(document).ready(function() {
     rightHomeDiv.from("#right", 2, {
         delay: 0.1,
         opacity: 0,
-        x: 50,
+        x: 103,
         ease: Expo.ease
     }).from("#right", 2, {
         delay: 0.1,
         opacity: 0,
-        x: 50,
+        x: 103,
         ease: Expo.ease
     }, "-=5");
 
