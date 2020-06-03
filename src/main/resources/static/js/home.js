@@ -20,6 +20,7 @@ right.addEventListener('mouseleave', () => {
     content.classList.remove('hover-right');
 });
 
+//HOME PAGE GSAP
 
 let leftHomeDiv = new TimelineMax();
 leftHomeDiv.from("#left", 2, {
