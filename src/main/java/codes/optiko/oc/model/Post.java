@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,6 +30,9 @@ public class Post {
 //    foreign key to image: many images to one post
     @JoinColumn(name = "image_file")
     private String image;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
+    private List<Response> responses = new ArrayList<>();
 
     @Column
     @CreationTimestamp

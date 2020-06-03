@@ -4,6 +4,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "responses")
@@ -25,6 +27,9 @@ public class Response {
     //video url
     @Column(columnDefinition = "text")
     private String video;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="response")
+    private List<Comment> comments = new ArrayList<>();
 
     @Column
     @CreationTimestamp
