@@ -6,16 +6,14 @@
 </head>
 <body>
 
-<form th:action="@{/search}" th:object="search">
-<div>
-    <label for="search_bar">Search by post title</label>
-    <input id="search_bar" type="text" th:field="search.findByTitle()">
-</div>
+<form class="form-inline my-2 my-lg-0" action="/posts/search">
+    <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
 </form>
 
-<div th:each="posts : ${post}">
+<div th:each="post : ${posts}">
     <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
-    <p>Asked by: <span th:text="${post.user.username}"></span></p>
+    <p>Asked by: <span th:text="${post.username}"></span></p>
 </div>
 
 </body>
