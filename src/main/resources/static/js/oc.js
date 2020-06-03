@@ -39,9 +39,14 @@ $(document).ready(function() {
 
     // Show comment form
     $('.add-comment').click(function() {
-        $('.comment-form').slideDown('fast');
+        $('.create-comment-form').slideDown('fast');
     });
 
+    // Show/hide single comment/edit-comment-form
+    $('.edit-comment-btn').click(function () {
+        $(this).closest('.comment').removeClass('active');
+        $(this).closest('.comment').next('.edit-comment').addClass('active');
+    });
 
     //GSAP
 

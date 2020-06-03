@@ -70,6 +70,7 @@ public class PostController {
         model.addAttribute("response", new Response());
         model.addAttribute("comments", commentRepo.findByResponseId(id));
         model.addAttribute("comment", new Comment());
+
         return "posts/show";
     }
     //***********************************
