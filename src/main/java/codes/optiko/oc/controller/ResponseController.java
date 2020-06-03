@@ -66,6 +66,9 @@ public class ResponseController {
 
     @PostMapping("/posts/{post_id}/edit-response/{response_id}")
     public String editResponse(@PathVariable long post_id, @PathVariable long response_id, @ModelAttribute Response response) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        response.setCreateDate(response.getUpdateDate());
         response.setUpdateDate(new Timestamp(System.currentTimeMillis()));
         responseRepo.save(response);
 
