@@ -1,10 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/partials :: head ('Future Home of OptikoCodes')"></head>
-<body style="height: 100vh;">
-<div class="container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
-    <h1 class="display-2">OptikoCodes</h1>
-    <h2 class="display-3">Coming Soon!</h2>
+<head th:replace="partials/partials :: head ('OC')"></head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Montserrat';
+        color: #fff;
+        width: 100%;
+        height: 100vh;
+        overflow-x: hidden;
+        background-color: #d4c850;
+    }
+</style>
+<body>
+<div class="content">
+    <div class="welcome">
+        <p>WELCOME</p>
+    </div>
+    <div class="split left" id="left">
+        <img src="img/greek.svg" alt="" class="left-div-img">
+        <div class="text">
+
+            <div id="home-o-letter"></div>
+            <p class="left-home-para">We are OptikoCodes</p>
+        </div>
+    </div>
+
+    <div class="split right" id="right">
+        <img src="img/greek.svg" alt="" class="right-div-img">
+        <div class="text">
+
+            <div id="home-c-letter"></div>
+            <p class="right-home-para">We enable visual solutions to programming questions</p>
+        </div>
+    </div>
+    <a href="https://optiko.codes/posts"><button class="home-button">ENTER</button></a>
+
 </div>
+<standard_scripts th:replace="partials/partials :: footer">
+</standard_scripts>
 </body>
 </html>
