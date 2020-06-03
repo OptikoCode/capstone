@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/partials :: head ('Profile')"></head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
+
+<!--<div class="container" sec:authorize="isAuthenticated()" th:unless="${#authentication.name != user.email}">-->
 <div class="container">
     <h2 class="slide-right">Your Recent Posts</h2>
     <br>
@@ -15,6 +17,13 @@
         </div>
     </ul>
 </div>
+
+<!--<a th:href="@{|/user/edit/${user.getId()}|}" class="btn btn-warning">Edit</a>-->
+<!--<button type="button" class="btn btn-warning">Warning</button>-->
+<!--<a th:href="@{'/user/edit/' + ${user.id}}" class="btn btn-warning btn-lg active" role="button" aria-pressed="true" style="width: 200px">Edit Profile</a>\-->
+
+<a href="/logout">Logout</a>
+
 <div class="container triangle-container">
     <div class="triangle" id="tri-1">
         <img src="img/greek.svg" alt="">
@@ -56,7 +65,6 @@
         <img src="img/greek.svg" alt="">
     </div>
 </div>
-<a href="/logout">Logout</a>
 
 <standard_scripts th:replace="partials/partials :: footer">
 </standard_scripts>

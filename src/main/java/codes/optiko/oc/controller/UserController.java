@@ -71,8 +71,10 @@ public class UserController {
 
 //***************** Will display the users profile page *********************
     @GetMapping("/profile")
+    //, @PathVariable long id
     public String showProfileIndexPage(Model model) {
         model.addAttribute("post", posts.findAll());
+//        model.addAttribute("user", users.findById(id));
         return "users/profile";
     }
 
@@ -118,7 +120,7 @@ public class UserController {
         return "posts/index";
     }
 
-//******** USING TO TEST FILESTACK API**************
+//******** USING TO TEST FILESTACK API **************
 
   //Call the Post class to get access to he getImage() method
     @GetMapping("/image")
