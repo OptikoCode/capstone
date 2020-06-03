@@ -69,13 +69,13 @@ public class ResponseController {
         response.setUpdateDate(new Timestamp(System.currentTimeMillis()));
         responseRepo.save(response);
 
-        return "redirect:/posts" + post_id;
+        return "redirect:/posts/" + post_id;
     }
 
-    @PostMapping("/posts/{post_id}/delete-response/{response_id}")
+    @GetMapping("/posts/{post_id}/delete-response/{response_id}")
     public String deleteResponse(@PathVariable long post_id, @PathVariable long response_id) {
         responseRepo.deleteById(response_id);
 
-        return "redirect:/posts" + post_id;
+        return "redirect:/posts/" + post_id;
     }
 }
