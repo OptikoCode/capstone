@@ -66,9 +66,12 @@
     <div sec:authorize="isAuthenticated()">
         <button class="add-video-response">Add a Video Response</button>
         <form th:action="@{|/posts/${post.id}/create-response|}" th:method="post" th:object="${response}" class="video-response-form">
-            <div class="form-group">
-                <label for="video">Video Embed URL:<br><span class="small">(YouTube, Vimeo, DailyMotion, etc...)</span></label>
-                <textarea class="form-control" id="video" th:field="*{video}"></textarea>
+            <div class="form-group col-md-6">
+                <label for="video-url">Video URL:<br><span class="small">(YouTube, Vimeo, DailyMotion, etc... embed code or upload with FileStack)</span></label>
+                <textarea class="form-control" id="video-url" th:field="*{video}"></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <button id="fs-upload">Upload File</button>
             </div>
             <button type="submit">Submit Video Response</button>
         </form>
@@ -89,7 +92,6 @@
     </div>
 </div>
 
-<standard_scripts th:replace="partials/partials :: footer">
-</standard_scripts>
+<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 </body>
 </html>
