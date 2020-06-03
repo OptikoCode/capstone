@@ -145,16 +145,6 @@ $(document).ready(function() {
         ease: Expo.easeIn
     }, "-=5");
 
-
-
-
-
-
-
-
-
-
-
     //REST OF GSAP
 
     let t1 = new TimelineMax();
@@ -194,10 +184,6 @@ $(document).ready(function() {
     gsap.timeline()
         .from(".diamond", {y: 160, stagger:0.1, duration:0.8, ease:"back"})
         .from(".diamond img", {y: 130, stagger:0.1, duration:0.8, ease:"back"})
-
-
-
-
 
 
     //JS SCREEN RECORDER
