@@ -118,7 +118,6 @@ public class UserController {
         return "posts/index";
     }
 
-
 //******** USING TO TEST FILESTACK API**************
 
   //Call the Post class to get access to he getImage() method
@@ -134,6 +133,12 @@ public class UserController {
         post.setUser(user);
         posts.save(post);
         return "redirect:/profile";
+    }
+
+//*********** Brings user to the about page *************
+    @GetMapping("/about")
+    public String aboutUs(){
+        return "about";
     }
 }
 

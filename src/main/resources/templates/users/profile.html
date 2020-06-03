@@ -10,12 +10,52 @@
 <!--        th:action="@{'/user/profile/' + ${users.id}}" -->
         <div th:each="posts : ${post}">
             <li><a th:href="@{'/posts/'+${posts.id}}"><h3 style="font-weight: bold" th:text="${posts.title}" th:href="@{|/posts/${posts.id}|}"></h3></a>
-                <p style="padding-left: 2rem;" th:text="${posts.getDescription()}"></p></tr>
+                <p style="padding-left: 2rem;" th:text="${posts.getCreateDate()}"></p></tr>
                 <br></li>
         </div>
     </ul>
 </div>
-
+<div class="container triangle-container">
+    <div class="triangle" id="tri-1">
+        <img src="img/greek.svg" alt="">
+    </div>
+    <div class="triangle" id="tri-2">
+        <img src="img/greek.svg" alt="">
+    </div>
+    <div class="triangle" id="tri-3">
+        <img src="img/greek.svg" alt="">
+    </div>
+    <div class="triangle" id="tri-4">
+        <img src="img/greek.svg" alt="">
+    </div>
+    <div class="triangle" id="tri-5">
+        <img src="img/greek.svg" alt="">
+    </div>
+    <div class="triangle" id="tri-6">
+        <img src="img/greek.svg" alt="">
+    </div>
+    <div class="triangle" id="tri-7">
+        <img src="img/greek.svg" alt="">
+    </div>
+    <div class="triangle" id="tri-8">
+        <img src="img/greek.svg" alt="">
+    </div>
+    <div class="triangle" id="tri-9">
+        <img src="img/greek.svg" alt="">
+    </div>
+    <div class="triangle" id="tri-10">
+        <img src="img/greek.svg" alt="">
+    </div>
+    <div class="triangle" id="tri-11">
+        <img src="img/greek.svg" alt="">
+    </div>
+    <div class="triangle" id="tri-12">
+        <img src="img/greek.svg" alt="">
+    </div>
+    <div class="triangle" id="tri-13">
+        <img src="img/greek.svg" alt="">
+    </div>
+</div>
 <a href="/logout">Logout</a>
 
 <standard_scripts th:replace="partials/partials :: footer">
