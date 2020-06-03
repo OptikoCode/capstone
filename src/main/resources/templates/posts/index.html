@@ -5,8 +5,8 @@
 <head th:replace="partials/partials :: head ('View All Questions')"></head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
-<div class="container">
 
+<div class="container">
 
     <div class="circle">
         <div class="scircle">
@@ -14,6 +14,10 @@
         </div>
     </div>
 
+    <form class="form-inline my-2 my-lg-0" action="/search">
+        <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
+    </form>
 
     <h2 class="template-h2 slide-right"><span class="lambda">Λ</span>ll  Questions</h2>
 

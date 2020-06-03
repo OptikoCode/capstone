@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -109,18 +110,13 @@ public class UserController {
     }
 
 //*********** This will allow the user to search the posts on the website???? **************
-    @GetMapping("/search")
-    public String searchForPost(Map<String, Object> map){
-        Post post = new Post();
-        map.put("post", post);
-        map.put("findByTitle", posts.findAll());
-        return("users/search");
-    }
 
-//    @PostMapping("/search")
-//    public String findPost(@ModelAttribute Post post){
-//        post.getTitle();
-//    }
+    @GetMapping("/search")
+    public String searchForPosts(@RequestParam(name = "searchTerm") String searchTerm, Model model){
+        List<Post> filteredPosts = posts.findByDescriptionContainingOrTitleContaining(searchTerm,searchTerm);
+        model.addAttribute("posts", filteredPosts);
+        return "posts/index";
+    }
 
 
 //******** USING TO TEST FILESTACK API**************
