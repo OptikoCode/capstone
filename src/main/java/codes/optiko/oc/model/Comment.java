@@ -26,11 +26,11 @@ public class Comment {
     private Response response;
 
 //    time stamps are sql-oriented
-    @Column
+    @Column(name = "create_date", updatable = false)
     @CreationTimestamp
     private Timestamp createDate;
 
-    @Column
+    @Column(name = "update_date")
     @UpdateTimestamp
     private Timestamp updateDate;
 

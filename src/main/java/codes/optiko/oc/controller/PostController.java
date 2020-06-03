@@ -54,6 +54,7 @@ public class PostController {
     public String createPost(@ModelAttribute Post post) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
+        post.setCreateDate(new Timestamp(System.currentTimeMillis()));
         postRepo.save(post);
         return "redirect:/posts";
     }
@@ -85,13 +86,14 @@ public class PostController {
     }
 
     @PostMapping("/posts/edit/{id}")
-    public String postEdit(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "description") String description, @RequestParam(name = "updated") Timestamp updateDate) {
-        Post post = postRepo.getPostById(id);
-        post.setTitle(title);
-        post.setDescription(description);
-        post.setUpdateDate(updateDate);
+    public String postEdit(@PathVariable long id, @ModelAttribute Post post) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        post.setUpdateDate(new Timestamp(System.currentTimeMillis()));
+        post.setUser(user);
+
         postRepo.save(post);
-        return "redirect:/posts";
+        return "redirect:/posts/" + id;
     }
     //***********************************
 

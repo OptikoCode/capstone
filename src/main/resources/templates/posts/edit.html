@@ -11,15 +11,17 @@
 
     <h2>Edit Post</h2>
 
-<!--    <form method="post" th:action="@{'/posts/edit/' + ${post.getId()}}" class="form-group">-->
-<!--        <label for="title">Title: </label>-->
-<!--        <input type="text" name="title" id="title" class="field" th:value="${post.title}"/>-->
-<!--        <br><br>-->
-<!--        <label for="body">Body:</label><br>-->
-<!--        <textarea name="body" id="body" class="field" rows="4" cols="50" th:text="${post.body}"></textarea><br>-->
-<!--        <button type="submit">Edit</button>-->
-<!--    </form>-->
-
+    <form th:action="@{|/posts/edit/${post.id}|}" th:method="post" th:object="${post}">
+        <div class="form-group">
+            <label for="title">Title: </label>
+            <input type="text" th:field="*{title}" id="title" class="form-control"  th:value="${post.title}"/>
+        </div>
+        <div class="form-group">
+            <label for="description">Body:</label>
+            <textarea th:field="*{description}" id="description" class="summernote form-control" th:text="${post.description}"></textarea>
+        </div>
+        <button type="submit">Submit Question</button>
+    </form>
 
 </div>
 
