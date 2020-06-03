@@ -13,6 +13,11 @@
     <p style="padding-left: 2rem;" th:text="${post.updateDate}"></p>
     <p style="padding-left: 2rem;" th:text="${post.user.username}"></p>
 
+    <!-- Edit/delete post if post author -->
+    <div th:unless="${#authentication.name != post.user.email}">
+        <a th:href="@{|/posts/edit/${post.id}|}" class="btn btn-warning">Edit</a> <a th:href="@{|/posts/delete/${post.id}|}" class="btn btn-danger">Delete</a>
+    </div>
+
     <div th:unless="${#lists.isEmpty(responses)}">
         <h3>Responses:</h3>
         <!-- Display video responses -->
@@ -20,25 +25,22 @@
             <p th:text="'Posted by: ' + ${res.user.username}"></p>
             <div class="video-responsive" th:utext="${res.video}"></div>
 
+            <!-- Edit/delete response if response author -->
+            <div th:unless="${#authentication.name != res.user.email}">
+                <a th:href="@{|/posts/${post.id}/edit-response/${res.id}|}" class="btn btn-warning">Edit</a> <a th:href="@{|/posts/${post.id}/delete-response/${res.id}|}" class="btn btn-danger">Delete</a>
+            </div>
+
             <!-- Display comments for video responses -->
             <div th:unless="${#lists.isEmpty(comments)}">
                 <div class="post-div mb-3 col-md-8" th:each="com : ${comments}">
                     <div th:unless="${res.id != com.response.id}" class="comment">
                         <p th:text="${com.body}"></p>
                         <p th:text="${'Posted by: ' + com.user.username}"></p>
+
+                        <!-- Delete Comment if comment author -->
                         <div th:unless="${#authentication.name != com.user.email}">
-                            <a th:href="@{|/posts/${post.id}/response/${res.id}/edit-comment#${com.id}|}" class="edit-comment-btn btn btn-warning">Edit</a> <a th:href="@{|/posts/${post.id}/response/${res.id}/delete-comment/${com.id}|}" class="btn btn-danger">Delete</a>
+                            <a th:href="@{|/posts/${post.id}/response/${res.id}/delete-comment/${com.id}|}" class="btn btn-danger">Delete</a>
                         </div>
-                    </div>
-                    <!-- Edit a comment -->
-                    <div class="edit-comment">
-                        <a th:name="${com.id}"></a><form th:action="@{|/posts/${post.id}/response/${res.id}/edit-comment/${comment.id}|}" th:method="post" th:object="${comment}" class="edit-comment-form">
-                            <div class="form-group">
-                                <label for="edit-comment">Comment</label>
-                                <textarea class="form-control" id="edit-comment" th:field="*{body}" th:text="${comment.body}"></textarea>
-                            </div>
-                            <button type="submit">Edit Comment</button>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -60,31 +60,31 @@ public class CommentController {
     //***********************************
 
 
-    //********* EDIT COMMENT ************
-    @GetMapping("/posts/{post_id}/response/{response_id}/edit-comment/{comment_id}")
-    public String editComment(@PathVariable long post_id, @PathVariable long comment_id, Model model){
-        model.addAttribute("post", postRepo.getPostById(post_id));
-        model.addAttribute("responses", responseRepo.findByPostId(post_id));
-        model.addAttribute("comments", commentRepo.findByResponseId(post_id));
-        model.addAttribute("comment", commentRepo.getOne(comment_id));
-
-        return "posts/show";
-    }
-
-    @PostMapping("/posts/{post_id}/response/{response_id}/edit-comment/{comment_id}")
-    public String editComment(@PathVariable long post_id, @PathVariable long response_id, @PathVariable long comment_id, @ModelAttribute Comment comment){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Response response = responseRepo.getOne(response_id);
-
-        comment.setUser(user);
-        comment.setResponse(response);
-        comment.setId(comment_id);
-        comment.setUpdateDate(new Timestamp(System.currentTimeMillis()));
-
-        commentRepo.save(comment);
-
-        return "redirect:/posts/" + post_id;
-    }
+    //********* EDIT COMMENT ************s
+//    @GetMapping("/posts/{post_id}/response/{response_id}/edit-comment/{comment_id}")
+//    public String editComment(@PathVariable long post_id, @PathVariable long comment_id, Model model){
+//        model.addAttribute("post", postRepo.getPostById(post_id));
+//        model.addAttribute("responses", responseRepo.findByPostId(post_id));
+//        model.addAttribute("comments", commentRepo.findByResponseId(post_id));
+//        model.addAttribute("comment", commentRepo.getOne(comment_id));
+//
+//        return "posts/show";
+//    }
+//
+//    @PostMapping("/posts/{post_id}/response/{response_id}/edit-comment/{comment_id}")
+//    public String editComment(@PathVariable long post_id, @PathVariable long response_id, @PathVariable long comment_id, @ModelAttribute Comment comment){
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        Response response = responseRepo.getOne(response_id);
+//
+//        comment.setUser(user);
+//        comment.setResponse(response);
+//        comment.setId(comment_id);
+//        comment.setUpdateDate(new Timestamp(System.currentTimeMillis()));
+//
+//        commentRepo.save(comment);
+//
+//        return "redirect:/posts/" + post_id;
+//    }
     //************************************
 
 

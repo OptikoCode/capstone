@@ -42,12 +42,6 @@ $(document).ready(function() {
         $('.create-comment-form').slideDown('fast');
     });
 
-    // Show/hide single comment/edit-comment-form
-    $('.edit-comment-btn').click(function () {
-        $(this).closest('.comment').removeClass('active');
-        $(this).closest('.comment').next('.edit-comment').addClass('active');
-    });
-
 
     // HOME PAGE JS AND GSAP
 
@@ -57,15 +51,15 @@ $(document).ready(function() {
 
     left.addEventListener('mouseenter', () => {
         content.classList.add('hover-left');
-    })
+    });
 
     left.addEventListener('mouseleave', () => {
         content.classList.remove('hover-left');
-    })
+    });
 
     right.addEventListener('mouseenter', () => {
         content.classList.add('hover-right');
-    })
+    });
 
     right.addEventListener('mouseleave', () => {
         content.classList.remove('hover-right');

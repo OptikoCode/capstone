@@ -398,9 +398,7 @@ a#downloadLink {
 
 
 /* hide video response and comment forms*/
-/* show/hide comment/edit-comment-form */
-.video-response-form, .comment, .create-comment-form, .edit-comment { display: none; }
-.comment.active, .edit-comment.active { display: block; }
+.video-response-form, .create-comment-form { display: none; }
 
 /*oc animated image*/
 .circle {
