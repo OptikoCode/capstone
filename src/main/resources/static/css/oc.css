@@ -203,8 +203,10 @@ a#downloadLink {
 }
 
 
-/* hide video response and comment forms */
-.video-response-form, .comment-form { display: none; }
+/* hide video response and comment forms*/
+/* show/hide comment/edit-comment-form */
+.video-response-form, .comment, .create-comment-form, .edit-comment { display: none; }
+.comment.active, .edit-comment.active { display: block; }
 
 /*oc animated image*/
 .circle {

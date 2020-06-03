@@ -17,16 +17,28 @@
         <h3>Responses:</h3>
         <!-- Display video responses -->
         <div class="post-div mb-3 col-md-8" th:each="res : ${responses}">
-            <p th:text="'Posted by: ' + ${post.user.username}"></p>
+            <p th:text="'Posted by: ' + ${res.user.username}"></p>
             <div class="video-responsive" th:utext="${res.video}"></div>
 
             <!-- Display comments for video responses -->
             <div th:unless="${#lists.isEmpty(comments)}">
-                <div class="post-div mb-3 col-md-5" th:each="com : ${comments}">
-                    <p th:text="${com.body}"></p>
-                    <p th:text="${'Posted by: ' + com.user.username}"></p>
-                    <div th:unless="${#authentication.name != com.user.email}">
-                        <button class="btn btn-warning">Edit</button>
+                <div class="post-div mb-3 col-md-8" th:each="com : ${comments}">
+                    <div th:unless="${res.id != com.response.id}" class="comment">
+                        <p th:text="${com.body}"></p>
+                        <p th:text="${'Posted by: ' + com.user.username}"></p>
+                        <div th:unless="${#authentication.name != com.user.email}">
+                            <a th:href="@{|/posts/${post.id}/response/${res.id}/edit-comment#${com.id}|}" class="edit-comment-btn btn btn-warning">Edit</a> <a th:href="@{|/posts/${post.id}/response/${res.id}/delete-comment/${com.id}|}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                    <!-- Edit a comment -->
+                    <div class="edit-comment">
+                        <a th:name="${com.id}"></a><form th:action="@{|/posts/${post.id}/response/${res.id}/edit-comment/${comment.id}|}" th:method="post" th:object="${comment}" class="edit-comment-form">
+                            <div class="form-group">
+                                <label for="edit-comment">Comment</label>
+                                <textarea class="form-control" id="edit-comment" th:field="*{body}" th:text="${comment.body}"></textarea>
+                            </div>
+                            <button type="submit">Edit Comment</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -34,10 +46,10 @@
             <!-- Add a comment -->
             <div sec:authorize="isAuthenticated()">
                 <button class="add-comment">Add a Comment</button>
-                <form th:action="@{|/posts/${post.id}/response/${res.id}/create-comment|}" th:method="post" th:object="${comment}" class="comment-form">
+                <form th:action="@{|/posts/${post.id}/response/${res.id}/create-comment|}" th:method="post" th:object="${comment}" class="create-comment-form">
                     <div class="form-group">
-                        <label for="comment">Comment:</label>
-                        <textarea class="form-control" id="comment" th:field="*{body}"></textarea>
+                        <label for="create-comment">Comment:</label>
+                        <textarea class="form-control" id="create-comment" th:field="*{body}"></textarea>
                     </div>
                     <button type="submit">Submit Comment</button>
                 </form>
