@@ -5,6 +5,11 @@
         margin: auto;
     }
 }
+@media (max-width: 900px) {
+    .profile-box-container, .profile-box {
+        display: none;
+    }
+}
 
 
 /* settings for removing blue outline when input/button clicked */
@@ -676,6 +681,19 @@ div.card.about-div {
     height: 100px; width: 100px;
     border-radius: 50%;
     background-color: #d4c850;
+    animation: profile-shape-colors 3s infinite ease;
+}
+@keyframes profile-shape-colors {
+    0% {
+        background-color: #d4c850;
+    }
+    50%{
+        background-color: #65fce1;
+    }
+    100%{
+        background-color: #d4c850;
+    }
+
 }
 
 .profile-box-container {
@@ -684,6 +702,5 @@ div.card.about-div {
     flex-direction: row;
     flex-wrap: wrap;
     position: absolute;
-    margin-left: 75%;
-    margin-top: -30%;
+    padding-left: 27px;
 }
