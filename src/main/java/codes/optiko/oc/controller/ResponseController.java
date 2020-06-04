@@ -59,16 +59,20 @@ public class ResponseController {
 
     @GetMapping("/posts/{post_id}/edit-response/{response_id}")
     public String editResponse(@PathVariable long post_id, @PathVariable long response_id, Model model) {
-        model.addAttribute("responses", responseRepo.getOne(response_id));
+        model.addAttribute("post", postRepo.getOne(post_id));
+        model.addAttribute("response", responseRepo.getOne(response_id));
 
         return "posts/edit-response";
     }
 
     @PostMapping("/posts/{post_id}/edit-response/{response_id}")
     public String editResponse(@PathVariable long post_id, @PathVariable long response_id, @ModelAttribute Response response) {
+        Post post = postRepo.getOne(post_id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        response.setCreateDate(response.getUpdateDate());
+        response.setId(response_id);
+        response.setPost(post);
+        response.setUser(user);
         response.setUpdateDate(new Timestamp(System.currentTimeMillis()));
         responseRepo.save(response);
 

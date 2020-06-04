@@ -2,8 +2,14 @@ const client = filestack.init(apiKey);
 const options = {
     onUploadDone: updateForm,
     displayMode: 'dropPane',
+    dropPane: {
+        overlay: false
+    },
+    customText: {
+        'Drag and Drop, Copy and Paste Files': 'Click the \'+\' file icon above, drag and drop, or copy and paste to upload'
+    },
     container: '#fs-upload',
-    maxSize: 10 * 1024 * 1024,
+    maxSize: 250 * 1024 * 1024, // 250MB max
     accept: ['image/*', 'video/*'],
     uploadInBackground: false,
     startUploadingWhenMaxFilesReached: true,

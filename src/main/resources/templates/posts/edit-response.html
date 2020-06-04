@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="partials/partials :: head ('Edit Video Response')"></head>
+
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+
+<div class="container" sec:authorize="isAuthenticated()">
+
+    <h2>Edit Video Response</h2>
+
+    <form th:action="@{|/posts/${post.id}/edit-response/${response.id}|}" th:method="post" th:object="${response}" class="edit-video-response-form">
+        <div class="form-group">
+            <label for="video-url">Video URL:<br><span class="small">(YouTube, Vimeo, DailyMotion, etc... embed code or upload via FileStack)</span></label>
+            <textarea class="form-control" id="video-url" th:field="*{video}" th:text="${response.video}"></textarea>
+        </div>
+        <div class="form-group">
+            <div id="fs-upload" style="width: 100%; height: 200px;"></div>
+        </div>
+        <button type="submit">Edit Video Response</button>
+    </form>
+
+</div>
+
+<standard_scripts th:replace="partials/partials :: footer">
+</standard_scripts>
+</body>
+</html>
