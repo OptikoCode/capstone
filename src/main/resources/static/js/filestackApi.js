@@ -1,14 +1,18 @@
 const client = filestack.init(apiKey);
 const options = {
     onUploadDone: updateForm,
+    displayMode: 'dropPane',
+    container: '#fs-upload',
     maxSize: 10 * 1024 * 1024,
     accept: ['image/*', 'video/*'],
     uploadInBackground: false,
+    startUploadingWhenMaxFilesReached: true,
     storeTo: {
         workflows: ["1d91169c-19b3-4114-8047-c49cfe9d8535"]
     }
 };
-const picker = client.picker(options);
+// const picker = client.picker(options);
+client.picker(options).open();
 
 // Get references to the DOM elements
 // const form = document.getElementById('pick-form');
@@ -20,10 +24,10 @@ const btn = document.getElementById('fs-upload');
 // const nameBox = document.getElementById('nameBox');
 
 // Add our event listeners
-btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    picker.open();
-});
+// btn.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     picker.open();
+// });
 // form.addEventListener('submit', function (e) {
 //     e.preventDefault();
 //     alert('Submitting: ' + fileInput.value);
@@ -43,8 +47,7 @@ function updateForm(result) {
     // url.href = fileData.url;
     // url.appendChild(document.createTextNode(fileData.url));
     // document.getElementById("profileImageUrl").value = fileData.url;
-
-    document.getElementById("video-url").value = result.filesUploaded[0].url;
+    document.getElementById("video-url").value = '<video src="' + result.filesUploaded[0].url  + '" class="html-video" controls>Your browser does not support HTML video.</video>';
 
     // nameBox.appendChild(name);
     // urlBox.appendChild(document.createTextNode('Uploaded to: '));
