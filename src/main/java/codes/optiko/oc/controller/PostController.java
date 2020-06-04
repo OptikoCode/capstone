@@ -82,13 +82,14 @@ public class PostController {
     public String postEditForm(@PathVariable long id, Model model) {
         Post post = postRepo.getPostById(id);
         model.addAttribute("post", post);
-        return "posts/edit";
+        return "posts/edit-post";
     }
 
     @PostMapping("/posts/edit/{id}")
     public String postEdit(@PathVariable long id, @ModelAttribute Post post) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+        post.setId(id);
         post.setUpdateDate(new Timestamp(System.currentTimeMillis()));
         post.setUser(user);
 
