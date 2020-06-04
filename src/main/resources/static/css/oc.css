@@ -30,8 +30,15 @@ pre {
     border-radius: 5px;
     font-family: courier;
 }
-h2, h3 {
+h2, h3, a {
     font-family: 'Staatliches', cursive;
+}
+a {
+    color: #d4c850;
+    transition: 295ms ease;
+}
+a:hover {
+    color: #65fce1;
 }
 /****************/
 
@@ -374,6 +381,10 @@ button:hover {
     color: #65fce1;
     cursor: pointer;
 }
+.about-div {
+    align-items: center;
+    text-align: center;
+}
 /***************/
 
 /* responsive videos */
@@ -389,8 +400,9 @@ button:hover {
     top:0; left:0;
 }
 video {
-    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    /*clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);*/
     border: 5px solid #d4c850;
+    height: 100%;
 }
 a#downloadLink {
     font-family: 'Staatliches', cursive;
