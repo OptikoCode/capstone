@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="background-color: #d4c850">
+
+<head th:replace="partials/partials :: head ('Screen Recorder')"></head>
+
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+    <div class="container">
+
+        <h2>Screen Recorder</h2>
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2"><video style="width: 100%; height: auto;" autoplay></video></div>
+        </div>
+        <div class="d-flex flex-row flex-no-wrap justify-content-center align-items-center">
+            <button id="shareScreen" class="mx-3">Capture Screen</button>
+            <button id="rec" class="mx-3" disabled>Record</button>
+            <button id="stop" class="mx-3" disabled>Stop</button>
+            <a id="downloadLink" class="mx-3" download="oc-screen-recording.webm"></a>
+        </div>
+
+        <div id="error"></div>
+
+    </div>
+
+<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
+</body>
+</html>

@@ -57,7 +57,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/profile",
                         "/user/edit/{id}",
                         "/posts/{id}/create-response",
-                        "/posts/{post_id}/edit-response/{response_id}"
+                        "/posts/{post_id}/edit-response/{response_id}",
+                        "/screen-recorder"
                 )
                 .authenticated()
         ;

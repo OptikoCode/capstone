@@ -85,4 +85,10 @@ public class ResponseController {
 
         return "redirect:/posts/" + post_id;
     }
+
+    // Screen recorder page for video reponses
+    @GetMapping("/screen-recorder")
+    public String screenRecorder() {
+        return "screen-recorder";
+    }
 }
