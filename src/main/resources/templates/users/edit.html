@@ -24,6 +24,8 @@
 <div id="main-form" sec:authorize="isAuthenticated()" th:unless="${#authentication.name != user.email}" class="d-flex justify-content-center ">
 <form class="form-group col-md-6" th:method="post" th:action="@{'/user/edit/' + ${user.id}}" th:object="${user}">
 
+    <div>
+        <div>
     <!--    User can edit their user name-->
         <label for="username">Edit Username</label>
         <input class="form-control col-lg-6" type="text" id="username" th:field="*{username}" th:value="${user.username}">
@@ -43,16 +45,28 @@
         <!--    User can change their first name-->
         <label for="lastName">Change Last Name</label>
         <input class="form-control col-lg-6" type="text" id="lastName" th:field="*{lastName}" th:value="${user.lastName}">
+        </div>
+    </div>
 
-        <button type="submit" style="margin-left: 42%">Submit Changes</button>
+    <div class="d-flex justify-content-center">
+        <div>
+            <button style="margin-right: 37px" type="submit">Submit Changes</button>
+        </div>
+    </div>
+
+    <div style="height: 10px;" class="d-flex justify-content-center">
+        <div>
+            <button style="margin-right: 37px"><a th:href="@{'/user/delete/' + ${user.id}}">Delete Account</a></button>
+        </div>
+    </div>
+
 </form>
-    <br>
-    <br>
 </div>
-<div class="container d-flex justify-content-center">
-    <!--    This form will allow the user to delete their account-->
-    <button style="margin-right: 37px"><a th:href="@{'/user/delete/' + ${user.id}}">Delete Account</a></button>
-</div>
+
+<!--<div class="container d-flex justify-content-center" sec:authorize="isAuthenticated()" th:unless="${#authentication.name != user.email}">-->
+<!--    &lt;!&ndash;    This form will allow the user to delete their account&ndash;&gt;-->
+<!--    <button style="margin-right: 37px"><a th:href="@{'/user/delete/' + ${user.id}}">Delete Account</a></button>-->
+<!--</div>-->
 <standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 </body>
 </html>
