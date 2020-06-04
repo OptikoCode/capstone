@@ -65,16 +65,15 @@ public class UserController {
     @PostMapping("/login")
     public String showProfile(){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        user.getId();
         return "redirect:/profile";
     }
 
 //***************** Will display the users profile page *********************
     @GetMapping("/profile")
-    //, @PathVariable long id
     public String showProfileIndexPage(Model model) {
-        model.addAttribute("post", posts.findAll());
-//        model.addAttribute("user", users.findById(id));
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("post", posts.findByUserId(user.getId()));
+        model.addAttribute("user", user);
         return "users/profile";
     }
 
@@ -90,9 +89,8 @@ public class UserController {
 
 //****************** Edit Profile functionality *************
     @GetMapping("/user/edit/{id}")
-    public String showEditUserForm(@PathVariable String id, Model model){
-        long parseId = Long.parseLong(id);
-        User user = users.findById(parseId);
+    public String showEditUserForm(@PathVariable long id, Model model){
+        User user = users.findById(id);
         model.addAttribute("user", user);
         return "users/edit";
     }

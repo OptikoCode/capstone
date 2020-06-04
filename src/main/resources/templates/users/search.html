@@ -11,10 +11,13 @@
     <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
 </form>
 
-<div th:each="post : ${posts}">
-    <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
-    <p>Asked by: <span th:text="${post.username}"></span></p>
+<div class="d-flex justify-content-center">
+    <div>
+        <div class="post-div mb-3 slide-right" th:each="post : ${posts}">
+            <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
+            <p>Asked by: <span th:text="${post.user.username}"></span></p>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>

@@ -16,15 +16,20 @@
 <!--    my-2 my-lg-0d-flex-->
 <!--    mr-sm-2-->
     <form class="form-inline justify-content-center" style="align-content: center" action="/search">
+
         <input class="form-control col-lg-8" type="search" name="searchTerm" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
     </form>
 
     <h2 class="template-h2 slide-right"><span class="lambda">Λ</span>ll  Questions</h2>
 
-    <div class="post-div mb-3 slide-right" th:each="post : ${posts}">
-        <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
-        <p>Asked by: <span th:text="${post.user.username}"></span></p>
+    <div class="d-flex justify-content-center">
+        <div>
+            <div class="post-div mb-3 slide-right" th:each="post : ${posts}">
+                <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
+                <p>Asked by: <span th:text="${post.user.username}"></span></p>
+            </div>
+        </div>
     </div>
 </div>
 

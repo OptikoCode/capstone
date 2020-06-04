@@ -18,6 +18,9 @@
     </ul>
 
 
+<a th:href="@{|/user/edit/${user.getId()}|}" class="btn btn-warning">Edit</a>
+
+
 
 </div>
 <div class="profile-box-container">
@@ -35,11 +38,11 @@
     <div class="profile-box"></div>
 </div>
 <!--<a th:href="@{|/user/edit/${user.getId()}|}" class="btn btn-warning">Edit</a>-->
+
 <!--<button type="button" class="btn btn-warning">Warning</button>-->
 <!--<a th:href="@{'/user/edit/' + ${user.id}}" class="btn btn-warning btn-lg active" role="button" aria-pressed="true" style="width: 200px">Edit Profile</a>\-->
 
 <!--<a href="/logout">Logout</a>-->
-
 
 <standard_scripts th:replace="partials/partials :: footer">
 </standard_scripts>
