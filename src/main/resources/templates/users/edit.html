@@ -6,36 +6,53 @@
     <title>Edit Profile</title>
     <head th:replace="partials/partials :: head ('Edit your profile')"></head>
 </head>
+<style>
+
+    label {
+        font-family: 'Staatliches', cursive;
+        margin-left: 25%;
+    }
+    input{
+        margin-left: 25%;
+    }
+
+</style>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 
-<div class="container" sec:authorize="isAuthenticated()" th:unless="${#authentication.name != user.email}">
-<form th:method="post" th:action="@{'/user/edit/' + ${user.id}}" th:object="${user}" class="form-group">
-<!--    User can edit their user name-->
-    <label for="username">Edit Username</label>
-    <input type="text" id="username" th:field="*{username}" th:value="${user.username}">Username</input>
-<!--    User can change their email-->
-    <label for="email">Edit Email</label>
-    <input type="email" id="email" th:field="*{email}" th:value="${user.email}">Email</input>
-<!--    User can change their password-->
-    <label for="password">Change Password</label>
-    <input type="password" id="password" th:field="*{password}" th:value="${user.password}">Password</input>
 
-<!--    User can change their first name-->
-    <label for="firstName">Change First Name</label>
-    <input type="text" id="firstName" th:field="*{firstName}" th:value="${user.firstName}">First Name</input>
+<div id="main-form" sec:authorize="isAuthenticated()" th:unless="${#authentication.name != user.email}" class="d-flex justify-content-center ">
+<form class="form-group col-md-6" th:method="post" th:action="@{'/user/edit/' + ${user.id}}" th:object="${user}">
+
+    <!--    User can edit their user name-->
+        <label for="username">Edit Username</label>
+        <input class="form-control col-lg-6" type="text" id="username" th:field="*{username}" th:value="${user.username}">
+
+    <!--    User can change their email-->
+        <label for="email">Edit Email</label>
+        <input class="form-control col-lg-6" type="email" id="email" th:field="*{email}" th:value="${user.email}">
+
+    <!--    User can change their password-->
+        <label for="password">Change Password</label>
+        <input class="form-control col-lg-6" type="password" id="password" th:field="*{password}" th:value="${user.password}">
 
     <!--    User can change their first name-->
-    <label for="lastName">Change Last Name</label>
-    <input type="text" id="lastName" th:field="*{lastName}" th:value="${user.lastName}">Last Name</input>
-    <button type="submit">Submit Changes</button>
+        <label for="firstName">Change First Name</label>
+        <input class="form-control col-lg-6" type="text" id="firstName" th:field="*{firstName}" th:value="${user.firstName}">
+
+        <!--    User can change their first name-->
+        <label for="lastName">Change Last Name</label>
+        <input class="form-control col-lg-6" type="text" id="lastName" th:field="*{lastName}" th:value="${user.lastName}">
+
+        <button type="submit" style="margin-left: 42%">Submit Changes</button>
 </form>
     <br>
     <br>
-<!--    This form will allow the user to delete their account-->
-    <a th:href="@{'/user/delete/' + ${user.id}}" class="btn btn-danger">Delete</a>
 </div>
-
+<div class="container d-flex justify-content-center">
+    <!--    This form will allow the user to delete their account-->
+    <button style="margin-right: 37px"><a th:href="@{'/user/delete/' + ${user.id}}">Delete Account</a></button>
+</div>
 <standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 </body>
 </html>
