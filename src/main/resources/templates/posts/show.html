@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="background-color: #d4c850">
 
 <head th:replace="partials/partials :: head ('Show Question')"></head>
 
@@ -15,7 +15,8 @@
 
     <!-- Edit/delete post if post author -->
     <div th:unless="${#authentication.name != post.user.email}">
-        <a th:href="@{|/posts/edit/${post.id}|}" class="btn btn-warning">Edit</a> <a th:href="@{|/posts/delete/${post.id}|}" class="btn btn-danger">Delete</a>
+        <a th:href="@{|/posts/edit/${post.id}|}"><button class="edit-button">Edit</button></a>
+        <a th:href="@{|/posts/delete/${post.id}|}"><button class="delete-button">Delete</button></a>
     </div>
 
     <div th:unless="${#lists.isEmpty(responses)}">
@@ -27,7 +28,8 @@
 
             <!-- Edit/delete response if response author -->
             <div th:unless="${#authentication.name != res.user.email}">
-                <a th:href="@{|/posts/${post.id}/edit-response/${res.id}|}" class="btn btn-warning">Edit</a> <a th:href="@{|/posts/${post.id}/delete-response/${res.id}|}" class="btn btn-danger">Delete</a>
+                <a th:href="@{|/posts/${post.id}/edit-response/${res.id}|}"><button class="edit-button">Edit</button></a>
+                <a th:href="@{|/posts/${post.id}/delete-response/${res.id}|}"><button class="delete-button">Delete</button></a>
             </div>
 
             <!-- Display comments for video responses -->
@@ -39,7 +41,7 @@
 
                         <!-- Delete Comment if comment author -->
                         <div th:unless="${#authentication.name != com.user.email}">
-                            <a th:href="@{|/posts/${post.id}/response/${res.id}/delete-comment/${com.id}|}" class="btn btn-danger">Delete</a>
+                            <a th:href="@{|/posts/${post.id}/response/${res.id}/delete-comment/${com.id}|}"><button class="delete-button">Delete</button></a>
                         </div>
                     </div>
                 </div>
@@ -85,7 +87,7 @@
     <br>
     <!--            testing JS screen recorder-->
     <div sec:authorize="isAuthenticated()">
-        <p class="slide-right">Use our in-built screen recorder if you wish! Get some views on another platform and use embedded link to post response here! Two for one!</p>
+        <p class="slide-right">Use our in-built screen recorder to record a response!</p>
         <video width="320" height="240" autoplay></video><br>
         <button id="shareScreen">Capture Screen</button>
         <button id="rec" disabled>Record</button>
@@ -93,6 +95,7 @@
         <a id="downloadLink" download="mediarecorder.webm" name="mediarecorder.webm" href></a>
         <div id="error"></div>
     </div>
+    <br><br>
 </div>
 
 <standard_scripts th:replace="partials/partials :: footer"></standard_scripts>

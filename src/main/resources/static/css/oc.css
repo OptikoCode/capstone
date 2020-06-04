@@ -5,7 +5,6 @@
         margin: auto;
     }
 }
-/***************/
 
 
 /* settings for removing blue outline when input/button clicked */
@@ -30,8 +29,15 @@ pre {
     border-radius: 5px;
     font-family: courier;
 }
-h2, h3 {
+h2, h3, a {
     font-family: 'Staatliches', cursive;
+}
+a {
+    color: #d4c850;
+    transition: 295ms ease;
+}
+a:hover {
+    color: #65fce1;
 }
 /****************/
 
@@ -374,9 +380,23 @@ button:hover {
     color: #65fce1;
     cursor: pointer;
 }
+.about-div {
+    align-items: center;
+    text-align: center;
+}
+.edit-button:hover {
+    background-color: #343a40;
+    color: #f0d807;
+    transition: ease-out 295ms;
+}
+.delete-button:hover {
+    background-color: #343a40;
+    color: #f00707;
+    transition: ease-out 295ms;
+}
 /***************/
 
-/* responsive videos */
+/*Responsive videos and screen-recorder */
 .video-responsive {
     padding-bottom: 56.25%;
     height: 0;
@@ -389,8 +409,9 @@ button:hover {
     top:0; left:0;
 }
 video {
-    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    /*clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);*/
     border: 5px solid #d4c850;
+    height: 100%;
 }
 a#downloadLink {
     font-family: 'Staatliches', cursive;
@@ -400,6 +421,10 @@ a#downloadLink {
 
 /* hide video response and comment forms*/
 .video-response-form, .create-comment-form { display: none; }
+
+/*************************************/
+
+
 
 /*oc animated image*/
 .circle {
@@ -625,4 +650,40 @@ a#downloadLink {
     100%{
         background-color: #d4c850;
     }
+}
+
+
+/* ABOUT PAGE CSS */
+
+.card-img-top {
+    box-shadow: 0 11px 15px rgba(0,0,0,0.30), 0 12px 12px rgba(0,0,0,0.22);
+    border: 11px solid #d4c850;
+    animation: border-colors 3s ease-in-out infinite;
+}
+
+div.card.about-div {
+    padding-top: 15px;
+    background-color: #b9ede4;
+}
+
+.card-title {
+    font-family: 'Staatliches', cursive;
+}
+
+
+/*testing boxes on profile page*/
+.profile-box {
+    height: 100px; width: 100px;
+    border-radius: 50%;
+    background-color: #d4c850;
+}
+
+.profile-box-container {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: absolute;
+    margin-left: 75%;
+    margin-top: -30%;
 }
