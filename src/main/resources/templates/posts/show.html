@@ -82,17 +82,7 @@
         <p class="font-weight-bold">Please <a href="/login">log in</a> or <a href="/register">register</a> to add a video response.</p>
     </div>
     <br>
-    <!--            testing JS screen recorder-->
-    <div sec:authorize="isAuthenticated()">
-        <p class="slide-right">Use our in-built screen recorder to record a response!</p>
-        <video width="320" height="240" autoplay></video><br>
-        <button id="shareScreen">Capture Screen</button>
-        <button id="rec" disabled>Record</button>
-        <button id="stop" disabled>Stop</button>
-        <a id="downloadLink" download="mediarecorder.webm" name="mediarecorder.webm" href></a>
-        <div id="error"></div>
-    </div>
-    <br><br>
+
 </div>
 
 <standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
