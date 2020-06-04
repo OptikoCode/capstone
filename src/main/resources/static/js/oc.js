@@ -61,6 +61,18 @@ $(document).ready(function() {
         ease: Expo.easeInOut
     }, "-=4");
 
+    gsap.to(".profile-box", {
+        duration: 1,
+        scale: 0.1,
+        y: 40,
+        ease: "power1.inOut",
+        stagger: {
+            grid: [7,15],
+            from: "center",
+            amount: 1.5
+        }
+    });
+
     let t2 = new TimelineMax();
 
     t2.from(".slide-right", 3, {
