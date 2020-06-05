@@ -1,19 +1,14 @@
 package codes.optiko.oc.controller;
 
-import codes.optiko.oc.model.Comment;
-import codes.optiko.oc.model.Post;
-import codes.optiko.oc.model.Response;
-import codes.optiko.oc.model.User;
-import codes.optiko.oc.repositories.CommentRepository;
-import codes.optiko.oc.repositories.PostRepository;
-import codes.optiko.oc.repositories.ResponseRepository;
-import codes.optiko.oc.repositories.UserRepository;
+import codes.optiko.oc.model.*;
+import codes.optiko.oc.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 @Controller
 public class PostController {
@@ -23,12 +18,14 @@ public class PostController {
     private UserRepository userRepo;
     private ResponseRepository responseRepo;
     private CommentRepository commentRepo;
+    private CategoryRepository categoryRepo;
 
-    public PostController(PostRepository postRepo, UserRepository userRepo, ResponseRepository responseRepo, CommentRepository commentRepo){
+    public PostController(PostRepository postRepo, UserRepository userRepo, ResponseRepository responseRepo, CommentRepository commentRepo, CategoryRepository categoryRepo){
         this.postRepo = postRepo;
         this.userRepo = userRepo;
         this.responseRepo = responseRepo;
         this.commentRepo = commentRepo;
+        this.categoryRepo = categoryRepo;
     }
     //***************************************
 
@@ -47,15 +44,22 @@ public class PostController {
     @GetMapping("posts/create")
     public String gotoCreatePostForm(Model model){
         model.addAttribute("post", new Post());
+        model.addAttribute("category", new Category());
         return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post) {
+    public String createPost(@ModelAttribute Post post, @ModelAttribute Category category) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
+
         post.setCreateDate(new Timestamp(System.currentTimeMillis()));
+
         postRepo.save(post);
+
+        category.setPost(post);
+        categoryRepo.save(category);
+
         return "redirect:/posts";
     }
     //***********************************
