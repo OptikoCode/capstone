@@ -23,12 +23,13 @@
 
     <h2 class="template-h2 slide-right"><span class="lambda">Λ</span>ll  Questions</h2>
 
-    <div class="d-flex justify-content-center">
-        <div>
-            <div class="post-div mb-3 slide-right" th:each="post : ${posts}">
-                <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
-                <p>Asked by: <span th:text="${post.user.username}"></span></p>
-            </div>
+    <div class="post-div mb-3 slide-right row justify-content-md-center" th:each="post : ${posts}">
+        <div class="col-1">
+            <p th:utext="${post.responses.size() + '<br>responses'}" class="small text-center"></p>
+        </div>
+        <div class="col-8">
+            <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
+            <p class="text-right">Asked by: <span th:text="${post.user.username + ' ' + post.createDate}"></span></p>
         </div>
     </div>
 </div>
