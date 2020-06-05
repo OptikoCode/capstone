@@ -37,7 +37,7 @@ public class PostController {
     @GetMapping("/posts")
     public String showPosts(Model model){
         //da wae of jpa:
-        model.addAttribute("posts", postRepo.findAll());
+        model.addAttribute("posts", postRepo.findAllAndCountResponsesOrderByPostIdDesc());
         return "posts/index";
     }
     //***********************************
@@ -67,7 +67,7 @@ public class PostController {
     public String viewPost(@PathVariable long id, Model model) {
         model.addAttribute("post", postRepo.getPostById(id));
         //can also do .getOne(id), which is JPA, instead of .getPostById(id);
-        model.addAttribute("responses", responseRepo.findByPostId(id));
+        model.addAttribute("responses", responseRepo.findResponsesByPostId(id));
         model.addAttribute("response", new Response());
         model.addAttribute("comments", commentRepo.findByResponseId(id));
         model.addAttribute("comment", new Comment());
