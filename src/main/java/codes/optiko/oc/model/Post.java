@@ -3,10 +3,12 @@ import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.ocpsoft.prettytime.PrettyTime;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -189,5 +191,11 @@ public class Post {
         String dateString = this.updateDate.toString();
         return dateString.substring(5,7) + "-" + dateString.substring(8,10) + "-" + dateString.substring(0,4);
     }
+
+    public String prettyDate(){
+        PrettyTime p = new PrettyTime();
+        return p.format(this.createDate);
+    }
+
 }
 
