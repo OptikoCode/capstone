@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/partials :: head ('How-to')"></head>
+
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+
+<div class="container">
+
+    <div class="card text-center">
+        <div class="card-header">
+            How to Use OptikoCodes!
+        </div>
+
+
+        <div class="card mb-3">
+            <img src="img/glasses.jpeg" class="card-img-top" alt="...">
+            <br>
+            <p class="card-text"><small class="text-muted">Photo credit: <a href="https://www.pexels.com/@kevin-ku-92347">Kevin Ku</a></small></p>
+            <div class="card-body">
+                <h5 class="card-title" style="padding-top: 15px">We're very appreciative of your time and visit to our site!</h5>
+                <p class="card-text">This page is a short and sweet set of instructions for signing
+                    up and participating as an OptikoCoder.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="img/sign-up.png" class="card-img" style="" alt="picture of OptikoCodes sign-up link in the nav-bar">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">First step is to sign-up</h5>
+                    <p class="card-text">Our site requires you to have an account with us to post content.</p>
+                    <p class="card-text">Click the Sign Up link in the nav-bar above to get started.</p>
+<!--                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card mb-3 float-right" style="max-width: 540px;">
+        <div class="row no-gutters">
+
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Next, login to your account.</h5>
+                    <p class="card-text">Once you've logged in, you will have access to a modified nav-bar.</p>
+                    <!--                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="img/login.png" class="card-img" alt="...">
+            </div>
+        </div>
+    </div>
+
+    <h5 class="card-title text-center" style="margin-top: 23%; font-size: 1.5em">NOW YOU HAVE A FEW OPTIONS BASED ON WHAT YOU WISH TO DO!</h5>
+
+    <div class="card-deck" style="margin-top: 35%">
+        <div class="card">
+            <img src="img/fizzbuzz.png" class="card-img-top" alt="picture of a posted question example">
+            <div class="card-body">
+                <h5 class="card-title">Post a question</h5>
+                <p class="card-text">If you have a programming or code question, you can create a new post by selecting "Ask a Question" on the navbar.
+                Select "CODE" to copy in your code, and submit it for others to see.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+        <div class="card">
+            <img src="img/answer.png" class="card-img-top" alt="picture of a response answer example">
+            <div class="card-body">
+                <h5 class="card-title">Respond with a video</h5>
+                <p class="card-text">Provide a solution! Our site is intended to provide a detailed video response to a post to better assist visual learners.
+                Once a post with a question is created by a user, it will be populated on the home page. Select the post you wish to respond to, and upload a video.
+                We have also provided you a built-in screen-recorder for your convenience! If you use it, you can download the video file once you stop recording, and
+                drag and drop to upload it as your video response.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+        <div class="card">
+            <img src="img/comment.png" class="card-img-top" alt="picture of a comment example">
+            <div class="card-body">
+                <h5 class="card-title">Contribute with comments</h5>
+                <p class="card-text">Share with others your thoughts on the video reaponse, constructive feedback, or related questions someone else may provide additional insight to!</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<!--main container ends-->
+
+<standard_scripts th:replace="partials/partials :: footer">
+</standard_scripts>
+</body>
+</html>
