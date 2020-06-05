@@ -73,6 +73,7 @@ public class UserController {
     public String showProfileIndexPage(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("post", posts.findByUserId(user.getId()));
+//        model.addAttribute("post", posts.findByUserIdOrderByIdDesc(user.getId()));
         model.addAttribute("user", user);
         return "users/profile";
     }
@@ -139,6 +140,13 @@ public class UserController {
     @GetMapping("/about")
     public String aboutUs(){
         return "about";
+    }
+
+
+    //***** mapping for how-to page *****//
+    @GetMapping("/how")
+    public String howTo(){
+        return "how";
     }
 }
 
