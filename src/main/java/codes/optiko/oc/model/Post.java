@@ -179,5 +179,15 @@ public class Post {
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
+
+    public String formattedDate(){
+        String dateString = this.createDate.toString();
+        return dateString.substring(5,7) + "-" + dateString.substring(8,10) + "-" + dateString.substring(0,4);
+    }
+
+    public String formattedUpdate(){
+        String dateString = this.updateDate.toString();
+        return dateString.substring(5,7) + "-" + dateString.substring(8,10) + "-" + dateString.substring(0,4);
+    }
 }
 

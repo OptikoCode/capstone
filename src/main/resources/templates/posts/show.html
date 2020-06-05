@@ -10,7 +10,7 @@
 <div class="container">
     <h2 th:text="${post.title}"></h2>
     <p style="padding-left: 2rem;" th:utext="${post.description}"></p>
-    <p style="padding-left: 2rem;" th:text="${post.updateDate}"></p>
+    <p style="padding-left: 2rem;" th:text="${post.formattedUpdate()}"></p>
     <p style="padding-left: 2rem;" th:text="${post.user.username}"></p>
 
     <!-- Edit/delete post if post author -->
