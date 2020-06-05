@@ -6,7 +6,7 @@
     }
 }
 @media (max-width: 900px) {
-    .profile-box-container, .profile-box {
+    .profile-box-container, .profile-box, #left-arrow, #right-arrow, #cloud {
         display: none;
     }
 }
@@ -703,4 +703,27 @@ div.card.about-div {
     flex-wrap: wrap;
     position: absolute;
     padding-left: 27px;
+}
+
+
+/*arrows on how to page*/
+#left-arrow {
+    position: absolute;
+    height: 100px;
+    width: 175px;
+    margin-left: 85%;
+    margin-top: 7%;
+}
+#right-arrow {
+    position: absolute;
+    height: 100px;
+    width: 175px;
+    margin-left: -125%;
+}
+#cloud {
+    position: absolute;
+    height: 450px;
+    width: 700px;
+    margin-left: 14.5%;
+    margin-top: -3%;
 }
