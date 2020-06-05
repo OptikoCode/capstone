@@ -14,6 +14,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     //@Query(value = "select * from posts where user_id = ?1", nativeQuery = true)
     List<Post> findByUserIdOrderByIdDesc(long id);
 
-    @Query(value = "select p.*, count(r.post_id) from posts as p join responses as r on p.id = r.post_id group by r.post_id order by p.id desc", nativeQuery = true)
+    @Query(value = "select p.*, ifnull(count(r.post_id), 0) from posts as p left join responses as r on p.id = r.post_id group by p.id order by p.id desc", nativeQuery = true)
     List<Post> findAllAndCountResponsesOrderByPostIdDesc();
 }
