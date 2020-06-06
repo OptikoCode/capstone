@@ -1,5 +1,6 @@
 package codes.optiko.oc.repositories;
 
+import codes.optiko.oc.model.Category;
 import codes.optiko.oc.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +15,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     //@Query(value = "select * from posts where user_id = ?1", nativeQuery = true)
     List<Post> findByUserIdOrderByIdDesc(long id);
 
-    //@Query(value = "select p.*, ifnull(count(r.post_id), 0) from posts as p left join responses as r on p.id = r.post_id group by p.id order by p.id desc", nativeQuery = true)
-    @Query(value = "select p.*, ifnull(count(r.post_id), 0), c.name from posts as p left join responses as r on p.id = r.post_id left join categories as c on p.id = c.post_id group by p.id, c.name order by p.id desc", nativeQuery = true)
-    List<Post> findAllPostAndCategoriesAndCountResponsesOrderByPostIdDesc();
+    @Query(value = "select * from posts order by id desc", nativeQuery = true)
+    List<Post> findAllOrOrderByIdDesc();
 }
