@@ -34,7 +34,7 @@ public class PostController {
     @GetMapping("/posts")
     public String showPosts(Model model){
         //da wae of jpa:
-        model.addAttribute("posts", postRepo.findAllAndCountResponsesOrderByPostIdDesc());
+        model.addAttribute("posts", postRepo.findAllPostAndCategoriesAndCountResponsesOrderByPostIdDesc());
         return "posts/index";
     }
     //***********************************
@@ -59,6 +59,9 @@ public class PostController {
 
         category.setPost(post);
         categoryRepo.save(category);
+
+        post.setCategories(categoryRepo.findAll());
+        postRepo.save(post);
 
         return "redirect:/posts";
     }
