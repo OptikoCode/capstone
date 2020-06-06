@@ -34,7 +34,7 @@ public class PostController {
     @GetMapping("/posts")
     public String showPosts(Model model){
         //da wae of jpa:
-        model.addAttribute("posts", postRepo.findAllPostAndCategoriesAndCountResponsesOrderByPostIdDesc());
+        model.addAttribute("posts", postRepo.findAllOrOrderByIdDesc());
         return "posts/index";
     }
     //***********************************

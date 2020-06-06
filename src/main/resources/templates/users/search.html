@@ -1,23 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Search</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="background-color: #d4c850">
+
+<head th:replace="partials/partials :: head ('Search Results')"></head>
 <body>
+<nav th:replace="partials/partials :: navbar"></nav>
 
-<form class="form-inline my-2 my-lg-0" action="/posts/search">
-    <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
-</form>
+<div class="container">
 
-<div class="d-flex justify-content-center">
-    <div>
-        <div class="post-div mb-3 slide-right" th:each="post : ${posts}">
+    <div class="circle">
+        <div class="scircle">
+
+        </div>
+    </div>
+    <!--    my-2 my-lg-0d-flex-->
+    <!--    mr-sm-2-->
+    <form class="form-inline justify-content-center" style="align-content: center" action="/search">
+
+        <input class="form-control col-lg-8" type="search" name="searchTerm" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <h2 class="template-h2 slide-right">Search Results</h2>
+
+    <div class="post-div mb-3 slide-right row justify-content-md-center" th:each="post : ${posts}">
+        <div class="col-1">
+            <p th:utext="${post.responses.size() + '<br>responses'}" class="small text-center"></p>
+        </div>
+        <div class="col-8">
             <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
-            <p>Asked by: <span th:text="${post.user.username}"></span></p>
+            <th:block th:unless="${#lists.isEmpty(post.categories)}">
+                <th:block th:each="category : ${post.categories}">
+                    <th:block th:unless="${post.id != category.post.id}">
+                        <p th:text="${'Tags: ' + category.name}"></p>
+                    </th:block>
+                </th:block>
+            </th:block>
+            <p class="text-right">Asked by: <span th:text="${post.user.username + ' ' + post.createDate}"></span></p>
         </div>
     </div>
 </div>
+
+<standard_scripts th:replace="partials/partials :: footer">
+</standard_scripts>
 </body>
 </html>
