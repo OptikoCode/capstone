@@ -29,6 +29,13 @@
         </div>
         <div class="col-8">
             <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
+            <th:block th:unless="${#lists.isEmpty(post.categories)}">
+                <th:block th:each="category : ${post.categories}">
+                    <th:block th:unless="${post.id != category.post.id}">
+                        <p th:text="${'Tags: ' + category.name}"></p>
+                    </th:block>
+                </th:block>
+            </th:block>
             <p class="text-right">Asked by: <span th:text="${post.user.username + ' ' + post.createDate}"></span></p>
         </div>
     </div>

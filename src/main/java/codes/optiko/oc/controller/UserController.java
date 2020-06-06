@@ -114,7 +114,7 @@ public class UserController {
 
     @GetMapping("/search")
     public String searchForPosts(@RequestParam(name = "searchTerm") String searchTerm, Model model){
-        List<Post> filteredPosts = posts.findByDescriptionContainingOrTitleContaining(searchTerm,searchTerm);
+        List<Post> filteredPosts = posts.findByDescriptionContainingOrTitleContaining(searchTerm, searchTerm);
         model.addAttribute("posts", filteredPosts);
         return "posts/index";
     }

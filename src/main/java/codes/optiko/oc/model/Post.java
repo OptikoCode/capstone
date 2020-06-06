@@ -46,13 +46,8 @@ public class Post {
 
 //************** JOIN TABLE ********************
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "posts_categories",
-            joinColumns = {@JoinColumn(name = "post_id")},
-            inverseJoinColumns = {@JoinColumn(name = "category_id")}
-    )
-    private List<Category> categories;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
+    private List<Category> categories = new ArrayList<>();
 
 //************** CONSTRUCTORS ********************
 
