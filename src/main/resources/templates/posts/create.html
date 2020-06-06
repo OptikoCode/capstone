@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="background-color: #d4c850">
 
 <head th:replace="partials/partials :: head ('Ask a Question')"></head>
 
@@ -24,7 +24,8 @@
             <label for="tags">Tags: <br><span class="small">Enter up to 5 tags separated by comma (Ex. html, css, javascript, etc...)</span></label>
             <input type="text" th:object="${category}" th:field="*{name}" id="tags" class="form-control"/>
         </div>
-        <button type="submit">Submit Question</button>
+        <button type="submit" style="margin-top: -15px">Submit Question</button>
+        <br><br>
     </form>
 </div>
 
