@@ -20,11 +20,11 @@
     </div>
 
     <div th:unless="${#lists.isEmpty(responses)}">
-        <h3>Responses:</h3>
+        <h3 style="padding-top: 15px">Responses:</h3>
         <!-- Display video responses -->
         <div class="post-div mb-3 col-md-8" th:each="res : ${responses}">
             <p th:text="'Posted by: ' + ${res.user.username}"></p>
-            <div class="video-responsive" th:utext="${res.video}"></div>
+            <div class="video-responsive" th:utext="${res.video}" style="min-height: 450px"></div>
 
             <!-- Edit/delete response if response author -->
             <div th:unless="${#authentication.name != res.user.email}">
@@ -36,8 +36,10 @@
             <div th:unless="${#lists.isEmpty(comments)}">
                 <div class="post-div mb-3 col-md-8" th:each="com : ${comments}">
                     <div th:unless="${res.id != com.response.id}" class="comment">
-                        <p th:text="${com.body}"></p>
+                        <hr>
+                        <p th:text="${com.body}" style="padding-top: 7px"></p>
                         <p th:text="${'Posted by: ' + com.user.username}"></p>
+                        <hr>
 
                         <!-- Delete Comment if comment author -->
                         <div th:unless="${#authentication.name != com.user.email}">
