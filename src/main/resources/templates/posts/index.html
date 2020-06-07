@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="background-color: #d4c850">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="partials/partials :: head ('View All Questions')"></head>
 <body>
@@ -38,6 +38,24 @@
             <p class="text-right">Asked by: <span th:text="${post.user.username + ' ' + post.createDate}"></span></p>
         </div>
     </div>
+
+</div>
+
+<div class="profile-box-container">
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
 </div>
 
 <standard_scripts th:replace="partials/partials :: footer">

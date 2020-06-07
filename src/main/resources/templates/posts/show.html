@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="background-color: #d4c850">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="partials/partials :: head ('Show Question')"></head>
 
@@ -10,7 +10,9 @@
 <div class="container">
     <h2 th:text="${post.title}"></h2>
     <p style="padding-left: 2rem;" th:utext="${post.description}"></p>
-    <p style="padding-left: 2rem;" th:text="${post.prettyUpdate()}"></p>
+
+    <p th:unless="${post.updateDate == null}" style="padding-left: 2rem;" th:text="${post.formattedUpdate()}"></p>
+
     <p style="padding-left: 2rem;" th:text="${post.user.username}"></p>
 
     <!-- Edit/delete post if post author -->
@@ -20,11 +22,11 @@
     </div>
 
     <div th:unless="${#lists.isEmpty(responses)}">
-        <h3>Responses:</h3>
+        <h3 style="padding-top: 15px">Responses:</h3>
         <!-- Display video responses -->
         <div class="post-div mb-3 col-md-8" th:each="res : ${responses}">
             <p th:text="'Posted by: ' + ${res.user.username}"></p>
-            <div class="video-responsive" th:utext="${res.video}"></div>
+            <div class="video-responsive" th:utext="${res.video}" style="min-height: 450px"></div>
 
             <!-- Edit/delete response if response author -->
             <div th:unless="${#authentication.name != res.user.email}">
@@ -36,8 +38,10 @@
             <div th:unless="${#lists.isEmpty(comments)}">
                 <div class="post-div mb-3 col-md-8" th:each="com : ${comments}">
                     <div th:unless="${res.id != com.response.id}" class="comment">
-                        <p th:text="${com.body}"></p>
+                        <hr>
+                        <p th:text="${com.body}" style="padding-top: 7px"></p>
                         <p th:text="${'Posted by: ' + com.user.username}"></p>
+                        <hr>
 
                         <!-- Delete Comment if comment author -->
                         <div th:unless="${#authentication.name != com.user.email}">
@@ -84,6 +88,23 @@
     </div>
     <br>
 
+</div>
+
+<div class="profile-box-container">
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
+    <div class="profile-box"></div>
 </div>
 
 <standard_scripts th:replace="partials/partials :: footer"></standard_scripts>

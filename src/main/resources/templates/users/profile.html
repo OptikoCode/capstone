@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="background-color: #d4c850">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/partials :: head ('Profile')"></head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
@@ -8,14 +8,22 @@
 <div class="container">
     <h2 class="slide-right">Your Recent Posts</h2>
     <br>
-    <ul class="slide-right">
-<!--        th:action="@{'/user/profile/' + ${users.id}}" -->
-        <div th:each="posts : ${post}">
-            <li><a th:href="@{'/posts/'+${posts.id}}"><h3 style="font-weight: bold" th:text="${posts.title}" th:href="@{|/posts/${posts.id}|}"></h3></a>
-                <p style="padding-left: 2rem;" th:text="${posts.prettyDate()}"></p></tr>
-                <br></li>
+    <div class="post-div mb-3 slide-right row justify-content-md-center" th:each="post : ${posts}">
+        <div class="col-1">
+            <p th:utext="${post.responses.size() + '<br>responses'}" class="small text-center"></p>
         </div>
-    </ul>
+        <div class="col-8">
+            <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
+            <th:block th:unless="${#lists.isEmpty(post.categories)}">
+                <th:block th:each="category : ${post.categories}">
+                    <th:block th:unless="${post.id != category.post.id}">
+                        <p th:text="${'Tags: ' + category.name}"></p>
+                    </th:block>
+                </th:block>
+            </th:block>
+            <p class="text-right">Asked by: <span th:text="${post.user.username + ' ' + post.createDate}"></span></p>
+        </div>
+    </div>
 
 
 <a th:href="@{|/user/edit/${user.getId()}|}"><button style="width: 55px">Edit</button></a>

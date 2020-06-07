@@ -713,12 +713,25 @@ div.card.about-div {
     width: 175px;
     margin-left: 85%;
     margin-top: 7%;
+    animation: arrows 3s ease-in-out infinite;
+}
+@keyframes arrows {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, 7px, 0);
+    }
+    100%{
+        transform: translate3d(0, 0, 0);
+    }
 }
 #right-arrow {
     position: absolute;
     height: 100px;
     width: 175px;
     margin-left: -125%;
+    animation: arrows 3s ease-in-out infinite;
 }
 #cloud {
     position: absolute;

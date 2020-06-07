@@ -1,5 +1,6 @@
 package codes.optiko.oc.controller;
 
+import codes.optiko.oc.model.Category;
 import codes.optiko.oc.model.Post;
 import codes.optiko.oc.model.User;
 import codes.optiko.oc.repositories.PostRepository;
@@ -72,7 +73,7 @@ public class UserController {
     @GetMapping("/profile")
     public String showProfileIndexPage(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("post", posts.findByUserIdOrderByIdDesc(user.getId()));
+        model.addAttribute("posts", posts.findByUserIdOrderByIdDesc(user.getId()));
 //        model.addAttribute("post", posts.findByUserIdOrderByIdDesc(user.getId()));
         model.addAttribute("user", user);
         return "users/profile";
@@ -114,9 +115,8 @@ public class UserController {
 
     @GetMapping("/search")
     public String searchForPosts(@RequestParam(name = "searchTerm") String searchTerm, Model model){
-        List<Post> filteredPosts = posts.findByDescriptionContainingOrTitleContaining(searchTerm, searchTerm);
-        model.addAttribute("posts", filteredPosts);
-        return "posts/index";
+        model.addAttribute("posts", posts.findByDescriptionContainingOrTitleContaining(searchTerm, searchTerm));
+        return "users/search";
     }
 
 //******** USING TO TEST FILESTACK API **************
