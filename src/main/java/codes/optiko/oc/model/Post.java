@@ -192,5 +192,10 @@ public class Post {
         return p.format(this.createDate);
     }
 
+    public String prettyUpdate(){
+        PrettyTime p = new PrettyTime();
+        return p.format(this.updateDate);
+    }
+
 }
 
