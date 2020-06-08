@@ -6,7 +6,7 @@
     }
 }
 @media (max-width: 900px) {
-    .profile-box-container, .profile-box, #left-arrow, #right-arrow, #cloud, .right-home-para, .left-home-paragit {
+    .profile-box-container, .profile-box, #left-arrow, #right-arrow, #cloud, .right-home-para, .left-home-para {
         display: none;
     }
 }
