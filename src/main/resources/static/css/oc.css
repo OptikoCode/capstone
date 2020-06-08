@@ -1,3 +1,9 @@
+:root {
+    --body-bg: #ecf0f1;
+}
+
+body { background-color: var(--body-bg); }
+
 /*media queries*/
 @media (max-width: 999px){
     .nav-item, a.nav-link {
