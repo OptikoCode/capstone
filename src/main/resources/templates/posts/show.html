@@ -4,10 +4,16 @@
 
 <head th:replace="partials/partials :: head ('Show Question')"></head>
 
+<style>
+    #card-con :nth-child(odd){
+        background-color: #D5C84F;
+    }
+</style>
+
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 
-<div class="container">
+<div class="container slide-right">
     <h2 th:text="${post.title}"></h2>
     <p style="padding-left: 2rem;" th:utext="${post.description}"></p>
 
@@ -48,7 +54,7 @@
     <div th:unless="${#lists.isEmpty(post.responses)}">
         <h3 style="padding-top: 15px">Responses:</h3>
         <!-- Display video responses -->
-        <div class="post-div mb-3 col-md-8" th:each="res : ${post.responses}">
+        <div class="post-div mb-3 col-md-8 slide-right" th:each="res : ${post.responses}">
             <p th:text="'Posted by: ' + ${res.user.username}"></p>
             <div class="video-responsive" th:utext="${res.video}" style="min-height: 450px"></div>
 
@@ -79,15 +85,17 @@
                 </div>
             </div>
 
-            <!-- Display comments for video responses -->
+<!--test code for putting comments into a card-->
             <div th:unless="${#lists.isEmpty(res.comments)}">
-                <div class="post-div mb-3 col-md-8" th:each="com : ${res.comments}">
+                <div class="post-div mb-3 col-md-10" th:each="com : ${res.comments}">
                     <div th:unless="${res.id != com.response.id}" class="comment">
-                        <hr>
-                        <p th:text="${com.body}" style="padding-top: 7px"></p>
-                        <p th:text="${'Posted by: ' + com.user.username}"></p>
-                        <hr>
-
+                        <br>
+                        <div class="card shadow slide-right" id="card-con">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${'Posted by: ' + com.user.username}"></h5>
+                                <p class="card-text" th:text="${com.body}"></p>
+                            </div>
+                        </div>
                         <!-- Delete Comment if comment author -->
                         <div th:unless="${#authentication.name != com.user.email}">
                             <a th:href="@{|/posts/${post.id}/response/${res.id}/delete-comment/${com.id}|}"><button class="delete-button">Delete</button></a>
@@ -95,6 +103,24 @@
                     </div>
                 </div>
             </div>
+<!--END OF TEST-->
+
+            <!-- Display comments for video responses -->
+<!--            <div th:unless="${#lists.isEmpty(res.comments)}">-->
+<!--                <div class="post-div mb-3 col-md-8" th:each="com : ${res.comments}">-->
+<!--                    <div th:unless="${res.id != com.response.id}" class="comment">-->
+<!--                        <hr>-->
+<!--                        <p th:text="${com.body}" style="padding-top: 7px"></p>-->
+<!--                        <p th:text="${'Posted by: ' + com.user.username}"></p>-->
+<!--                        <hr>-->
+
+<!--                        &lt;!&ndash; Delete Comment if comment author &ndash;&gt;-->
+<!--                        <div th:unless="${#authentication.name != com.user.email}">-->
+<!--                            <a th:href="@{|/posts/${post.id}/response/${res.id}/delete-comment/${com.id}|}"><button class="delete-button">Delete</button></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
             <!-- Add a comment -->
             <div sec:authorize="isAuthenticated()">
