@@ -14,6 +14,10 @@ public class Response {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    //video url
+    @Column(columnDefinition = "text")
+    private String video;
+
 //  foreign key to user: many responses(videos) to one user
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -23,10 +27,6 @@ public class Response {
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
-
-    //video url
-    @Column(columnDefinition = "text")
-    private String video;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="response")
     private List<Comment> comments = new ArrayList<>();
@@ -41,50 +41,74 @@ public class Response {
 
 //************** CONSTRUCTORS ********************
 
-//    empty constructor
-    public Response(){
+    public Response() {
     }
 
-    public Response(long id){
-        this.id = id;
-    }
+    public Response(long id) { this.id = id; }
 
-    public Response(long id, User user){
+    public Response(long id, String video) {
         this.id = id;
-        this.user = user;
-    }
-
-    public Response(long id, User user, Post post){
-        this.id = id;
-        this.user = user;
-        this.post = post;
-    }
-
-    public Response(long id, User user, Post post, String video){
-        this.id = id;
-        this.user = user;
-        this.post = post;
         this.video = video;
     }
 
-    public Response(long id, User user, Post post, String video, Timestamp createDate){
+    public Response(long id, String video, User user) {
         this.id = id;
+        this.video = video;
+        this.user = user;
+    }
+
+    public Response(long id, String video, User user, Post post) {
+        this.id = id;
+        this.video = video;
         this.user = user;
         this.post = post;
+    }
+
+    public Response(long id, String video, User user, Post post, List<Comment> comments) {
+        this.id = id;
         this.video = video;
+        this.user = user;
+        this.post = post;
+        this.comments = comments;
+    }
+
+    public Response(long id, String video, User user, Post post, List<Comment> comments, Timestamp createDate) {
+        this.id = id;
+        this.video = video;
+        this.user = user;
+        this.post = post;
+        this.comments = comments;
         this.createDate = createDate;
     }
 
-    public Response(long id, User user, Post post, String video, Timestamp createDate, Timestamp updateDate){
+    public Response(long id, String video, User user, Post post, List<Comment> comments, Timestamp createDate, Timestamp updateDate) {
         this.id = id;
+        this.video = video;
         this.user = user;
         this.post = post;
-        this.video = video;
+        this.comments = comments;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
 
-//************** GETTERS and SETTERS ********************
+    public Response(String video, User user, Post post, List<Comment> comments, Timestamp createDate) {
+        this.video = video;
+        this.user = user;
+        this.post = post;
+        this.comments = comments;
+        this.createDate = createDate;
+    }
+
+    public Response(String video, User user, Post post, List<Comment> comments, Timestamp createDate, Timestamp updateDate) {
+        this.video = video;
+        this.user = user;
+        this.post = post;
+        this.comments = comments;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
+
+    //************** GETTERS and SETTERS ********************
 
     public long getId() {
         return id;
@@ -124,6 +148,14 @@ public class Response {
 
     public void setCreateDate(Timestamp date) {
         this.createDate = createDate;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public Timestamp getUpdateDate() {

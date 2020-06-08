@@ -80,6 +80,21 @@ public class Comment {
         this.updateDate = updateDate;
     }
 
+    public Comment(String body, User user, Response response, Timestamp createDate){
+        this.body = body;
+        this.user = user;
+        this.response = response;
+        this.createDate = createDate;
+    }
+
+    public Comment(String body, User user, Response response, Timestamp createDate, Timestamp updateDate){
+        this.body = body;
+        this.user = user;
+        this.response = response;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
+
 //************** GETTERS and SETTERS ********************
 
 //    getters and setters

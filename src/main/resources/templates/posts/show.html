@@ -45,10 +45,10 @@
 
     </div>
 
-    <div th:unless="${#lists.isEmpty(responses)}">
+    <div th:unless="${#lists.isEmpty(post.responses)}">
         <h3 style="padding-top: 15px">Responses:</h3>
         <!-- Display video responses -->
-        <div class="post-div mb-3 col-md-8" th:each="res : ${responses}">
+        <div class="post-div mb-3 col-md-8" th:each="res : ${post.responses}">
             <p th:text="'Posted by: ' + ${res.user.username}"></p>
             <div class="video-responsive" th:utext="${res.video}" style="min-height: 450px"></div>
 
@@ -80,8 +80,8 @@
             </div>
 
             <!-- Display comments for video responses -->
-            <div th:unless="${#lists.isEmpty(comments)}">
-                <div class="post-div mb-3 col-md-8" th:each="com : ${comments}">
+            <div th:unless="${#lists.isEmpty(res.comments)}">
+                <div class="post-div mb-3 col-md-8" th:each="com : ${res.comments}">
                     <div th:unless="${res.id != com.response.id}" class="comment">
                         <hr>
                         <p th:text="${com.body}" style="padding-top: 7px"></p>

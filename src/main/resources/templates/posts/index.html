@@ -22,7 +22,7 @@
 
     <h2 class="template-h2 slide-right"><span class="lambda">Λ</span>ll  Questions</h2>
 
-    <div class="post-div mb-3 slide-right row justify-content-md-center" th:each="post : ${posts}">
+    <div class="post-div mb-3 slide-right row justify-content-md-center rounded" th:each="post : ${posts}">
         <div class="col-1">
             <p th:utext="${post.responses.size() + '<br>responses'}" class="small text-center"></p>
         </div>

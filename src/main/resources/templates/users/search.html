@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="background-color: #d4c850">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="partials/partials :: head ('Search Results')"></head>
 <body>
@@ -36,8 +36,27 @@
                     </th:block>
                 </th:block>
             </th:block>
-            <p class="text-right">Asked by: <span th:text="${post.user.username + ' ' + post.createDate}"></span></p>
+            <p class="text-right">Asked by: <span th:text="${post.user.username + ' ' + post.prettyUpdate()}"></span></p>
         </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="profile-box-container">
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
+        <div class="profile-box"></div>
     </div>
 </div>
 

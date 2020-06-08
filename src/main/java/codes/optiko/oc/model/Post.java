@@ -84,21 +84,51 @@ public class Post {
         this.image = image;
     }
 
-    public Post(long id, String title, String description, User user, String image, Timestamp createDate) {
+    public Post(long id, String title, String description, User user, String image, List<Response> responses) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.user = user;
         this.image = image;
+        this.responses = responses;
+    }
+
+    public Post(long id, String title, String description, User user, String image, List<Response> responses, Timestamp createDate) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.user = user;
+        this.image = image;
+        this.responses = responses;
         this.createDate = createDate;
     }
 
-    public Post(long id, String title, String description, User user, String image, Timestamp createDate, Timestamp updateDate) {
+    public Post(long id, String title, String description, User user, String image, List<Response> responses, Timestamp createDate, Timestamp updateDate) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.user = user;
         this.image = image;
+        this.responses = responses;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
+
+    public Post(String title, String description, User user, String image, List<Response> responses, Timestamp createDate) {
+        this.title = title;
+        this.description = description;
+        this.user = user;
+        this.image = image;
+        this.responses = responses;
+        this.createDate = createDate;
+    }
+
+    public Post(String title, String description, User user, String image, List<Response> responses, Timestamp createDate, Timestamp updateDate) {
+        this.title = title;
+        this.description = description;
+        this.user = user;
+        this.image = image;
+        this.responses = responses;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }

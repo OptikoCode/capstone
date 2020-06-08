@@ -43,9 +43,9 @@ public class ResponseController {
 //        return "/posts/create-response";
 //    }
 
-    @PostMapping("/posts/{id}/create-response")
-    public String createResponse(@PathVariable long id, @ModelAttribute Response response) {
-        Post post = postRepo.getOne(id);
+    @PostMapping("/posts/{post_id}/create-response")
+    public String createResponse(@PathVariable long post_id, @ModelAttribute Response response) {
+        Post post = postRepo.getOne(post_id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         response.setPost(post);
@@ -54,7 +54,7 @@ public class ResponseController {
 
         responseRepo.save(response);
 
-        return "redirect:/posts/" + id;
+        return "redirect:/posts/" + post_id;
     }
 
     @GetMapping("/posts/{post_id}/edit-response/{response_id}")

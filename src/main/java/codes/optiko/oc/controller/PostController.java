@@ -66,13 +66,13 @@ public class PostController {
 
     //********* SHOW SINGLE POST ***********
     //view individual post with id
-    @GetMapping("/posts/{id}")
-    public String viewPost(@PathVariable long id, Model model) {
-        model.addAttribute("post", postRepo.getPostById(id));
+    @GetMapping("/posts/{post_id}")
+    public String viewPost(@PathVariable long post_id, Model model) {
+        model.addAttribute("post", postRepo.getPostById(post_id));
         //can also do .getOne(id), which is JPA, instead of .getPostById(id);
-        model.addAttribute("responses", responseRepo.findResponsesByPostId(id));
+//        model.addAttribute("responses", responseRepo.findResponsesByPostId(id));
         model.addAttribute("response", new Response());
-        model.addAttribute("comments", commentRepo.findByResponseId(id));
+//        model.addAttribute("comments", commentRepo.findByResponseId(id));
         model.addAttribute("comment", new Comment());
 
         return "posts/show";
@@ -81,11 +81,11 @@ public class PostController {
 
 
     //********* EDIT A POST ***********
-    @GetMapping("/posts/edit/{id}")
-    public String postEditForm(@PathVariable long id, Model model) {
-        Post post = postRepo.getPostById(id);
+    @GetMapping("/posts/edit/{post_id}")
+    public String postEditForm(@PathVariable long post_id, Model model) {
+        Post post = postRepo.getPostById(post_id);
         model.addAttribute("post", post);
-        model.addAttribute("category", categoryRepo.findByPostId(id));
+        model.addAttribute("category", categoryRepo.findByPostId(post_id));
         return "posts/edit-post";
     }
 
