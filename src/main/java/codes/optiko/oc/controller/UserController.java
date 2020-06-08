@@ -103,7 +103,7 @@ public class UserController {
         user.setPassword(hash);
         user.setUpdateDate(new Timestamp(System.currentTimeMillis()));
         users.save(user);
-        return "redirect:/user/edit/" + user.getId();
+        return "redirect:/profile";
     }
 
 //************** This is the Delete Functionality *******************
