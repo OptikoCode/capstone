@@ -99,6 +99,8 @@ public class UserController {
 //************** This will update the user info in the database ********************
     @PostMapping("/user/edit/{id}")
     public String editUser(@PathVariable long id, @ModelAttribute User user){
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
         user.setUpdateDate(new Timestamp(System.currentTimeMillis()));
         users.save(user);
         return "redirect:/user/edit/" + user.getId();
