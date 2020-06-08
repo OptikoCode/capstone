@@ -20,6 +20,10 @@
             <label for="description">Body:</label>
             <textarea th:field="*{description}" id="description" class="summernote form-control" th:text="${post.description}"></textarea>
         </div>
+        <div class="form-group">
+            <label for="tags">Tags: <br><span class="small">Enter up to 5 tags separated by comma (Ex. html, css, javascript, etc...)</span></label>
+            <input type="text" th:object="${category}" th:field="*{name}" th:value="${category.name}" id="tags" class="form-control"/>
+        </div>
         <button type="submit">Submit Question</button>
     </form>
 

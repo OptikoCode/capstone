@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-    @Query(value = "select * from posts where post_id = ?1", nativeQuery = true)
-    List<Category> findByPostId(Long id);
+    @Query(value = "select * from categories where post_id = ?1", nativeQuery = true)
+    Category findByPostId(Long id);
 }

@@ -85,11 +85,12 @@ public class PostController {
     public String postEditForm(@PathVariable long id, Model model) {
         Post post = postRepo.getPostById(id);
         model.addAttribute("post", post);
+        model.addAttribute("category", categoryRepo.findByPostId(id));
         return "posts/edit-post";
     }
 
     @PostMapping("/posts/edit/{id}")
-    public String postEdit(@PathVariable long id, @ModelAttribute Post post) {
+    public String postEdit(@PathVariable long id, @ModelAttribute Post post, @ModelAttribute Category category) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         post.setId(id);
@@ -97,6 +98,11 @@ public class PostController {
         post.setUser(user);
 
         postRepo.save(post);
+
+        category.setId(category.getId());
+        category.setPost(post);
+        categoryRepo.save(category);
+
         return "redirect:/posts/" + id;
     }
     //***********************************
