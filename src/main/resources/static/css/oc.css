@@ -710,7 +710,6 @@ div.card.about-div {
     flex-direction: row;
     flex-wrap: wrap;
     position: absolute;
-    padding-left: 27px;
 }
 
 
@@ -746,6 +745,6 @@ div.card.about-div {
     height: 450px;
     width: 700px;
     left: 50%;
-    top: 280%;
+    top: 228%;
     transform: translate(-50%, -50%);
 }
