@@ -455,6 +455,7 @@ a#downloadLink {
     }
 }
 
+/*the "c" in OC*/
 .scircle {
     height: 100px;
     width: 100px;
@@ -696,6 +697,7 @@ div.card.about-div {
 
 }
 
+/*container for staggering gsap circles on bottom of several templates*/
 .profile-box-container {
     position: fixed;
     display: flex;
