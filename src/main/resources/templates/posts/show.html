@@ -17,6 +17,7 @@
 
     <!-- Edit/delete post if post author -->
     <div th:unless="${#authentication.name != post.user.email}">
+
         <a th:href="@{|/posts/edit/${post.id}|}"><button class="edit-button">Edit</button></a>
 <!--        <a th:href="@{|/posts/delete/${post.id}|}"><button class="delete-button">Delete</button></a>-->
         <button type="button" data-toggle="modal" data-target="#exampleModalCenter">Delete Post</button>
@@ -41,6 +42,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <div th:unless="${#lists.isEmpty(responses)}">
