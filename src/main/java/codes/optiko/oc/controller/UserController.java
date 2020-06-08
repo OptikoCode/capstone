@@ -117,7 +117,7 @@ public class UserController {
 
     @GetMapping("/search")
     public String searchForPosts(@RequestParam(name = "searchTerm") String searchTerm, Model model){
-        model.addAttribute("posts", posts.findAllPostSearchByTitleDescriptionCategoriesCommentsContaining(searchTerm, searchTerm, searchTerm));
+        model.addAttribute("posts", posts.findAllPostSearchByTitleDescriptionCategoriesCommentsContaining(searchTerm, searchTerm, searchTerm, searchTerm));
         return "users/search";
     }
 
