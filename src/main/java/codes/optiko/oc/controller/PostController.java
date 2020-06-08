@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
-import java.util.Arrays;
 
 @Controller
 public class PostController {
@@ -59,9 +58,6 @@ public class PostController {
 
         category.setPost(post);
         categoryRepo.save(category);
-
-        post.setCategories(categoryRepo.findAll());
-        postRepo.save(post);
 
         return "redirect:/posts";
     }
