@@ -108,9 +108,15 @@ public class UserController {
 
 //************** This is the Delete Functionality *******************
     @GetMapping("/user/delete/{id}")
-    public String deleteUser(@PathVariable long id) {
+    public String deleteUser(@PathVariable long id, HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        kills current session:
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
         users.deleteById(id);
         return "redirect:/posts";
+
     }
 
 //*********** This will allow the user to search the posts on the website???? **************
