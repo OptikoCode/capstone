@@ -58,7 +58,7 @@
 
         <!-- Video responses -->
         <div class="col-md-10 p-3 mb-3 bg-white rounded-lg shadow" th:each="res : ${post.responses}">
-            <div class="video-responsive" style="overflow: hidden;" th:utext="${res.video}"></div>
+            <div class="video-responsive" th:utext="${res.video}"></div>
             <p class="m-0 text-right" th:text="${'Posted by: ' + res.user.username + ' - ' + res.prettyDate()}"></p>
 
             <!-- Edit/delete response if response author -->

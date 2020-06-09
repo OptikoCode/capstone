@@ -423,6 +423,10 @@ button:hover {
     position:absolute;
     top:0; left:0;
 }
+.video-size > video {
+    min-width: 100%;
+    min-height: 100%;
+}
 video {
     width: 100%; height: auto;
 }
