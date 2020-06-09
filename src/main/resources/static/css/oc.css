@@ -400,6 +400,10 @@ button:hover {
     color: #f0d807;
     transition: ease-out 295ms;
 }
+.delete-button {
+    color: #f0d807;
+    background-color: #343a40;
+}
 .delete-button:hover {
     background-color: #343a40;
     color: #f00707;
@@ -710,6 +714,7 @@ div.card.about-div {
     flex-direction: row;
     flex-wrap: wrap;
     position: absolute;
+    margin: 0 auto;
 }
 
 
