@@ -53,7 +53,7 @@ function updateForm(result) {
     // url.href = fileData.url;
     // url.appendChild(document.createTextNode(fileData.url));
     // document.getElementById("profileImageUrl").value = fileData.url;
-    document.getElementById("video-url").value = '<video src="' + result.filesUploaded[0].url  + '" class="html-video" controls>Your browser does not support HTML video.</video>';
+    document.getElementById("video-url").value = '<video src="' + result.filesUploaded[0].url  + '" controls>Your browser does not support HTML video.</video>';
 
     // nameBox.appendChild(name);
     // urlBox.appendChild(document.createTextNode('Uploaded to: '));
