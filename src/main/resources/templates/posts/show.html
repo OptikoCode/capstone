@@ -9,9 +9,9 @@
         background-color: #D5C84F;
     }
 
-    .modal-backdrop {
-        z-index: -1;
-    }
+    /*.modal-backdrop {*/
+    /*    z-index: -1;*/
+    /*}*/
 </style>
 
 <body>
@@ -28,27 +28,6 @@
             <a th:href="@{|/posts/edit/${post.id}|}"><button class="edit-button">Edit</button></a>
             <!--        <a th:href="@{|/posts/delete/${post.id}|}"><button class="delete-button">Delete</button></a>-->
             <button type="button" data-toggle="modal" data-target="#exampleModalCenter">Delete Post</button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete your post?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Once you delete your post, it cannot be recovered and you will lose all of the post information. Please be sure you are certain you want to delete your post.
-                        </div>
-                        <div class="modal-footer">
-                            <a href=""><button type="button" data-dismiss="modal" style="text-align: center">Cancel</button></a>
-                            <a th:href="@{'/posts/delete/' + ${post.id}}"><button style="text-align: center" id="delete-1" onclick="return confirm('Are you sure you want to delete your post?')">DELETE POST</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -65,28 +44,7 @@
             <div class="text-right" th:unless="${#authentication.name != res.user.username}">
                 <a th:href="@{|/posts/${post.id}/edit-response/${res.id}|}"><button class="edit-button">Edit</button></a>
                 <!--                <a th:href="@{|/posts/${post.id}/delete-response/${res.id}|}"><button class="delete-button">Delete</button></a>-->
-                <button type="button" data-toggle="modal" data-target="#exampleModalCenter1">Delete Response</button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle1">Are you sure you want to delete your response?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Once you delete your response, it cannot be recovered and you will lose all of the response information. Please be sure you are certain you want to delete your response.
-                            </div>
-                            <div class="modal-footer">
-                                <a href=""><button type="button" data-dismiss="modal" style="text-align: center">Cancel</button></a>
-                                <a th:href="@{|/posts/${post.id}/delete-response/${res.id}|}"><button style="text-align: center" id="delete-2" onclick="return confirm('Are you sure you want to delete your response?')">DELETE RESPONSE</button></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button type="button" class="toggle-delete-response-modal" data-toggle="modal" data-target="#exampleModalCenter1" th:delete-url="@{|/posts/${post.id}/delete-response/${res.id}|}">Delete Response</button>
             </div>
 
             <!-- Display comments -->
@@ -163,4 +121,45 @@
 
 <standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 </body>
+<!-- Modal to delete post -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete your post?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Once you delete your post, it cannot be recovered and you will lose all of the post information. Please be sure you are certain you want to delete your post.
+            </div>
+            <div class="modal-footer">
+                <a href=""><button type="button" data-dismiss="modal" style="text-align: center">Cancel</button></a>
+                <a th:href="@{'/posts/delete/' + ${post.id}}"><button style="text-align: center" id="delete-1">DELETE POST</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal to delete response -->
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle1">Are you sure you want to delete your response?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Once you delete your response, it cannot be recovered and you will lose all of the response information. Please be sure you are certain you want to delete your response.
+            </div>
+            <div class="modal-footer">
+                <a href=""><button type="button" data-dismiss="modal" style="text-align: center">Cancel</button></a>
+                <a class="delete-response-modal-url" href=""><button style="text-align: center" id="delete-2">DELETE RESPONSE</button></a>
+            </div>
+        </div>
+    </div>
+</div>
 </html>
