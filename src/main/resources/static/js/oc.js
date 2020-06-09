@@ -11,6 +11,7 @@ $(document).ready(function() {
         toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'italic', 'underline']],
+            ['para', ['ul', 'ol']],
             ['mybutton', ['code']],
             ['misc', ['undo', 'redo']],
             ['view', ['codeview', 'help']]
