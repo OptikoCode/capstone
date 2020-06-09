@@ -95,7 +95,8 @@
             </div>
             <div class="modal-footer">
                 <a href=""><button type="button" data-dismiss="modal" style="text-align: center">Cancel</button></a>
-                <a th:href="@{'/user/delete/' + ${user.id}}"><button style="text-align: center" id="delete-1" onclick="return confirm('Are you sure you want to delete your account?')">DELETE ACCOUNT</button></a>
+<!--                onclick="return confirm('Are you sure you want to delete your account?')"-->
+                <a th:href="@{'/user/delete/' + ${user.id}}"><button style="text-align: center" id="delete-1">DELETE ACCOUNT</button></a>
             </div>
         </div>
     </div>
