@@ -17,7 +17,7 @@
 <nav th:replace="partials/partials :: navbar"></nav>
 
 
-<div id="main-form" sec:authorize="isAuthenticated()" th:unless="${#authentication.name != user.email}" class="container">
+<div id="main-form" sec:authorize="isAuthenticated()" th:unless="${#authentication.name != user.username}" class="container">
 
     <form class="row justify-content-center md-center" th:method="post" th:action="@{'/user/edit/' + ${user.id}}" th:object="${user}">
 

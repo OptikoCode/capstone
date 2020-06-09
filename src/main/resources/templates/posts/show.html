@@ -13,57 +13,55 @@
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 
-<div class="container slide-right">
-    <h2 th:text="${post.title}"></h2>
-    <p style="padding-left: 2rem;" th:utext="${post.description}"></p>
+<div class="container slide-right p-5">
+    <div class="p-3 mb-3 bg-white rounded-lg shadow">
+        <h2 th:text="${post.title}"></h2>
+        <p class="m-0 text-right" th:text="${'Asked by: ' + post.user.username + ' - ' + post.prettyDate()}"></p>
+        <p th:utext="${post.description}"></p>
 
-    <p th:unless="${post.updateDate == null}" style="padding-left: 2rem;" th:text="${post.prettyUpdate()}"></p>
+        <!-- Edit/delete post if post author -->
+        <div class="text-right" th:unless="${#authentication.name != post.user.username}">
+            <a th:href="@{|/posts/edit/${post.id}|}"><button class="edit-button">Edit</button></a>
+            <!--        <a th:href="@{|/posts/delete/${post.id}|}"><button class="delete-button">Delete</button></a>-->
+            <button type="button" data-toggle="modal" data-target="#exampleModalCenter">Delete Post</button>
 
-    <p style="padding-left: 2rem;" th:text="${post.user.username}"></p>
-
-    <!-- Edit/delete post if post author -->
-    <div th:unless="${#authentication.name != post.user.email}">
-
-        <a th:href="@{|/posts/edit/${post.id}|}"><button class="edit-button">Edit</button></a>
-<!--        <a th:href="@{|/posts/delete/${post.id}|}"><button class="delete-button">Delete</button></a>-->
-        <button type="button" data-toggle="modal" data-target="#exampleModalCenter">Delete Post</button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete your post?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Once you delete your post, it cannot be recovered and you will lose all of the post information. Please be sure you are certain you want to delete your post.
-                    </div>
-                    <div class="modal-footer">
-                        <a href=""><button type="button" data-dismiss="modal" style="text-align: center">Cancel</button></a>
-                        <a th:href="@{'/posts/delete/' + ${post.id}}"><button style="text-align: center" id="delete-1" onclick="return confirm('Are you sure you want to delete your post?')">DELETE POST</button></a>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete your post?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Once you delete your post, it cannot be recovered and you will lose all of the post information. Please be sure you are certain you want to delete your post.
+                        </div>
+                        <div class="modal-footer">
+                            <a href=""><button type="button" data-dismiss="modal" style="text-align: center">Cancel</button></a>
+                            <a th:href="@{'/posts/delete/' + ${post.id}}"><button style="text-align: center" id="delete-1" onclick="return confirm('Are you sure you want to delete your post?')">DELETE POST</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
-    <div th:unless="${#lists.isEmpty(post.responses)}">
-        <h3 style="padding-top: 15px">Responses:</h3>
-        <!-- Display video responses -->
-        <div class="post-div mb-3 col-md-8 slide-right" style="padding-bottom: 15px; border: 5px solid #343a40; border-radius: 35px" th:each="res : ${post.responses}">
-            <p th:text="'Posted by: ' + ${res.user.username}"></p>
-            <div class="video-responsive" th:utext="${res.video}" style="min-height: 450px"></div>
+    <!-- Display Responses if not empty -->
+    <h3 class="py-2">Responses:</h3>
+    <div th:unless="${#lists.isEmpty(post.responses)}" class="d-flex flex-column align-items-center row">
+
+        <!-- Video responses -->
+        <div class="col-md-10 p-3 mb-3 bg-white rounded-lg shadow" th:each="res : ${post.responses}">
+            <div class="video-responsive" th:utext="${res.video}"></div>
+            <p class="m-0 text-right" th:text="${'Posted by: ' + res.user.username + ' - ' + post.prettyDate()}"></p>
 
             <!-- Edit/delete response if response author -->
-            <div th:unless="${#authentication.name != res.user.email}">
+            <div class="text-right" th:unless="${#authentication.name != res.user.username}">
                 <a th:href="@{|/posts/${post.id}/edit-response/${res.id}|}"><button class="edit-button">Edit</button></a>
-<!--                <a th:href="@{|/posts/${post.id}/delete-response/${res.id}|}"><button class="delete-button">Delete</button></a>-->
+                <!--                <a th:href="@{|/posts/${post.id}/delete-response/${res.id}|}"><button class="delete-button">Delete</button></a>-->
                 <button type="button" data-toggle="modal" data-target="#exampleModalCenter1">Delete Response</button>
-
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -87,9 +85,9 @@
                 </div>
             </div>
 
-<!--test code for putting comments into a card-->
+            <!-- Display comments -->
             <div th:unless="${#lists.isEmpty(res.comments)}">
-                <div class="post-div mb-3 col-md-10" th:each="com : ${res.comments}">
+                <div class="mb-3 ml-auto col-md-10" th:each="com : ${res.comments}">
                     <div th:unless="${res.id != com.response.id}" class="comment">
                         <br>
                         <div class="card shadow slide-right" id="card-con">
@@ -99,30 +97,12 @@
                             </div>
                         </div>
                         <!-- Delete Comment if comment author -->
-                        <div th:unless="${#authentication.name != com.user.email}">
+                        <div class="text-right" th:unless="${#authentication.name != com.user.username}">
                             <a th:href="@{|/posts/${post.id}/response/${res.id}/delete-comment/${com.id}|}"><button class="delete-button">Delete</button></a>
                         </div>
                     </div>
                 </div>
             </div>
-<!--END OF TEST-->
-
-            <!-- Display comments for video responses -->
-<!--            <div th:unless="${#lists.isEmpty(res.comments)}">-->
-<!--                <div class="post-div mb-3 col-md-8" th:each="com : ${res.comments}">-->
-<!--                    <div th:unless="${res.id != com.response.id}" class="comment">-->
-<!--                        <hr>-->
-<!--                        <p th:text="${com.body}" style="padding-top: 7px"></p>-->
-<!--                        <p th:text="${'Posted by: ' + com.user.username}"></p>-->
-<!--                        <hr>-->
-
-<!--                        &lt;!&ndash; Delete Comment if comment author &ndash;&gt;-->
-<!--                        <div th:unless="${#authentication.name != com.user.email}">-->
-<!--                            <a th:href="@{|/posts/${post.id}/response/${res.id}/delete-comment/${com.id}|}"><button class="delete-button">Delete</button></a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
 
             <!-- Add a comment -->
             <div sec:authorize="isAuthenticated()">
@@ -139,45 +119,44 @@
                 <p class="font-weight-bold">Please <a href="/login">log in</a> or <a href="/register">register</a> to add a comment.</p>
             </div>
         </div>
+
+        <!-- Add a video response -->
+        <div class="p-3 col-md-10 bg-white rounded-lg shadow align-items-flex-start" sec:authorize="isAuthenticated()">
+            <button class="add-video-response">Add a Video Response</button>
+            <form th:action="@{|/posts/${post.id}/create-response|}" th:method="post" th:object="${response}" class="video-response-form">
+                <div class="form-group">
+                    <label for="video-url">Video URL:<br><span class="small">(YouTube, Vimeo, DailyMotion, etc... embed code or upload via FileStack)</span></label>
+                    <textarea class="form-control" id="video-url" th:field="*{video}"></textarea>
+                </div>
+                <div class="form-group">
+                    <div id="fs-upload" style="width: 100%; height: 200px;"></div>
+                </div>
+                <p class="slide-right">If you wish, you may use our in-built screen recorder to record a response and upload it above! Just visit our <a href="/screen-recorder">Screen Recorder</a> page.</p>
+                <button type="submit">Submit Video Response</button>
+            </form>
+        </div>
+        <div class="p-3 col-md-10 bg-white rounded-lg shadow" sec:authorize="!isAuthenticated()">
+            <p class="font-weight-bold">Please <a href="/login">log in</a> or <a href="/register">register</a> to add a video response.</p>
+        </div>
     </div>
 
-    <!-- Add a video response -->
-    <div sec:authorize="isAuthenticated()">
-        <button class="add-video-response">Add a Video Response</button>
-        <form th:action="@{|/posts/${post.id}/create-response|}" th:method="post" th:object="${response}" class="video-response-form">
-            <div class="form-group">
-                <label for="video-url">Video URL:<br><span class="small">(YouTube, Vimeo, DailyMotion, etc... embed code or upload via FileStack)</span></label>
-                <textarea class="form-control" id="video-url" th:field="*{video}"></textarea>
-            </div>
-            <div class="form-group">
-                <div id="fs-upload" style="width: 100%; height: 200px;"></div>
-            </div>
-            <p class="slide-right">If you wish, you may use our in-built screen recorder to record a response and upload it above! Just visit our <a href="/screen-recorder">Screen Recorder</a> page.</p>
-            <button type="submit">Submit Video Response</button>
-        </form>
-    </div>
-    <div sec:authorize="!isAuthenticated()">
-        <p class="font-weight-bold">Please <a href="/login">log in</a> or <a href="/register">register</a> to add a video response.</p>
-    </div>
-    <br>
-
-</div>
-<div class="d-flex justify-content-center">
-    <div class="profile-box-container">
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
-        <div class="profile-box"></div>
+    <div class="mt-3 d-flex justify-content-center">
+        <div class="profile-box-container">
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+            <div class="profile-box"></div>
+        </div>
     </div>
 </div>
 

@@ -143,7 +143,7 @@ public class User {
         firstName = copy.firstName;
         lastName = copy.lastName;
         email = copy.email;
-        username = copy.email;
+        username = copy.username;
         password = copy.password;
         createDate = copy.createDate;
         updateDate = copy.updateDate;
