@@ -43,7 +43,10 @@ $(document).ready(function() {
         $('.create-comment-form').slideDown('fast');
     });
 
-
+    // Pass delete response URL to modal
+    $('.toggle-delete-response-modal').click(function() {
+        $('.delete-response-modal-url').attr('href', $(this).attr('delete-url'));
+    });
 
 
     //REST OF GSAP
