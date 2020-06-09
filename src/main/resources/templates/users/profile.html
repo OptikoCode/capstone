@@ -6,29 +6,35 @@
 
 <!--<div class="container" sec:authorize="isAuthenticated()" th:unless="${#authentication.name != user.email}">-->
 <div class="container">
-    <a th:href="@{|/user/edit/${user.getId()}|}"><button style="width: 55px">Edit</button></a>
-    <h2 class="slide-right" style="padding-top: 15px">Your Recent Posts</h2>
-    <br>
-    <div class="post-div slide-right row p-3 mb-3 bg-white rounded-lg shadow" th:each="post : ${posts}">
-        <div class="col-1" style="padding: 0 7px">
-            <p th:utext="${post.responses.size() + '<br>responses'}" class="small text-center"></p>
+    <p class="text-right"><span class="mr-2" th:text="${'Hello, ' + user.username + '!'}"></span> <a th:href="@{|/user/edit/${user.getId()}|}"><button>Edit Profile</button></a></p>
+    <h1 class="slide-right" style="padding-top: 15px">Your Recent Posts</h1>
+
+    <div class="row">
+        <div class="col-md-2 order-md-2">
+            <a th:href="@{|/posts/create|}"><button class="ask-question p-3 mb-3 w-100">Ask a Question</button></a>
         </div>
-        <div class="col-8">
-            <h2 style="padding: 0 45px"><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
-            <th:block th:unless="${#lists.isEmpty(post.categories)}">
-                <th:block th:each="category : ${post.categories}">
-                    <th:block th:unless="${post.id != category.post.id}">
-                        <p th:text="${'Tags: ' + category.name}" style="padding: 0 45px"></p>
+        <div class="col-md-10">
+            <div class="post-div slide-right row p-3 mb-3 bg-white rounded-lg shadow" th:each="post : ${posts}">
+                <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                    <p th:utext="${post.responses.size() + '<br>responses'}" class="small p-2 m-0 text-center border border-secondary rounded-lg"></p>
+                </div>
+                <div class="col-10">
+                    <h2><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></h2>
+
+                    <th:block th:unless="${#lists.isEmpty(post.categories)}">
+                        <th:block th:each="category : ${post.categories}">
+                            <th:block th:unless="${post.id != category.post.id}">
+                                <p class="m-0" th:text="${'Tags: ' + category.name}"></p>
+                            </th:block>
+                        </th:block>
                     </th:block>
-                </th:block>
-            </th:block>
-            <p class="text-right">Asked by: <span th:text="${post.user.username + ' ' + post.prettyDate()}"></span></p>
+
+                    <p class="m-0 text-right" th:text="${'Asked by: ' + post.user.username + ' - ' + post.prettyDate()}"></p>
+                </div>
+            </div>
         </div>
     </div>
 
-
-
-<br><br>
 </div>
 
 
