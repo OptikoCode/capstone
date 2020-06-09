@@ -1,6 +1,7 @@
 package codes.optiko.oc.model;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.ocpsoft.prettytime.PrettyTime;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -152,5 +153,25 @@ public class Comment {
 
     public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
+    }
+
+    public String formattedDate(){
+        String dateString = this.createDate.toString();
+        return dateString.substring(5,7) + "-" + dateString.substring(8,10) + "-" + dateString.substring(0,4);
+    }
+
+    public String formattedUpdate(){
+        String dateString = this.updateDate.toString();
+        return dateString.substring(5,7) + "-" + dateString.substring(8,10) + "-" + dateString.substring(0,4);
+    }
+
+    public String prettyDate(){
+        PrettyTime p = new PrettyTime();
+        return p.format(this.createDate);
+    }
+
+    public String prettyUpdate(){
+        PrettyTime p = new PrettyTime();
+        return p.format(this.updateDate);
     }
 }
