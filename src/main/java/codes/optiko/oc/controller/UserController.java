@@ -8,6 +8,7 @@ import codes.optiko.oc.repositories.SearchRepo;
 import codes.optiko.oc.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -103,6 +104,10 @@ public class UserController {
         user.setPassword(hash);
         user.setUpdateDate(new Timestamp(System.currentTimeMillis()));
         users.save(user);
+
+        User auth = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        auth.setUsername(user.getUsername());
+
         return "redirect:/profile";
     }
 
