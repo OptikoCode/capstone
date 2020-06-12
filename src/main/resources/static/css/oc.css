@@ -387,8 +387,8 @@ button {
 }
 button:hover {
     transition: ease-out 295ms;
-    background-color: #d4c850;
-    color: #65fce1;
+    background-color: #343a40;
+    color: #03fcdb;
     cursor: pointer;
 }
 .about-div {
@@ -397,7 +397,7 @@ button:hover {
 }
 .edit-button:hover {
     background-color: #343a40;
-    color: #f0d807;
+    color: #03fcdb;
     transition: ease-out 295ms;
 }
 .delete-button {
